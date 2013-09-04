@@ -1,0 +1,6 @@
+<use   name="NtuTool/Common"/>
+<use   name="root"/>
+<export>
+  <use   name="NtuTool/Common"/>
+  <lib   name="1"/>
+</export>

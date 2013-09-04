@@ -1,0 +1,126 @@
+
+
+ ----- to use the package in CMSSW -----
+
+cd ${CMSSW_BASE}/src
+cvs co UserCode/PaoloRonch
+mv UserCode/PaoloRonch/NtuTool .
+scram b
+
+ ----- to export the tool outside -----
+
+cd ${CMSSW_BASE}/src
+cvs co UserCode/PaoloRonch
+mv UserCode/PaoloRonch/NtuTool .
+NtuTool/uty/export.sh
+
+copy the file NtuTool_XX_YY_ZZ.tgz wherever you want to install the tool, then
+
+tar -xzf NtuTool_XX_YY_ZZ.tgz
+cd NtuTool_XX_YY_ZZ
+uty/install.sh
+. uty/envset.sh
+or
+source uty/envset.csh
+
+to compile with a CMSSW-independent c++/ROOT environment
+uty/compile.sh
+
+to compile using a c++/ROOT environment as defined in a CMSSW release
+do the following
+
+uty/compile_CMSSW.sh CMSSW_X_Y_Z
+
+where CMSSW_X_Y_Z is the CMSSW version, e.g. CMSSW_4_2_3 . To compile for all 
+available CMSSW versions do the following
+
+uty/go_compileNtuTool.sh
+
+ ----- running examples - write -----
+
+an example that write a simple ROOT tree with no use of the tool
+functionalities, just as a comparison; it produces "simple_tree.root"
+that contains simply the run number
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+cmsRun treew.py
+
+---
+
+an example that does the same operation using the tool, to show how 
+the code changes; it produces "ntuple_base.root"
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+cmsRun sntuw.py
+
+---
+
+an example that write the same informations in and EDM ntuple; 
+it produces "ntuple_edm.root"
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+cmsRun sedmw.py
+
+ ----- running examples - read in a CMSSW area -----
+
+compile the examples
+
+cd ${CMSSW_BASE}/src/NtuTool/Read/test
+compileTest.sh
+
+then copy the previously produced .root files
+
+---
+
+read "ntuple_base.root"
+
+treeAnalyze_Base ntuList -n 6 -s 2 -a 5 hs.root x
+
+ntuList    : is a text file with the list of the files to read
+hs.root    : is the ouptut histogram file
+-n         : set the max number of events to read, if negative its applied 
+           : to each input file
+-s         : set the number of events to skip, if negative its applied 
+           : to each input file
+-a         : set the max number of events to accept, if negative its applied 
+           : to each input file
+x          : a flag to draw the histograms at the end (as coded in plot() )
+           : at the end of the execution
+-v key val : to set user parameter "key" as "val"
+-c cfgFile : to read all parameters from cfgFile
+
+alternatives:
+
+i       a flag to have a ROOT prompt at the end of the execution
+j       a flag to draw the histograms at the end (as coded in plot() )
+        at the end of the execution and then have a ROOT prompt
+b       a flag to simply save the histograms
+
+-v histoMode RECREATE
+        to open the output file with RECREATE option (CREATE by default)
+
+---
+
+read "ntuple_edm.root"
+
+treeAnalyze_EDM edmList -n 6 -s 2 hs.root x
+
+ ----- export examples outside -----
+
+complete the writing examples described above, then do the following
+
+cd ${CMSSW_BASE}/src/NtuTool/Read/test
+export/exportExample.sh
+
+copy the file examples.tgz wherever you want
+
+ ----- running examples - read outside CMSSW -----
+
+tar -xzf examples.tgz
+compileExample.sh
+(to compile in a CMSSW-independent c++/ROOT environment) or
+compileExample_CMSSW.sh
+(to compile with c++/ROOT as defined in CMSSW)
+
+then run in the same way as before
+

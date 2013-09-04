@@ -1,0 +1,107 @@
+01.02.13
+
+user-customizable output file open mode
+
+----------------------
+
+01.02.12
+
+user-customizable output overwriting
+
+----------------------
+
+01.02.11
+
+user-customizable tree reading added
+
+----------------------
+
+01.02.10
+
+user parameter reading from file added
+
+----------------------
+
+01.02.09
+
+export script updated to work from the WebCVS tarball
+
+----------------------
+
+01.02.08
+
+install script updated to work anywhere
+
+----------------------
+
+01.02.07
+
+null file handling added
+
+----------------------
+
+01.02.06
+
+boolean user parameters handling added
+
+----------------------
+
+01.02.05
+
+file restored, removed by mistake
+
+file removed, left by mistake
+
+main program moved to bin directory
+
+small fixes
+
+----------------------
+
+01.02.04
+
+LD_LIBRAY_PATH cleanup added
+
+event count moved from TreeReader to TreeWrapper
+
+inclusion of SimpleNtuple example moved to separate file
+
+examples to read outside CMSSW moved to a separate directory
+
+preprocessor control of ntuple type added
+
+small fixes
+
+----------------------
+
+01.02.03
+
+automatic save of subdirectory structure added
+
+----------------------
+
+01.02.02
+
+explicit autoSave() added in default analysis
+
+----------------------
+
+01.02.01
+
+histo handling moved from TreeReader to TreeWrapper
+
+comments added in test writers
+
+begin/end functions and autoSave added in test analyzers
+
+explicit deletion of old executables added in compile scripts
+
+tool development log added
+
+----------------------
+
+01.01.05
+
+subfolder handling added
+
+

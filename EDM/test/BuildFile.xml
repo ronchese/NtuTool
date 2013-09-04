@@ -1,0 +1,8 @@
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/EDM"/>
+<use   name="FWCore/Framework"/>
+<use   name="root"/>
+<use   name="rootrflx"/>
+<library   file="stubs/*.cc" name="NtuToolEDMTest">
+  <flags   EDM_PLUGIN="1"/>
+</library>

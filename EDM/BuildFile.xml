@@ -1,0 +1,8 @@
+<use   name="NtuTool/Common"/>
+<use   name="FWCore/Framework"/>
+<use   name="root"/>
+<use   name="rootrflx"/>
+<export>
+  <use   name="NtuTool/Common"/>
+  <lib   name="1"/>
+</export>
