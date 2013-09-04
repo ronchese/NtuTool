@@ -1,3 +1,11 @@
+01.02.14
+
+autoSave modified to take a TList of output objects
+
+initRead split in two functions
+
+----------------------
+
 01.02.13
 
 user-customizable output file open mode
