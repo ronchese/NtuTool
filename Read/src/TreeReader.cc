@@ -60,7 +60,7 @@ int TreeReader::loop( int evtmax, int evskip, int accmax, bool anaexe ) {
     reset();
     // read tree
 //    currentTree->GetEntry( ientry );
-    getEntry( ientry );
+    if ( !getEntry( ientry ) ) continue;
     // preliminary data process
     process( ientry );
     // perform user analysis
@@ -101,10 +101,10 @@ void TreeReader::initRead( TTree* tree ) {
 }
 
 
-void TreeReader::getEntry( int ientry ) {
+bool TreeReader::getEntry( int ientry ) {
 // default preliminary process - read all event
   currentTree->GetEntry( ientry );
-  return;
+  return true;
 }
 
 
