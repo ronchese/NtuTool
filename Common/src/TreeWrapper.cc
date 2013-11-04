@@ -144,6 +144,9 @@ void TreeWrapper::plot( int argc, char* argv[], char flag ) {
 
 void TreeWrapper::plot() {
 // default analysis - dummy
+// set "histoPlotted" to false to avoid execution getting stuck when
+// "x" option is given
+  histoPlotted = false;
   return;
 }
 
