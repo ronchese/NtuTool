@@ -58,7 +58,7 @@ class TreeStandardAnalyzer {
 
  private:
 
-  static TreeStandardAnalyzer* analyzerInstance;
+  static TreeStandardAnalyzer*& instance();
 
   TreeStandardAnalyzer( const TreeStandardAnalyzer& t );
   TreeStandardAnalyzer& operator=( const TreeStandardAnalyzer& t );

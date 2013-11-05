@@ -30,7 +30,7 @@ class TreeReader: public virtual TreeWrapper {
 
  private:
 
-  static TreeReader* readerInstance;
+  static TreeReader*& instance();
 
   TreeReader( const TreeReader& t );
   TreeReader& operator=( const TreeReader& t );

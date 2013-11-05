@@ -8,11 +8,9 @@
 #include "TChain.h"
 
 
-TreeReader* TreeReader::readerInstance = 0;
-
-
 TreeReader::TreeReader() {
   handlerManager = new TreeTypeManager;
+  TreeReader*& readerInstance = instance();
   if ( readerInstance == 0 ) readerInstance = this;
 }
 
@@ -22,7 +20,7 @@ TreeReader::~TreeReader() {
 
 
 TreeReader* TreeReader::getInstance() {
-  return readerInstance;
+  return instance();
 }
 
 
@@ -111,5 +109,11 @@ bool TreeReader::getEntry( int ientry ) {
 void TreeReader::process( int ientry ) {
 // default preliminary process - dummy
   return;
+}
+
+
+TreeReader*& TreeReader::instance() {
+  static TreeReader* readerInstance = 0;
+  return readerInstance;
 }
 

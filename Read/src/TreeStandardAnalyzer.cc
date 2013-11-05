@@ -26,15 +26,11 @@
 #include <sstream>
 #include <string>
 
-//-------------------
-// Initializations --
-//-------------------
-TreeStandardAnalyzer* TreeStandardAnalyzer::analyzerInstance = 0;
-
 //----------------
 // Constructors --
 //----------------
 TreeStandardAnalyzer::TreeStandardAnalyzer() {
+  TreeStandardAnalyzer*& analyzerInstance = instance();
   if ( analyzerInstance == 0 ) analyzerInstance = this;
 }
 
@@ -46,6 +42,7 @@ TreeStandardAnalyzer::~TreeStandardAnalyzer() {
 
 
 TreeStandardAnalyzer* TreeStandardAnalyzer::getInstance() {
+  TreeStandardAnalyzer*& analyzerInstance = instance();
   if ( analyzerInstance == 0 ) analyzerInstance = new TreeStandardAnalyzer;
   return analyzerInstance;
 }
@@ -191,5 +188,9 @@ int TreeStandardAnalyzer::loop( TreeReader* tr, std::ifstream& treeListFile,
 
 }
 
+TreeStandardAnalyzer*& TreeStandardAnalyzer::instance() {
+  static TreeStandardAnalyzer* analyzerInstance = 0;
+  return analyzerInstance;
+}
 
 
