@@ -1,5 +1,9 @@
 #!/bin/csh
 
+cd `dirname $0`
+cd ..
+setenv NTU_TOOL_DIR `/bin/pwd`
+
 setenv VERSION $1
 setenv INSTDIR `scramv1 list CMSSW | awk -v VERSION=${VERSION} 'BEGIN{FOUND="FALSE"} ($1 == "CMSSW" && $2 == VERSION && FOUND == "FALSE") {FOUND="TRUE"} ($1 == "-->" && FOUND == "TRUE") {print $2; FOUND="FALSE"}'`
 
@@ -19,10 +23,7 @@ echo "${ROOTSYS} not found"
 exit
 endif
 
-cd `dirname $0`
-cd ..
-setenv NTU_TOOL_DIR `/bin/pwd`
-#cd ${NTU_TOOL_DIR}
+cd ${NTU_TOOL_DIR}
 
 echo "build lib for "${SCRAM_ARCH}" "${VERSION}
 
