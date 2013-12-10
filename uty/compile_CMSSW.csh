@@ -19,7 +19,10 @@ echo "${ROOTSYS} not found"
 exit
 endif
 
-cd ${NTU_TOOL_DIR}
+cd `dirname $0`
+cd ..
+setenv NTU_TOOL_DIR `/bin/pwd`
+#cd ${NTU_TOOL_DIR}
 
 echo "build lib for "${SCRAM_ARCH}" "${VERSION}
 

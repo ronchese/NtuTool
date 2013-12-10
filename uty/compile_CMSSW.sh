@@ -19,7 +19,10 @@ echo "${ROOTSYS} not found"
 exit
 fi
 
-cd ${NTU_TOOL_DIR}
+cd `dirname $0`
+cd ..
+export NTU_TOOL_DIR=`/bin/pwd`
+#cd ${NTU_TOOL_DIR}
 
 echo "build lib for "${SCRAM_ARCH}" "${VERSION}
 

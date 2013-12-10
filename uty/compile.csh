@@ -1,6 +1,9 @@
 #!/bin/csh
 
-cd ${NTU_TOOL_DIR}
+cd `dirname $0`
+cd ..
+setenv NTU_TOOL_DIR `/bin/pwd`
+#cd ${NTU_TOOL_DIR}
 
 rm -f lib/libNtupleTool.so
 c++ -I ${NTU_TOOL_DIR}/include `root-config --cflags` -fPIC \
