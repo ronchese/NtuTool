@@ -71,13 +71,14 @@ void TreeWrapper::setUserParameter( const std::string& key,
 }
 
 
-std::string TreeWrapper::getUserParameter( const std::string& key ) {
+const std::string& TreeWrapper::getUserParameter( const std::string& key ) {
+  static std::string dum = "";
   std::map<std::string,std::string>::iterator
                                      iter = userParameters.find( key );
   std::map<std::string,std::string>::iterator
                                      iend = userParameters.end();
   if ( iter != iend ) return iter->second;
-  return "";
+  return dum;
 }
 
 
@@ -381,6 +382,18 @@ TreeWrapper::branch_iterator TreeWrapper::treeBegin() {
 
 TreeWrapper::branch_iterator TreeWrapper::treeEnd() {
   return branchList.end();
+}
+
+
+bool TreeWrapper::writable( const TObject* obj ) {
+  return writable( obj->ClassName() );
+}
+
+
+bool TreeWrapper::writable( const std::string& type ) {
+  if ( type.substr( 0, 2 ) == "TH"       ) return true;
+  if ( type                == "TProfile" ) return true;
+  return false;
 }
 
 

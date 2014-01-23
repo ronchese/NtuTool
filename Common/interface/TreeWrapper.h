@@ -25,10 +25,10 @@ class TreeWrapper {
   virtual void setConfiguration( const std::string& file );
   virtual void setUserParameter( const std::string& key,
                                  const std::string& val );
-  virtual std::string getUserParameter( const std::string& key );
+  const std::string& getUserParameter( const std::string& key );
   template<class T>
-  void getUserParameter( const std::string& key, T& val );
-  void getUserParameter( const std::string& key, bool& val );
+  void               getUserParameter( const std::string& key,    T& val );
+  void               getUserParameter( const std::string& key, bool& val );
 
   // function to do initialization
   virtual void beginJob();
@@ -139,6 +139,9 @@ class TreeWrapper {
 
   branch_iterator treeBegin();
   branch_iterator treeEnd();
+
+  virtual bool writable( const TObject* obj );
+  virtual bool writable( const std::string& type );
 
  private:
 
