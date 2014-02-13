@@ -30,6 +30,8 @@ class TreeWrapper {
   void               getUserParameter( const std::string& key,    T& val );
   void               getUserParameter( const std::string& key, bool& val );
 
+  void dumpAll();
+
   // function to do initialization
   virtual void beginJob();
   // function to book histograms, called after "beginJob"

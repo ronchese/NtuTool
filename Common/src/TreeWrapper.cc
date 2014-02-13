@@ -90,6 +90,19 @@ void TreeWrapper::getUserParameter( const std::string& key, bool& val ) {
 }
 
 
+void TreeWrapper::dumpAll() {
+  std::map<std::string,std::string>::const_iterator
+                                           iter = userParameters.begin();
+  std::map<std::string,std::string>::const_iterator
+                                           iend = userParameters.end();
+  while ( iter != iend ) {
+    const std::pair<std::string,std::string>& entry = *iter++;
+    std::cout << entry.first << " " << entry.second << std::endl;
+  }
+  return;
+}
+
+
 void TreeWrapper::beginJob() {
 // default analysis - dummy
   return;
