@@ -3,6 +3,7 @@
 <use   name="FWCore/Framework"/>
 <use   name="root"/>
 <use   name="rootrflx"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
 <library   file="stubs/*.cc" name="NtuToolEDMTest">
   <flags   EDM_PLUGIN="1"/>
 </library>
