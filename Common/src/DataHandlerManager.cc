@@ -58,7 +58,7 @@ DataHandler* DataHandlerManager::getInstance( const std::string* branchData ) {
   if ( handlerMap() == 0 ) return 0;
   DataHandler* handler = handlerMap()->find( code );
   if ( handler == 0 ) {
-    std::cout << "type not found" << std::endl;
+    std::cout << "type not found: " << code << std::endl;
     return 0;
   }
   return handler->getInstance( name, code );

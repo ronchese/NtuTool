@@ -17,7 +17,6 @@
 //-------------------------------
 #include "NtuTool/Read/interface/EDMTypeReader.h"
 #include "NtuTool/Common/interface/DataHandlerMap.h"
-#include "NtuTool/Common/interface/Math.h"
 
 //---------------
 // C++ Headers --
