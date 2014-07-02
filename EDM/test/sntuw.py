@@ -10,10 +10,10 @@ process.source = cms.Source("EmptyIOVSource",
 )
 
 
-process.testSimpleNtuple = cms.EDAnalyzer(
-    "TestSimpleNtuple"
+process.simpleWriter = cms.EDAnalyzer(
+    "SimpleWriter"
 )
 
 
-process.p = cms.Path(process.testSimpleNtuple)
+process.p = cms.Path(process.simpleWriter)
 
