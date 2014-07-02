@@ -15,7 +15,6 @@ GenericSimpleAnalyzer::GenericSimpleAnalyzer() {
 // additional info
 // set according to .py used when writing
 #if NTUPLE_TYPE == EDM
-  treeName = "Events";
   setProcessName( "PIPPO" );
   setProducerName( "testSimpleEDMNtuple" );
 #endif
