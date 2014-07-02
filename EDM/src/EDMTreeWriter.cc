@@ -7,6 +7,10 @@
 
 #include <string>
 
+
+bool EDMTreeWriter::select = true;
+
+
 EDMTreeWriter::EDMTreeWriter() {
   handlerManager = new EDMTypeWriterManager;
 }
@@ -58,15 +62,15 @@ void EDMTreeWriter::initWrite() {
 void EDMTreeWriter::produce( edm::Event& ev, const edm::EventSetup& es ) {
   autoReset();
   build();
-  fill( ev, es );
-  put( ev );
+  if ( ( select = fill( ev, es ) ) ) put( ev );
+//  std::cout << "EDMTreeWriter::produce " << ( select ? 't' : 'f' ) << std::endl;
   return;
 }
 
 
-void EDMTreeWriter::fill( edm::Event& ev, const edm::EventSetup& es ) {
+bool EDMTreeWriter::fill( const edm::Event& ev, const edm::EventSetup& es ) {
 // default analysis - dummy
-  return;
+  return true;
 }
 
 
