@@ -32,17 +32,17 @@ void SimpleAnalyzer::book() {
   // doing the same with directories they are replicated in the file
 
   autoSavedObject =
-  hist = new TH1F( "hist", "hist", 10, -2.5, 2.5 );
+  hist = new TH1F( "hist", "hist", 20, 10.5, 30.5 );
 
   autoSavedObject =
   gDirectory->mkdir( "subd" );
   autoSavedObject =
-  hisd = new TH1F( "hisd", "hisd", 25, -12.5, 12.5 );
+  hisd = new TH1F( "hisd", "hisd", 25, -50.0, 50.0 );
 
   autoSavedObject =
   gDirectory->GetDirectory( ".." );
   autoSavedObject =
-  hisc = new TH1F( "hisc", "hisc", 25, -5.0, 5.0 );
+  hisc = new TH1F( "hisc", "hisc",  7, -0.5, 6.5 );
 
   return;
 
@@ -90,9 +90,15 @@ bool SimpleAnalyzer::analyze( int entry, int event_file, int event_tot ) {
   while ( j < n_arr ) std::cout << i_arr[j++] << " ";
   std::cout << std::endl;
 
-  hist->Fill( ( ( i_run % 10 ) / 2.0 ) - 2.5 );
-  hisd->Fill( ( ( i_run % 10 ) / 2.0 ) - 5.5 );
-  hisc->Fill( ( ( i_run % 10 ) / 2.0 ) - 3.5 );
+  int n;
+  int i;
+
+  n = i_vec.size();
+  for ( i = 0; i < n; ++i ) hist->Fill( i_vec[i] );
+  n = f_vpt->size();
+  for ( i = 0; i < n; ++i ) hisd->Fill( f_vpt->at( i ) );
+  n = n_arr;
+  for ( i = 0; i < n; ++i ) hisc->Fill( i_arr[i] );
 
   std::cout << " --------------------------- " << std::endl;
 
