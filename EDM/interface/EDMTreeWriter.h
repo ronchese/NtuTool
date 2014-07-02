@@ -10,6 +10,8 @@
 class EDMTreeWriter: public edm::EDProducer,
                      public virtual TreeWrapper {
 
+  friend class EDMNtupleFilter;
+
  public:
 
   EDMTreeWriter();
@@ -24,7 +26,7 @@ class EDMTreeWriter: public edm::EDProducer,
 
   void produce( edm::Event& ev, const edm::EventSetup& es );
   virtual void initWrite();
-  virtual void fill( edm::Event& ev, const edm::EventSetup& es );
+  virtual bool fill( const edm::Event& ev, const edm::EventSetup& es );
 
  private:
 
@@ -33,6 +35,8 @@ class EDMTreeWriter: public edm::EDProducer,
 
   void build();
   void put( edm::Event& ev );
+
+  static bool select;
 
 //  DataHandlerManager* handlerManager;
 
