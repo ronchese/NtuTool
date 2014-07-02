@@ -1,0 +1,12 @@
+<use   name="root"/>
+<use   name="rootgpad"/>
+<use   name="rootgraphics"/>
+<use   name="rootcore"/>
+<use   name="rootrflx"/>
+<use   name="rootcintex"/>
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/EDM"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<library   file="*.cc" name="NtuToolEDMPlugins">
+  <flags   EDM_PLUGIN="1"/>
+</library>
