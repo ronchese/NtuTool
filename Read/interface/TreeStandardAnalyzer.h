@@ -37,10 +37,6 @@ class TreeStandardAnalyzer {
 
  public:
 
-  /** Constructor
-   */
-  TreeStandardAnalyzer();
-
   /** Destructor
    */
   virtual ~TreeStandardAnalyzer();
@@ -55,6 +51,12 @@ class TreeStandardAnalyzer {
   /// loop over files
   virtual int loop( TreeReader* tr, std::ifstream& treeListFile,
                     int evtmax, int evskip, int accmax, bool anaexe = true );
+
+ protected:
+
+  /** Constructor
+   */
+  TreeStandardAnalyzer();
 
  private:
 
