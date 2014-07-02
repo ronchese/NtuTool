@@ -10,8 +10,8 @@ process.source = cms.Source("EmptyIOVSource",
 )
 
 
-process.testSimpleEDMNtuple = cms.EDProducer(
-    "TestSimpleEDMNtuple"
+process.edmSimpleWriter = cms.EDProducer(
+    "EDMSimpleWriter"
 )
 
 
@@ -20,10 +20,10 @@ process.out = cms.OutputModule(
     fileName = cms.untracked.string('ntuple_edm.root'),
     outputCommands = cms.untracked.vstring(
       "drop *",
-      "keep *_testSimpleEDMNtuple_*_*"      
+      "keep *_edmSimpleWriter_*_*"      
     )
 )
 
-process.p = cms.Path(process.testSimpleEDMNtuple)
+process.p = cms.Path(process.edmSimpleWriter)
 process.e = cms.EndPath(process.out)
 
