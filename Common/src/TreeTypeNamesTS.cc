@@ -31,7 +31,6 @@
 // Operations --
 //--------------
 
-
 // === template specialization for int ===
 
 template <>
