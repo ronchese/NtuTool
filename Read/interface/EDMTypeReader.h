@@ -3,8 +3,7 @@
 /** \class EDMTypeReader
  *
  *  Description: 
- *    Base class to select type-specific calls to EDProducer and Event
- *    functions
+ *    Base class to read data from EDM ntuples
  *
  *  $Date: 2011/03/01 18:09:03 $
  *  $Revision: 1.1 $
