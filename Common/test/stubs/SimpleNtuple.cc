@@ -19,11 +19,11 @@ SimpleNtuple::SimpleNtuple() {
   // in place of ROOT "Branch" & "SetBranchAddress"
 
   setBranch(  "iRun", & i_run,       "iRun/I", &b_i_run );
+  setBranch(  "nArr", & n_arr,       "nArr/I", &b_n_arr );
+  setBranch(  "iArr",   i_arr, "iArr[nArr]/I", &b_i_arr );
   setBranch(  "iVec", & i_vec,       1000, 99, &b_i_vec ); // access by pointer
   setBranch(  "fVpt", & f_vpt,       1000, 99, &b_f_vpt ); // access by pointer
                                                            //        to pointer
-  setBranch(  "nArr", & n_arr,       "nArr/I", &b_n_arr );
-  setBranch(  "iArr",   i_arr, "iArr[nArr]/I", &b_i_arr );
 
 }
 
