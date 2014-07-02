@@ -12,7 +12,6 @@ EDMSimpleAnalyzer::EDMSimpleAnalyzer() {
   std::cout << "new EDMSimpleAnalyzer" << std::endl;
 // additional info
 // set according to .py used when writing
-  treeName = "Events";
   setProcessName( "PIPPO" );
   setProducerName( "testSimpleEDMNtuple" );
 }
