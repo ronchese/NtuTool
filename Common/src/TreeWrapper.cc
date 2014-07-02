@@ -71,8 +71,15 @@ void TreeWrapper::setUserParameter( const std::string& key,
 }
 
 
+void TreeWrapper::setUserParameter( const std::string& key,
+                                    const        bool& val ) {
+  setUserParameter( key, val ? "t" : "f" );
+  return;
+}
+
+
 const std::string& TreeWrapper::getUserParameter( const std::string& key ) {
-  static std::string dum = "";
+  static std::string dum( "" );
   std::map<std::string,std::string>::iterator
                                      iter = userParameters.find( key );
   std::map<std::string,std::string>::iterator
@@ -353,12 +360,11 @@ void TreeWrapper::autoSave( TList* list ) {
       }
       dir->cd();
     }
-    else if ( type.substr( 0, 2 ) == "TH" ) {
+    else if ( writable( obj ) ) {
       if ( list == 0 ) obj->Write();
       else             list->FindObject( obj->GetName() )->Write();
     }
   }
-
   return;
 }
 
