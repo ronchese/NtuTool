@@ -23,9 +23,29 @@ TChain* EDMTreeReader::initRead( const std::string& file ) {
 
   currentFile = file;
 
-  TChain* c = new TChain( treeName.c_str() );
+  TChain* c = new TChain( "Events" );
   c->Add( file.c_str() );
-  currentTree = c;
+  initRead( c );
+  return c;
+
+}
+
+
+void EDMTreeReader::setProcessName( const std::string& name ) {
+  processName = name;
+  return;
+}
+
+
+void EDMTreeReader::setProducerName( const std::string& name ) {
+  producerName = name;
+  return;
+}
+
+
+void EDMTreeReader::initRead( TTree* tree ) {
+
+  currentTree = tree;
   currentTree->SetMakeClass(1);
 
   branch_iterator iter = treeBegin();
@@ -45,20 +65,8 @@ TChain* EDMTreeReader::initRead( const std::string& file ) {
                                                        bDesc->branchPtr );
   }
 
-  return c;
-
-}
-
-
-void EDMTreeReader::setProcessName( const std::string& name ) {
-  processName = name;
   return;
-}
 
-
-void EDMTreeReader::setProducerName( const std::string& name ) {
-  producerName = name;
-  return;
 }
 
 
