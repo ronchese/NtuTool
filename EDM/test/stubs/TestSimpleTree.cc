@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-TestSimpleTree::TestSimpleTree( const edm::ParameterSet& cfg ) {
+TestSimpleTree::TestSimpleTree( const edm::ParameterSet& ps ) {
 
   // open output ROOT file
   file = new TFile( "simple_tree.root", "CREATE" );
@@ -23,10 +23,10 @@ TestSimpleTree::TestSimpleTree( const edm::ParameterSet& cfg ) {
   // define branches
 
   tree->Branch(  "iRun", & i_run,       "iRun/I" );
-  tree->Branch(  "iVec", & i_vec,       1000, 99 );
-  tree->Branch(  "fVpt", & f_vpt,       1000, 99 );
   tree->Branch(  "nArr", & n_arr,       "nArr/I" );
   tree->Branch(  "iArr",   i_arr, "iArr[nArr]/I" );
+  tree->Branch(  "iVec", & i_vec,       1000, 99 );
+  tree->Branch(  "fVpt", & f_vpt,       1000, 99 );
 
 }
 
@@ -38,12 +38,12 @@ void TestSimpleTree::beginJob() {
   return;
 }
 
-void TestSimpleTree::analyze( const edm::Event &evt,
+void TestSimpleTree::analyze( const edm::Event& ev,
                               const edm::EventSetup& es ) {
 
   std::cout << "event "
-            << evt.id().run() << " / "
-            << evt.id().event() << std::endl;
+            << ev.id().run() << " / "
+            << ev.id().event() << std::endl;
 
   // reset variables
   i_vec.clear();
@@ -53,7 +53,7 @@ void TestSimpleTree::analyze( const edm::Event &evt,
   n_arr = 0;
 
   // set variables
-  setData( evt.id().run() );
+  setData( ev.id().run() );
 
   //
   file->cd();
@@ -77,14 +77,19 @@ void TestSimpleTree::endJob() {
 void TestSimpleTree::setData( unsigned int iRun ) {
 
   i_run = iRun;
-  i_vec.push_back( iRun );
-  i_vec.push_back( iRun % 100 );
-  f_vpt->push_back( 1000000 + iRun );
-  f_vpt->push_back( 1000000 + iRun % 100 );
 
-  i_arr[n_arr++] = iRun;
-  i_arr[n_arr++] = iRun % 100;
-  if ( ( iRun % 100 ) > 60 ) i_arr[n_arr++] = iRun % 10000;
+  int n = 4 + lround( random() * 4.0 / RAND_MAX );
+
+  while ( n-- ) {
+    int i = 15 + lround( random() * 10.0 / RAND_MAX );
+    i_vec.push_back( i );
+    float x = 6.0 - ( 8.0 * sqrt( -log( 1.0 - ( random() * 1.0 /
+                                                RAND_MAX ) ) ) *
+                            cos( 2.0 * M_PI * ( random() * 1.0 /
+                                                RAND_MAX ) ) );
+    f_vpt->push_back( x );
+    i_arr[n_arr++] = i % 7;
+  }
 
   return;
 
