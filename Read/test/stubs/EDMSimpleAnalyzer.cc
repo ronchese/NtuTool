@@ -13,7 +13,7 @@ EDMSimpleAnalyzer::EDMSimpleAnalyzer() {
 // additional info
 // set according to .py used when writing
   setProcessName( "PIPPO" );
-  setProducerName( "testSimpleEDMNtuple" );
+  setProducerName( "simpleEDMWriter" );
 }
 
 
