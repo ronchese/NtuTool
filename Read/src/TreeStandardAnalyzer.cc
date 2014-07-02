@@ -43,7 +43,7 @@ TreeStandardAnalyzer::~TreeStandardAnalyzer() {
 
 TreeStandardAnalyzer* TreeStandardAnalyzer::getInstance() {
   TreeStandardAnalyzer*& analyzerInstance = instance();
-  if ( analyzerInstance == 0 ) analyzerInstance = new TreeStandardAnalyzer;
+  if ( analyzerInstance == 0 ) new TreeStandardAnalyzer;
   return analyzerInstance;
 }
 
@@ -187,6 +187,7 @@ int TreeStandardAnalyzer::loop( TreeReader* tr, std::ifstream& treeListFile,
   return evcount;
 
 }
+
 
 TreeStandardAnalyzer*& TreeStandardAnalyzer::instance() {
   static TreeStandardAnalyzer* analyzerInstance = 0;
