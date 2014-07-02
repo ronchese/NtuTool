@@ -17,6 +17,7 @@ class EDMTreeReader: public TreeReader {
   void setProcessName(  const std::string& name );
   void setProducerName( const std::string& name );
 
+  virtual void initRead( TTree* tree );
   virtual void process( int ientry );
 
  private:
