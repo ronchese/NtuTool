@@ -60,7 +60,7 @@ void EDMTreeWriter::initWrite() {
 
 
 void EDMTreeWriter::produce( edm::Event& ev, const edm::EventSetup& es ) {
-  autoReset();
+  reset();
   build();
   if ( ( select = fill( ev, es ) ) ) put( ev );
 //  std::cout << "EDMTreeWriter::produce " << ( select ? 't' : 'f' ) << std::endl;

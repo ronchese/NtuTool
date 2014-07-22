@@ -94,6 +94,7 @@ void TreeReader::initRead( TTree* tree ) {
                                    bDesc->branchPtr );
   }
 
+  fillBranchMap();
   return;
 
 }
@@ -107,6 +108,12 @@ bool TreeReader::getEntry( int ientry ) {
 
 
 void TreeReader::process( int ientry ) {
+// default preliminary process - dummy
+  return;
+}
+
+
+void TreeReader::process( TBranch* b, int ientry ) {
 // default preliminary process - dummy
   return;
 }

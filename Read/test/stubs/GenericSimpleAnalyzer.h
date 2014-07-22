@@ -44,6 +44,9 @@ class GenericSimpleAnalyzer: private SimpleNtuple,
 
   // functions called for each event
   virtual void reset();
+  // function to get current entry from ntuple, to be overridden if
+  // a "preliminary analysis" is to be performed over part of events
+//  virtual bool getEntry( int ientry );
   virtual bool analyze( int entry, int event_file, int event_tot );
 
   // function to do file-specific final operations

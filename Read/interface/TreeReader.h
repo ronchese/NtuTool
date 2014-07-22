@@ -27,6 +27,7 @@ class TreeReader: public virtual TreeWrapper {
   virtual void initRead( TTree* tree );
   virtual bool getEntry( int ientry );
   virtual void process( int ientry );
+  virtual void process( TBranch* b, int ientry );
 
  private:
 

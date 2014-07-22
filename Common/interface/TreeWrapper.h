@@ -35,7 +35,7 @@ class TreeWrapper {
   void               getUserParameter( const std::string& key,    T& val );
   void               getUserParameter( const std::string& key, bool& val );
 
-  void dumpAll();
+  void dumpAll( std::ostream& os );
 
   // function to do initialization
   virtual void beginJob();
@@ -143,6 +143,10 @@ class TreeWrapper {
   typedef std::vector< branch_desc* > branch_list;
   typedef branch_list::const_iterator branch_iterator;
   typedef branch_list::const_reverse_iterator branch_rev_iter;
+
+  std::map<TBranch*,branch_desc*> branchMap;
+  void fillBranchMap();
+  virtual void process( TBranch* b, int ientry );
 
   branch_iterator treeBegin();
   branch_iterator treeEnd();

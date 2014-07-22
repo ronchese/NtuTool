@@ -50,17 +50,26 @@ void SimpleEDMAnalyzer::book() {
 }
 
 
-void SimpleEDMAnalyzer::reset() {
-  autoReset();
-  return;
-}
-
-
 void SimpleEDMAnalyzer::beginFile() {
   std::cout << "open file " << currentFile << std::endl;
   return;
 }
 
+
+void SimpleEDMAnalyzer::reset() {
+  // automatic reset
+  autoReset();
+  return;
+}
+
+/*
+// function to get current entry from ntuple, to be overridden if
+// a "preliminary analysis" is to be performed over part of events
+void GenericSimpleAnalyzer::getEntry( int ientry ) {
+  // read all events by default
+  currentTree->GetEntry( ientry );
+}
+*/
 
 bool SimpleEDMAnalyzer::analyze( int entry, int event_file, int event_tot ) {
 

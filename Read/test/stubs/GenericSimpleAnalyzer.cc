@@ -62,10 +62,19 @@ void GenericSimpleAnalyzer::beginFile() {
 
 
 void GenericSimpleAnalyzer::reset() {
+  // automatic reset
   autoReset();
   return;
 }
 
+/*
+// function to get current entry from ntuple, to be overridden if
+// a "preliminary analysis" is to be performed over part of events
+void GenericSimpleAnalyzer::getEntry( int ientry ) {
+  // read all events by default
+  currentTree->GetEntry( ientry );
+}
+*/
 
 bool GenericSimpleAnalyzer::analyze( int entry, int event_file, int event_tot ) {
 

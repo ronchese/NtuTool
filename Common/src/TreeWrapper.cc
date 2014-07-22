@@ -97,14 +97,14 @@ void TreeWrapper::getUserParameter( const std::string& key, bool& val ) {
 }
 
 
-void TreeWrapper::dumpAll() {
+void TreeWrapper::dumpAll( std::ostream& os ) {
   std::map<std::string,std::string>::const_iterator
                                            iter = userParameters.begin();
   std::map<std::string,std::string>::const_iterator
                                            iend = userParameters.end();
   while ( iter != iend ) {
     const std::pair<std::string,std::string>& entry = *iter++;
-    std::cout << entry.first << " " << entry.second << std::endl;
+    os << entry.first << " " << entry.second << std::endl;
   }
   return;
 }
@@ -250,7 +250,9 @@ void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
 
 
 void TreeWrapper::reset() {
-// default analysis - dummy
+// default analysis - no operation 
+// automatic reset to be explicitly required by overriding function
+//  autoReset();
   return;
 }
 
@@ -393,6 +395,24 @@ void TreeWrapper::autoSave( TDirectory* dir ) {
   return;
 }
 */
+
+void TreeWrapper::fillBranchMap() {
+  branchMap.clear();
+  branch_iterator iter = branchList.begin();
+  branch_iterator iend = branchList.end();
+  while ( iter != iend ) {
+    branch_desc* bDesc = *iter++;
+    branchMap[*bDesc->branchPtr] = bDesc;
+  }
+  return;
+}
+
+
+void TreeWrapper::process( TBranch* b, int ientry ) {
+// default preliminary process - dummy
+  return;
+}
+
 
 TreeWrapper::branch_iterator TreeWrapper::treeBegin() {
   return branchList.begin();
