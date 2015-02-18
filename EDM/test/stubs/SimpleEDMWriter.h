@@ -15,8 +15,8 @@ class TFile;
 // "EDMTreeWriter" in turn inherits from EDProducer
 // the ntuple definition is exactly in the same class "SimpleNtuple"
 
-class SimpleEDMWriter: public SimpleNtuple,
-                       public EDMTreeWriter {
+class SimpleEDMWriter: public EDMTreeWriter,
+                       public SimpleNtuple {
 
  public:
 

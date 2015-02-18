@@ -55,7 +55,7 @@ class TypeReset: public DataReset {
 
 };
 
-#include "NtuTool/Common/interface/TypeReset.icc"
+#include "NtuTool/Common/interface/TypeReset.hpp"
 
 #endif // TypeReset_H
 

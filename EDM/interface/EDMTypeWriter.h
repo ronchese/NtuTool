@@ -77,7 +77,7 @@ class EDMTypeWriter: public DataHandler {
 
 };
 
-#include "NtuTool/EDM/interface/EDMTypeWriter.icc"
+#include "NtuTool/EDM/interface/EDMTypeWriter.hpp"
 
 #endif // EDMTypeWriter_H
 
