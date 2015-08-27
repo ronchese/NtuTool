@@ -64,7 +64,7 @@ class DataConvert {
 
 };
 
-#include "NtuTool/Common/interface/DataConvert.icc"
+#include "NtuTool/Common/interface/DataConvert.hpp"
 
 #endif // DataConvert_H
 

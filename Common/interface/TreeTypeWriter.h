@@ -79,7 +79,7 @@ class TreeTypeWriter: public DataHandler {
 
 };
 
-#include "NtuTool/Common/interface/TreeTypeWriter.icc"
+#include "NtuTool/Common/interface/TreeTypeWriter.hpp"
 
 #endif // TreeTypeWriter_H
 

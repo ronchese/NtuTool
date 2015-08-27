@@ -5,7 +5,7 @@
 
 #include "TH1.h"
 
-// The class used to read the EDM ntuple must inherit from
+// The class used to read the ntuple must inherit from
 // "SimpleTree" containing the tree definition
 // "TreeReader" or "EDMTreeReader" provided by the tool
 // (to read base or EDM ntuples)

@@ -14,6 +14,8 @@ class SimpleNtuple: public virtual TreeWrapper {
   SimpleNtuple();
   virtual ~SimpleNtuple();
 
+  virtual void reset() { autoReset(); }
+
  protected:
 
   // Declaration of leaf types

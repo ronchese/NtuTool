@@ -16,8 +16,8 @@ class TFile;
 //     "TreeWriter"   is defined inside the tool
 
 class SimpleWriter: public edm::EDAnalyzer,
-                    public SimpleNtuple,
-                    public TreeWriter {
+                    public TreeWriter,
+                    public SimpleNtuple {
 
  public:
 

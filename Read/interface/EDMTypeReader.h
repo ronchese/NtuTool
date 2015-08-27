@@ -71,7 +71,7 @@ class EDMTypeReader: public DataHandler {
 
 };
 
-#include "NtuTool/Read/interface/EDMTypeReader.icc"
+#include "NtuTool/Read/interface/EDMTypeReader.hpp"
 
 #endif // EDMTypeReader_H
 

@@ -30,3 +30,11 @@ c++ `root-config --cflags --glibs` \
 #    stubs/EDMSimpleAnalyzer.cc \
 #    -L ${CMSSW_BASE}/lib/${SCRAM_ARCH} \
 #    -lNtuToolRead -lNtuToolCommon
+rm -f treeFilter
+c++ `root-config --cflags --glibs` \
+    -I ${CMSSW_BASE}/src -o treeFilter \
+    ${CMSSW_BASE}/src/NtuTool/Read/bin/treeAnalyze.cc \
+    ${CMSSW_BASE}/src/NtuTool/Common/test/stubs/SimpleNtuple.cc \
+    stubs/SimpleFilter.cc \
+    -L ${CMSSW_BASE}/lib/${SCRAM_ARCH} \
+    -lNtuToolRead -lNtuToolCommon

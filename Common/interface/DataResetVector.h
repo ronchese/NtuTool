@@ -54,7 +54,7 @@ class DataResetVector: public DataReset {
 
 };
 
-#include "NtuTool/Common/interface/DataResetVector.icc"
+#include "NtuTool/Common/interface/DataResetVector.hpp"
 
 #endif // DataResetVector_H
 

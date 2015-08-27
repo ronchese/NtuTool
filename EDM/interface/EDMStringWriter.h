@@ -69,7 +69,7 @@ class EDMStringWriter: public EDMTypeWriter<std::string> {
 
 };
 
-//#include "NtuTool/EDM/interface/EDMStringWriter.icc"
+//#include "NtuTool/EDM/interface/EDMStringWriter.hpp"
 
 #endif // EDMStringWriter_H
 

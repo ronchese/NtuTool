@@ -169,6 +169,6 @@ class TreeWrapper {
 
 };
 
-#include "NtuTool/Common/interface/TreeWrapper.icc"
+#include "NtuTool/Common/interface/TreeWrapper.hpp"
 
 #endif
