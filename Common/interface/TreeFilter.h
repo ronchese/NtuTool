@@ -2,6 +2,8 @@
 #define TreeFilter_h
 
 #include "NtuTool/Common/interface/TreeWrapper.h"
+#include <string>
+#include <set>
 
 class TFile;
 class TDirectory;
@@ -13,6 +15,7 @@ class TreeFilter: public virtual TreeWrapper {
   TreeFilter();
   virtual ~TreeFilter();
 
+  virtual void dropBranch( const std::string& name );
   virtual void initWrite( TFile* file );
   virtual void fill();
   virtual void close();
@@ -29,6 +32,7 @@ class TreeFilter: public virtual TreeWrapper {
   TreeFilter& operator=( const TreeFilter& t );
 
   TDirectory* treeDir;
+  std::set<std::string> skimDrop;
 
 };
 

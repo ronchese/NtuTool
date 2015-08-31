@@ -16,6 +16,12 @@ TreeFilter::~TreeFilter() {
 }
 
 
+void TreeFilter::dropBranch( const std::string& name ) {
+  skimDrop.insert( name );
+  return;
+}
+
+
 void TreeFilter::initWrite( TFile* file ) {
 
   TDirectory* currentDir = gDirectory;
@@ -43,6 +49,11 @@ void TreeFilter::initWrite( TFile* file ) {
   branch_iterator iend = treeEnd();
   while ( iter != iend ) {
     branch_desc* bDesc = *iter++;
+//    const std::string& bName = bDesc->branchName;
+//    std::map<std::string,bool>::const_iterator iter =
+//                                skimMap.find( bDesc->branchName );
+//    if ( ( iter != skimMap.end ) && ( iter->second ) ) continue;
+    if ( skimDrop.find( *bDesc->branchName ) != skimDrop.end() ) continue;
     DataHandler* handler = fhManager->setHandler( bDesc,
                                                   bDesc->branchData );
 //    bDesc->dataHandler = handler;
