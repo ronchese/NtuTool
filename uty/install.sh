@@ -34,6 +34,6 @@ mkdir include
 mkdir lib
 
 cd include
-eval `ls -1 ../*/interface/*h ../*/interface/*icc | awk '{print "ln -s "$0";"}'`
+eval `ls -1 ../*/interface/*h ../*/interface/*hpp | awk '{print "ln -s "$0";"}'`
 ln -s ${NTU_TOOL_DIR} ${NTU_TOOL_DIR}/include/NtuTool
 
