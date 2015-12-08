@@ -1,9 +1,8 @@
-<use   name="NtuTool/Common"/>
 <use   name="FWCore/Framework"/>
-<use   name="root"/>
-<use   name="rootrflx"/>
+<use   name="NtuTool/Common"/>
 <flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
 <export>
+  <use   name="FWCore/Framework"/>
   <use   name="NtuTool/Common"/>
   <lib   name="1"/>
 </export>

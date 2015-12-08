@@ -1,5 +1,6 @@
 <use   name="root"/>
 <lib   name="Rint"/>
 <export>
+  <use   name="root"/>
   <lib   name="1"/>
 </export>
