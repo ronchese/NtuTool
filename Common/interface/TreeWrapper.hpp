@@ -22,6 +22,14 @@ void TreeWrapper::getUserParameter( const std::string& key, T& val ) {
 }
 
 
+template<class T>
+T    TreeWrapper::getUserParameter( const std::string& key ) {
+  T val;
+  getUserParameter( key, val );
+  return val;
+}
+
+
 template <class T>
 void TreeWrapper::setBranch( const char* branchName,
                              T* dataPtr,

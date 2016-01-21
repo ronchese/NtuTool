@@ -34,6 +34,8 @@ class TreeWrapper {
   template<class T>
   void               getUserParameter( const std::string& key,    T& val );
   void               getUserParameter( const std::string& key, bool& val );
+  template<class T>
+  T                  getUserParameter( const std::string& key );
 
   void dumpAll( std::ostream& os );
 
