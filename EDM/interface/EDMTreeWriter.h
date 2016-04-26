@@ -7,7 +7,7 @@
 
 //class DataHandlerManager;
 
-class EDMTreeWriter: public edm::EDProducer,
+class EDMTreeWriter: public virtual edm::EDProducer,
                      public virtual TreeWrapper {
 
   friend class EDMNtupleFilter;
