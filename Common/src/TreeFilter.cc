@@ -50,12 +50,12 @@ void TreeFilter::dropBranch( const std::string& name ) {
           match = false;
           break;
         }
-	if ( bb && ( i ==   0       )
+        if ( bb && ( i ==   0       )
                 && ( n != 0 ) ) {
           match = false;
           break;
         }
-	if ( eb && ( i == ( l - 1 ) )
+        if ( eb && ( i == ( l - 1 ) )
                 && ( n != ( bn.length() - dn.length() ) ) ) {
           match = false;
           break;
