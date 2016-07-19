@@ -16,9 +16,9 @@ class TreeFilter: public virtual TreeWrapper {
   virtual ~TreeFilter();
 
   virtual void dropBranch( const std::string& name );
-  virtual void initWrite( TFile* file );
-  virtual void fill();
-  virtual void close();
+  virtual void initWSkim( TFile* file );
+  virtual void fillSkim();
+  virtual void closeSkim();
 
  protected:
 

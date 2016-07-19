@@ -69,7 +69,7 @@ void TreeFilter::dropBranch( const std::string& name ) {
 }
 
 
-void TreeFilter::initWrite( TFile* file ) {
+void TreeFilter::initWSkim( TFile* file ) {
 
   if ( file != 0 ) {
     TDirectory* currentDir = gDirectory;
@@ -131,7 +131,7 @@ void TreeFilter::initWrite( TFile* file ) {
 }
 
 
-void TreeFilter::fill() {
+void TreeFilter::fillSkim() {
   if ( filterTree == 0 ) return;
   TDirectory* currentDir = gDirectory;
   treeDir->cd();
@@ -141,7 +141,7 @@ void TreeFilter::fill() {
 }
 
 
-void TreeFilter::close() {
+void TreeFilter::closeSkim() {
   if ( filterTree == 0 ) return;
   TDirectory* currentDir = gDirectory;
   treeDir->cd();

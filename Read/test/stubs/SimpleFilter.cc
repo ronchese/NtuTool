@@ -28,7 +28,7 @@ void SimpleFilter::beginJob() {
   TDirectory* currentDir = gDirectory;
   filterFile = new TFile( getUserParameter( "filterName" ).c_str(),
                           getUserParameter( "filterMode" ).c_str() );
-  TreeFilter::initWrite( filterFile );
+  initWSkim( filterFile );
   currentDir->cd();
   return;
 }
@@ -121,7 +121,7 @@ bool SimpleFilter::analyze( int entry, int event_file, int event_tot ) {
   std::cout << " --------------------------- " << std::endl;
 
   if ( i_run % 3 ) return false;
-  TreeFilter::fill();
+  fillSkim();
   return true;
 
 }
@@ -135,7 +135,7 @@ void SimpleFilter::endFile() {
 
 void SimpleFilter::endJob() {
   std::cout << "SimpleFilter::endJob" << std::endl;
-  TreeFilter::close();
+  closeSkim();
   return;
 }
 
