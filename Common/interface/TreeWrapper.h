@@ -56,6 +56,7 @@ class TreeWrapper {
   virtual void save( const std::string& name );
   virtual void save();
 
+  int     readEvents();
   int analyzedEvents();
   int acceptedEvents();
 
@@ -66,6 +67,7 @@ class TreeWrapper {
   // tree pointer
   TTree* currentTree;
 
+  int     readEvts;
   int analyzedEvts;
   int acceptedEvts;
 

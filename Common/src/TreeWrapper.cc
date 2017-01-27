@@ -14,6 +14,7 @@
 
 
 TreeWrapper::TreeWrapper():
+     readEvts( 0 ),
  analyzedEvts( 0 ),
  acceptedEvts( 0 )  {
   setUserParameter( "histoMode", "CREATE" );
@@ -187,6 +188,11 @@ void TreeWrapper::save() {
   autoSave();
 //  autoSave( gROOT );
   return;
+}
+
+
+int TreeWrapper::readEvents() {
+  return readEvts;
 }
 
 

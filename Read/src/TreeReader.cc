@@ -57,6 +57,7 @@ int TreeReader::loop( int evtmax, int evskip, int accmax, bool anaexe ) {
     if ( acceptedEvts >= accmax ) break;
     reset();
     // read tree
+    readEvts++;
 //    currentTree->GetEntry( ientry );
     if ( !getEntry( ientry ) ) continue;
     // preliminary data process
