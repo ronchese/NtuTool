@@ -2,12 +2,13 @@
 #define EDMTreeWriter_h
 
 #include "NtuTool/Common/interface/TreeWrapper.h"
+#include "NtuTool/EDM/interface/EDProducerWrapper.h"
 
 #include "FWCore/Framework/interface/EDProducer.h"
 
 //class DataHandlerManager;
 
-class EDMTreeWriter: public virtual edm::EDProducer,
+class EDMTreeWriter: public virtual EDProducerWrapper,
                      public virtual TreeWrapper {
 
   friend class EDMNtupleFilter;

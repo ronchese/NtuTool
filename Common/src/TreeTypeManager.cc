@@ -25,7 +25,7 @@
 //-------------------
 // Initializations --
 //-------------------
-DataHandlerMap* TreeTypeManager::stmMap = 0;
+
 
 //----------------
 // Constructors --
@@ -43,14 +43,18 @@ TreeTypeManager::~TreeTypeManager() {
 // Operations --
 //--------------
 DataHandlerMap* TreeTypeManager::handlerMap() {
-  if ( stmMap == 0 ) stmMap = new DataHandlerMap;
-  return stmMap;
+  return hm();
 }
 
 
 void TreeTypeManager::registerHandler( const std::string& code,
                                        DataHandler* handler ) {
-  if ( stmMap == 0 ) stmMap = new DataHandlerMap;
-  stmMap->insert( code, handler );
+  hm()->insert( code, handler );
+}
+
+
+DataHandlerMap* TreeTypeManager::hm() {
+  static DataHandlerMap* stmMap = new DataHandlerMap;
+  return stmMap;
 }
 

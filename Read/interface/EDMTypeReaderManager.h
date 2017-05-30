@@ -58,8 +58,8 @@ class EDMTypeReaderManager: public DataHandlerManager {
   virtual DataHandler* typeSelector( const std::string& name,
                                      const std::string& code );
 */
-  static DataHandlerMap* etrMap;
   virtual DataHandlerMap* handlerMap();
+  static  DataHandlerMap* hm();
 
 };
 
