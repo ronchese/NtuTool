@@ -1,3 +1,39 @@
+03.01.02
+
+Scripts added to set wrappers
+
+----------------------
+
+03.01.01
+
+Wrappers added for CMSSW_8_1_0
+
+----------------------
+
+03.00.04
+
+count of read and analyzed events splitted
+
+----------------------
+
+03.00.03
+
+skim function names modified
+
+----------------------
+
+03.00.02
+
+cosmetic fix
+
+----------------------
+
+03.00.01
+
+EDMTreeWriter inheritance changed to virtual to allow usage of interfaces in accessing data by token
+
+----------------------
+
 02.02.06
 
 wildcards in TreeFilter::dropBranch added

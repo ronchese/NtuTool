@@ -120,7 +120,8 @@ int TreeStandardAnalyzer::run( int argc, char* argv[] ) {
   tr->book();
 
   loop( tr, treeListFile, evtmax, evskip, accmax );
-  std::cout << std::endl << tr->analyzedEvents() << " events read, "
+  std::cout << std::endl << tr->    readEvents() << " events read, "
+                         << tr->analyzedEvents() << " analyzed, "
                          << tr->acceptedEvents() << " accepted" << std::endl;
 
   tr->endJob();

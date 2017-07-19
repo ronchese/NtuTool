@@ -50,8 +50,8 @@ class EDMTypeWriterManager: public DataHandlerManager {
 
  private:
 
-  static DataHandlerMap* etwMap;
   virtual DataHandlerMap* handlerMap();
+  static  DataHandlerMap* hm();
 
 };
 

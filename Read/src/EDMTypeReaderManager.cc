@@ -26,7 +26,7 @@
 //-------------------
 // Initializations --
 //-------------------
-DataHandlerMap* EDMTypeReaderManager::etrMap = 0;
+
 
 //----------------
 // Constructors --
@@ -44,14 +44,18 @@ EDMTypeReaderManager::~EDMTypeReaderManager() {
 // Operations --
 //--------------
 DataHandlerMap* EDMTypeReaderManager::handlerMap() {
-  if ( etrMap == 0 ) etrMap = new DataHandlerMap;
-  return etrMap;
+  return hm();
 }
 
 
 void EDMTypeReaderManager::registerHandler( const std::string& code,
                                             DataHandler* handler ) {
-  if ( etrMap == 0 ) etrMap = new DataHandlerMap;
-  etrMap->insert( code, handler );
+  hm()->insert( code, handler );
+}
+
+
+DataHandlerMap* EDMTypeReaderManager::hm() {
+  static DataHandlerMap* etrMap = new DataHandlerMap;
+  return etrMap;
 }
 

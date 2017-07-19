@@ -63,8 +63,8 @@ class EDMTypeWriter: public DataHandler {
   virtual void clearPtr( void* p );
   virtual void* setAuxPtr( void* p, DataHandlerManager* hm = 0 );
 
-  typedef std::auto_ptr<T> typePtr;
-  typedef std::auto_ptr< std::vector<T> > vectPtr;
+  typedef std::unique_ptr<T> typePtr;
+  typedef std::unique_ptr< std::vector<T> > vectPtr;
 
  protected:
 

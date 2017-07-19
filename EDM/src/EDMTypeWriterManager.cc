@@ -26,7 +26,7 @@
 //-------------------
 // Initializations --
 //-------------------
-DataHandlerMap* EDMTypeWriterManager::etwMap = 0;
+
 
 //----------------
 // Constructors --
@@ -44,14 +44,18 @@ EDMTypeWriterManager::~EDMTypeWriterManager() {
 // Operations --
 //--------------
 DataHandlerMap* EDMTypeWriterManager::handlerMap() {
-  if ( etwMap == 0 ) etwMap = new DataHandlerMap;
-  return etwMap;
+  return hm();
 }
 
 
 void EDMTypeWriterManager::registerHandler( const std::string& code,
                                             DataHandler* handler ) {
-  if ( etwMap == 0 ) etwMap = new DataHandlerMap;
-  etwMap->insert( code,handler );
+  hm()->insert( code,handler );
+}
+
+
+DataHandlerMap* EDMTypeWriterManager::hm() {
+  static DataHandlerMap* etwMap = new DataHandlerMap;
+  return etwMap;
 }
 

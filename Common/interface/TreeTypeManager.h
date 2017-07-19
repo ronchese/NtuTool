@@ -50,8 +50,8 @@ class TreeTypeManager: public DataHandlerManager {
 
  private:
 
-  static DataHandlerMap* stmMap;
   virtual DataHandlerMap* handlerMap();
+  static  DataHandlerMap* hm();
 
 };
 

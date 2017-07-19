@@ -73,10 +73,9 @@ DataHandler* EDMStringWriter::getInstance( const std::string& name,
 
 
 void EDMStringWriter::put( edm::Event& e, const void* p ) {
-  std::auto_ptr<std::string> ap( new std::string( 
-                                 reinterpret_cast<char*>(
-                                       const_cast<void*>( p ) ) ) );
-  e.put( ap, dataName );
+  e.put( typePtr( new std::string( reinterpret_cast<char*>(
+                                         const_cast<void*>( p ) ) ) ),
+         dataName );
   return;
 }
 
