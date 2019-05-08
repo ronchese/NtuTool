@@ -83,7 +83,7 @@ std::string TreeTypeNames::typeName( unsigned short*  dataPtr ) {
 
 template <>
 std::string TreeTypeNames::typeCode( bool*  dataPtr ) {
-  return "A";
+  return "O";
 }
 template <>
 std::string TreeTypeNames::typeName( bool*  dataPtr ) {
@@ -93,7 +93,7 @@ std::string TreeTypeNames::typeName( bool*  dataPtr ) {
 
 template <>
 std::string TreeTypeNames::typeCode( bool**  dataPtr ) {
-  return "A";
+  return "O";
 }
 template <>
 std::string TreeTypeNames::typeName( bool**  dataPtr ) {
