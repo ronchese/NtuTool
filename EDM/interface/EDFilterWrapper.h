@@ -3,6 +3,14 @@
 
 #include "FWCore/Framework/interface/EDFilter.h"
 
-typedef edm::EDFilter EDFilterWrapper;
+class EDFilterWrapper: public edm::EDFilter {
+
+ public:
+
+  EDFilterWrapper() {}
+  virtual ~EDFilterWrapper() noexcept {}
+
+};
+
 
 #endif

@@ -3,6 +3,14 @@
 
 #include "FWCore/Framework/interface/EDProducer.h"
 
-typedef edm::EDProducer EDProducerWrapper;
+class EDProducerWrapper: public edm::EDProducer {
+
+ public:
+
+  EDProducerWrapper() {}
+  virtual ~EDProducerWrapper() noexcept {}
+
+};
+
 
 #endif

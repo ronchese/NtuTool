@@ -3,6 +3,14 @@
 
 #include "FWCore/Framework/interface/EDAnalyzer.h"
 
-typedef edm::EDAnalyzer EDAnalyzerWrapper;
+class EDAnalyzerWrapper: public edm::EDAnalyzer {
+
+ public:
+
+  EDAnalyzerWrapper() {}
+  virtual ~EDAnalyzerWrapper() noexcept {}
+
+};
+
 
 #endif
