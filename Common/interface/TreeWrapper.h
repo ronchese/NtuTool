@@ -126,6 +126,18 @@ class TreeWrapper {
     dir_iter dirFind( const TObject* obj );
     dir_iter dirEnd();
     AutoSavedObject& operator=( TObject* obj );
+    template<class T>
+    AutoSavedObject& operator=( const std::vector<T*>& vObj ) {
+      int i;
+      int n = vObj.size();
+      for ( i = 0; i < n; ++i ) *this = vObj[i];
+      return *this;
+    }
+    template<class T>
+    AutoSavedObject& operator=( const std::vector<T*>* vObj ) {
+      *this = *vObj;
+      return *this;
+    }
    private:
     obj_list objectList;
     dir_map directoryMap;

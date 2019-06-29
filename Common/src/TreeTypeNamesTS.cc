@@ -91,16 +91,6 @@ std::string TreeTypeNames::typeName( bool*  dataPtr ) {
 }
 
 
-//template <>
-//std::string TreeTypeNames::typeCode( bool**  dataPtr ) {
-//  return "A";
-//}
-//template <>
-//std::string TreeTypeNames::typeName( bool**  dataPtr ) {
-//  return "bool";
-//}
-
-
 // === template specialization for char ===
 
 template <>

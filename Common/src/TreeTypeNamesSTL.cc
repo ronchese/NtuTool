@@ -367,7 +367,7 @@ std::string TreeTypeNames::typeName( std::vector< std::vector<unsigned short> >*
 
 template <>
 std::string TreeTypeNames::typeCode( std::vector< std::vector<bool> >*  dataPtr ) {
-  return "vvA";
+  return "vvO";
 }
 template <>
 std::string TreeTypeNames::typeName( std::vector< std::vector<bool> >*  dataPtr ) {
@@ -377,7 +377,7 @@ std::string TreeTypeNames::typeName( std::vector< std::vector<bool> >*  dataPtr 
 
 template <>
 std::string TreeTypeNames::typeCode( std::vector< std::vector<bool> >** dataPtr ) {
-  return "pvvA";
+  return "pvvO";
 }
 template <>
 std::string TreeTypeNames::typeName( std::vector< std::vector<bool> >** dataPtr ) {
