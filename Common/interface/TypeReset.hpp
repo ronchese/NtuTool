@@ -48,7 +48,7 @@ TypeReset<T>::~TypeReset() {
 //--------------
 template<class T>
 void TypeReset<T>::clearDatum( void* p, void* a ) {
-  T* q = reinterpret_cast<T*>( p );
+  T* q = static_cast<T*>( p );
   *q = 0;
   return;
 }
@@ -56,7 +56,7 @@ void TypeReset<T>::clearDatum( void* p, void* a ) {
 
 template<class T>
 void TypeReset<T>::clearArray( void* p, void* a ) {
-  T* q = reinterpret_cast<T*>( p );
+  T* q = static_cast<T*>( p );
   int size = 1;
   switch ( type ) {
   default:
@@ -64,10 +64,10 @@ void TypeReset<T>::clearArray( void* p, void* a ) {
     size = 1;
     break;
   case write:
-    size = *reinterpret_cast<int*>( a );
+    size = *static_cast<int*>( a );
     break;
   case read:
-    size = reinterpret_cast< std::vector<T>* >( a )->size();
+    size = static_cast< std::vector<T>* >( a )->size();
     break;
   }
   T* r = q + size;

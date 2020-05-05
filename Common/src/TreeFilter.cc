@@ -109,7 +109,7 @@ void TreeFilter::initWSkim( TFile* file ) {
     void** dataPtr = 0;
     if ( bDesc->splitLevel < 0 ) handler->setAuxPtr( bDesc->dataPtr,
                                                      fhManager );
-    if ( bDesc->ppRef ) dataPtr =  reinterpret_cast<void**>( bDesc->dataPtr );
+    if ( bDesc->ppRef ) dataPtr =  static_cast<void**>( bDesc->dataPtr );
     else                dataPtr = &bDesc->dataPtr;
     if ( bDesc->splitLevel < 0 )
          filterTree->Branch( bDesc->branchName->c_str(),

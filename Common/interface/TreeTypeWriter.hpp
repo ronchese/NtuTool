@@ -74,7 +74,8 @@ template <class T>
 TBranch* TreeTypeWriter<T>::branch( TTree* tree,
                                     const std::string* name, void** p,
                                     int bufferSize, int splitLevel ) {
-  return tree->Branch( name->c_str(), reinterpret_cast<T**>( p ),
+//  return tree->Branch( name->c_str(), reinterpret_cast<T**>( p ),
+  return tree->Branch( name->c_str(), static_cast<T**>( static_cast<void*> ( p )),
                        bufferSize, splitLevel );
 }
 
@@ -87,7 +88,7 @@ void* TreeTypeWriter<T>::setAuxPtr( void* p, DataHandlerManager* hm ) {
       if ( auxPtr == 0 ) auxPtr = new int;
       std::stringstream ssize;
       ssize.str( dataSize );
-      ssize >> *reinterpret_cast<int*>( auxPtr );
+      ssize >> *static_cast<int*>( auxPtr );
     }
     else {
       DataHandler* handler = hm->getHandler( dataSize );

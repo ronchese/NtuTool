@@ -70,8 +70,8 @@ DataHandler* EDMStringReader::getInstance( const std::string& name,
 
 
 void EDMStringReader::process( void* p ) {
-  DataConvert::copyString( reinterpret_cast<std::string*>( auxPtr ),
-                           reinterpret_cast<       char*>( 
+  DataConvert::copyString( static_cast<std::string*>( auxPtr ),
+                           static_cast<       char*>( 
                                  const_cast<       void*>( p ) ) );
   return;
 }

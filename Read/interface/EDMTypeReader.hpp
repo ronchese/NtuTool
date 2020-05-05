@@ -70,8 +70,8 @@ DataHandler* EDMTypeReader<T>::getInstance( const std::string& name,
 template <class T>
 void EDMTypeReader<T>::process( void* p ) {
   if ( convType == copyVector )
-       DataConvert::copyVector( reinterpret_cast<std::vector<T>*>( auxPtr ),
-                                reinterpret_cast<            T *>(
+       DataConvert::copyVector( static_cast<std::vector<T>*>( auxPtr ),
+                                static_cast<            T *>(
                                       const_cast<          void*>( p ) ) );
   return;
 }

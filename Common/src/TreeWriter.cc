@@ -50,7 +50,7 @@ void TreeWriter::initWrite( TFile* file ) {
     void** dataPtr = 0;
     if ( bDesc->splitLevel < 0 ) handler->setAuxPtr( bDesc->dataPtr,
                                                      handlerManager );
-    if ( bDesc->ppRef ) dataPtr =  reinterpret_cast<void**>( bDesc->dataPtr );
+    if ( bDesc->ppRef ) dataPtr =  static_cast<void**>( bDesc->dataPtr );
     else                dataPtr = &bDesc->dataPtr;
     if ( file != 0 ) {
       if ( bDesc->splitLevel < 0 )

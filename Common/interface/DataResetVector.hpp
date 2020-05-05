@@ -47,7 +47,7 @@ DataResetVector<T>::~DataResetVector() {
 //--------------
 template <class T>
 void DataResetVector<T>::clearDatum( void* p, void* a ) {
-  reinterpret_cast< std::vector<T>* >( p )->clear();
+  static_cast< std::vector<T>* >( p )->clear();
   return;
 }
 

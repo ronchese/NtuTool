@@ -44,14 +44,14 @@ DataResetString::~DataResetString() {
 // Operations --
 //--------------
 void DataResetString::clearDatum( void* p, void* a ) {
-  std::string* q = reinterpret_cast<std::string*>( p );
+  std::string* q = static_cast<std::string*>( p );
   *q = "";
   return;
 }
 
 
 void DataResetString::clearArray( void* p, void* a ) {
-  std::string* q = reinterpret_cast<std::string*>( p );
+  std::string* q = static_cast<std::string*>( p );
   int size = 1;
   switch ( type ) {
   default:
@@ -59,10 +59,10 @@ void DataResetString::clearArray( void* p, void* a ) {
     size = 1;
     break;
   case write:
-    size = *reinterpret_cast<int*>( a );
+    size = *static_cast<int*>( a );
     break;
   case read:
-    size = reinterpret_cast< std::vector<std::string>* >( a )->size();
+    size = static_cast< std::vector<std::string>* >( a )->size();
     break;
   }
   std::string* r = q + size;

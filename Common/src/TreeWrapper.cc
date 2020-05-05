@@ -276,7 +276,7 @@ void TreeWrapper::autoReset() {
     branch_desc* bDesc = *iter++;
     DataHandler* handler = bDesc->dataHandler;
     void* dataPtr = 0;
-    if ( bDesc->ppRef ) dataPtr = *reinterpret_cast<void**>(
+    if ( bDesc->ppRef ) dataPtr = *static_cast<void**>(
                                   bDesc->dataPtr );
     else                dataPtr = bDesc->dataPtr;
     if ( dataPtr == 0 ) continue;

@@ -42,6 +42,7 @@ int  DataConvert::copyVector( const std::vector<T>* v, T* p ) {
 /// copy C array to std::vector
 template<class T>
 void DataConvert::copyVector( const T* p, std::vector<T>* v, int n ) {
+  v->reserve( n );
   while ( n-- ) v->push_back( *p++ );
   return;
 }

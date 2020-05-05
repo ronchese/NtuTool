@@ -15,13 +15,13 @@ static EDMTypeWriter<math::XYZVector> tw_mxyz;
 /*
 template <>
 void EDMTypeWriter<math::XYZVector>::reset( void* p ) {
-  math::XYZVector* q = reinterpret_cast<math::XYZVector*>( p );
+  math::XYZVector* q = static_cast<math::XYZVector*>( p );
   if ( convType != copyVector ) {
     q->SetCoordinates( 0, 0, 0 );
     return;
   }
   else {
-    int size = *reinterpret_cast<int*>( auxPtr );
+    int size = *static_cast<int*>( auxPtr );
     math::XYZVector* r = q + size;
     while ( r-- > q ) r->SetCoordinates( 0, 0, 0 );
   }

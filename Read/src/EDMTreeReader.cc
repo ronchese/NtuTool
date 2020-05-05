@@ -57,7 +57,7 @@ void EDMTreeReader::initRead( TTree* tree ) {
                                                        bDesc->branchData );
     bDesc->dataHandler = handler;
     void* dataPtr = 0;
-    if ( bDesc->ppRef ) dataPtr = *reinterpret_cast<void**>( bDesc->dataPtr );
+    if ( bDesc->ppRef ) dataPtr = *static_cast<void**>( bDesc->dataPtr );
     else                dataPtr = handler->setAuxPtr(        bDesc->dataPtr );
     std::string branchName( handler->getBranchName( processName,
                                                     producerName ) );

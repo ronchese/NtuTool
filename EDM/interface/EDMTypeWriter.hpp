@@ -82,16 +82,16 @@ void EDMTypeWriter<T>::produces( edm::EDProducer* p ) {
 template <class T>
 void EDMTypeWriter<T>::put( edm::Event& e, const void* p ) {
   if ( convType == ppReference ) {
-    e.put( typePtr( reinterpret_cast<T*>( auxPtr ) ), dataName );
+    e.put( typePtr( static_cast<T*>( auxPtr ) ), dataName );
     return;
   }
   if ( convType != copyVector ) {
-    e.put( typePtr( new T( *reinterpret_cast<const T*>( p ) ) ), dataName );
+    e.put( typePtr( new T( *static_cast<const T*>( p ) ) ), dataName );
   }
   else {
     std::vector<T>* vp = new std::vector<T>;
-    DataConvert::copyVector( reinterpret_cast<const T*>( p ),
-                             vp, *reinterpret_cast<int*>( auxPtr ) );
+    DataConvert::copyVector( static_cast<const T*>( p ),
+                             vp, *static_cast<int*>( auxPtr ) );
     e.put( vectPtr( vp ), dataName );
   }
   return;
@@ -100,7 +100,7 @@ void EDMTypeWriter<T>::put( edm::Event& e, const void* p ) {
 
 template <class T>
 void EDMTypeWriter<T>::buildPtr( void* p ) {
-  auxPtr = *reinterpret_cast<T**>( p ) = new T;
+  auxPtr = *static_cast<T**>( p ) = new T;
   convType = ppReference;
   return;
 }
@@ -108,7 +108,7 @@ void EDMTypeWriter<T>::buildPtr( void* p ) {
 
 template <class T>
 void EDMTypeWriter<T>::clearPtr( void* p ) {
-  auxPtr = *reinterpret_cast<T**>( p ) = 0;
+  auxPtr = *static_cast<T**>( p ) = 0;
   return;
 }
 
@@ -121,7 +121,7 @@ void* EDMTypeWriter<T>::setAuxPtr( void* p, DataHandlerManager* hm ) {
       auxPtr = new int;
       std::stringstream ssize;
       ssize.str( dataSize );
-      ssize >> *reinterpret_cast<int*>( auxPtr );
+      ssize >> *static_cast<int*>( auxPtr );
     }
     else {
       DataHandler* handler = hm->getHandler( dataSize );

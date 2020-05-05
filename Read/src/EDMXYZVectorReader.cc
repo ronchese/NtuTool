@@ -72,7 +72,7 @@ void EDMXYZVectorReader::setMemberPtr( TTree* tree,
                                        const std::string& branchName,
                                        void* dataPtr ) {
   std::cout << "EDMXYZVectorReader::setMemberPtr" << std::endl;
-  double* pX = reinterpret_cast<double*>( dataPtr );
+  double* pX = static_cast<double*>( dataPtr );
   double* pY = pX + 1;
   double* pZ = pY + 1;
   std::string bN = branchName + ".fCoordinates.";

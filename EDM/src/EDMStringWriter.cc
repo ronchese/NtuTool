@@ -73,8 +73,8 @@ DataHandler* EDMStringWriter::getInstance( const std::string& name,
 
 
 void EDMStringWriter::put( edm::Event& e, const void* p ) {
-  e.put( typePtr( new std::string( reinterpret_cast<char*>(
-                                         const_cast<void*>( p ) ) ) ),
+  e.put( typePtr( new std::string( static_cast<char*>(
+                                    const_cast<void*>( p ) ) ) ),
          dataName );
   return;
 }

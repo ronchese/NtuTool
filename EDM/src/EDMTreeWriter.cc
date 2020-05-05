@@ -50,7 +50,7 @@ void EDMTreeWriter::initWrite() {
                                                        bDesc->branchData );
     bDesc->dataHandler = handler;
     handler->setAuxPtr( bDesc->dataPtr, handlerManager );
-    if ( bDesc->ppRef ) *reinterpret_cast<void**>( bDesc->dataPtr ) = 0;
+    if ( bDesc->ppRef ) *static_cast<void**>( bDesc->dataPtr ) = 0;
     handler->produces( this );
   }
 
