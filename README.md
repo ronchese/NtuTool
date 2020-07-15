@@ -1,85 +1,81 @@
 # NtuTool: a tool for writing and reading ntuples
 
-## to use the package in CMSSW
+## To use the package in CMSSW
 ```
 cd ${CMSSW_BASE}/src
 git clone git@github.com:ronchese/NtuTool.git
 scram b
 ```
 
-## to export the tool outside
-```
-cd ${CMSSW_BASE}/src
-cvs co UserCode/PaoloRonch
-mv UserCode/PaoloRonch/NtuTool .
-NtuTool/uty/export.sh
-```
+## To use the package outside CMSSW
 
-copy the file NtuTool_XX_YY_ZZ.tgz wherever you want to install the tool, then
+To install it outside a CMSSW environment use the command 
+
+`${CMSSW_BASE}/src/NtuTool/uty/export.sh` 
+
+then copy the `NtuTool_XX_YY_ZZ.tgz` file shown wherever you prefer and follow these instructions:
 
 ```
 tar -xzf NtuTool_XX_YY_ZZ.tgz
-cd NtuTool_XX_YY_ZZ
-uty/install.sh
-. uty/envset.sh
+NtuTool_XX_YY_ZZ/uty/install.sh
+NtuTool_XX_YY_ZZ/uty/compile.sh
+source NtuTool_XX_YY_ZZ/uty/envset.(sh|csh)
 ```
-or
 
-`source uty/envset.csh`
+The latest command must be issued for any new session. 
 
-to compile with a CMSSW-independent c++/ROOT environment
-`uty/compile.sh`
+To install the package without having a CMSSW working area available, the following instructions can be used:
 
-to compile using a c++/ROOT environment as defined in a CMSSW release
-do the following
+```
+cd /the/path/where/install
+wget https://github.com/ronchese/NtuTool/archive/master.zip -O NtuTool.zip
+unzip NtuTool.zip
+NtuTool-master/uty/export.sh
+rm -rf NtuTool-master NtuTool.zip
+```
 
-`uty/compile_CMSSW.sh CMSSW_X_Y_Z`
+Then go on unpacking the `NtuTool_XX_YY_ZZ.tgz` file and installing as shown above. 
 
-where CMSSW_X_Y_Z is the CMSSW version, e.g. CMSSW_4_2_3 . To compile for all 
-available CMSSW versions do the following
+## Examples and common tasks
 
-`uty/go_compileNtuTool.sh``
-
-## running examples - write
-
-an example that write a simple ROOT tree with no use of the tool
-functionalities, just as a comparison; it produces "simple_tree.root"
+### Write
+An example that write a simple ROOT tree with no use of the tool
+functionalities, just as a comparison; it produces `simple_tree.root`
 that contains simply the run number
-
 ```
 cd ${CMSSW_BASE}/src/NtuTool/EDM/test
 cmsRun treew.py
 ```
 
-an example that does the same operation using the tool, to show how 
-the code changes; it produces "ntuple_base.root"
-
+An example that does the same operation using the tool, to show how 
+the code changes; it produces `ntuple_base.root`
 ```
 cd ${CMSSW_BASE}/src/NtuTool/EDM/test
 cmsRun sntuw.py
 ```
 
-an example that write the same informations in and EDM ntuple; 
-it produces "ntuple_edm.root"
-
+An example that write the same informations in and EDM ntuple; 
+it produces `ntuple_edm.root`
 ```
 cd ${CMSSW_BASE}/src/NtuTool/EDM/test
 cmsRun sedmw.py
 ```
 
-## running examples - read in a CMSSW area
+### Read in a CMSSW area
 
-compile the examples
+Compile the examples
 ```
 cd ${CMSSW_BASE}/src/NtuTool/Read/test
 compileTest.sh
 ```
 then copy the previously produced .root files
 
-read "ntuple_base.root"
+Read `ntuple_base.root`:
 ```
 treeAnalyze_Base ntuList -n 6 -s 2 -a 5 hs.root x
+```
 
+```
 ntuList    : is a text file with the list of the files to read
 hs.root    : is the ouptut histogram file
 -n         : set the max number of events to read, if negative its applied 
@@ -104,21 +100,22 @@ b       a flag to simply save the histograms
         to open the output file with RECREATE option (CREATE by default)
 ```
 
+Read `ntuple_edm.root`:
+```
+treeAnalyze_EDM edmList -n 6 -s 2 hs.root x
+```
 
-read "ntuple_edm.root"
+### Export examples outside CMSSW
 
-`treeAnalyze_EDM edmList -n 6 -s 2 hs.root x`
-
-## export examples outside
-
-complete the writing examples described above, then do the following
+Complete the writing examples described above, then do the following
 ```
 cd ${CMSSW_BASE}/src/NtuTool/Read/test
 export/exportExample.sh
 ```
-copy the file examples.tgz wherever you want
 
-## running examples - read outside CMSSW
+Then copy the file `examples.tgz` wherever you want
+
+### Read examples outside CMSSW
 
 ```
 tar -xzf examples.tgz
