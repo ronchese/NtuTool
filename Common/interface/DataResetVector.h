@@ -37,20 +37,16 @@ class DataResetVector: public DataReset {
 
   /** Constructor
    */
-  DataResetVector( dataType t = null );
+  DataResetVector( resetMode m = null );
 
   /** Destructor
    */
-  virtual ~DataResetVector();
+  ~DataResetVector() override;
 
   /** Operations
    */
   /// reset data
-  virtual void clearDatum( void* p, void* a );
-
- protected:
-
-  dataType type;
+  void clearDatum( void* p, void* a ) override;
 
 };
 

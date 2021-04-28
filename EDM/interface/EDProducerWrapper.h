@@ -8,7 +8,7 @@ class EDProducerWrapper: public edm::EDProducer {
  public:
 
   EDProducerWrapper() {}
-  virtual ~EDProducerWrapper() noexcept {}
+  ~EDProducerWrapper() noexcept override {}
 
 };
 

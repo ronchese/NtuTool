@@ -8,7 +8,7 @@ class EDAnalyzerWrapper: public edm::EDAnalyzer {
  public:
 
   EDAnalyzerWrapper() {}
-  virtual ~EDAnalyzerWrapper() noexcept {}
+  ~EDAnalyzerWrapper() noexcept override {}
 
 };
 

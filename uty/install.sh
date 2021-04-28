@@ -17,7 +17,7 @@ sed s#INSTALLDIR#${INSTALLDIR}# uty/envsetTemplate.csh > uty/envset.csh
 
 . uty/envset.sh
 
-cd ${NTU_TOOL_DIR}/Read/src
+cd ${NTU_TOOL_DIR}/Common/src
 rm -f treeAnalyze.cc
 ln -s ../bin/treeAnalyze.cc
 #mv Read/test/treeAnalyze.cc Read/src

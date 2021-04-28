@@ -33,161 +33,87 @@
 
 // === template specialization for std::string === 
 
-template <>
-EDMTypeWriter<std::string>::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetString( DataReset::write );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter<std::string> tw____x;
+static EDMTypeWriter<std::string> tw____x(
+       new DataResetString( DataReset::native_write ) );
 
 
 // === template specialization for std::vector<int> === 
 
-template <>
-EDMTypeWriter< std::vector<int> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<int>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<int      > > tw_v__i;
+static EDMTypeWriter< std::vector<int      > > tw_v__i(
+       new DataResetVector<int      >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned int> === 
 
-template <>
-EDMTypeWriter< std::vector<unsigned int> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned int>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<unsigned
-                                  int      > > tw_v_ui;
+static EDMTypeWriter< std::vector<unsigned 
+                                  int      > > tw_v_ui(
+       new DataResetVector<unsigned
+                           int      >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<short> === 
 
-template <>
-EDMTypeWriter< std::vector<short> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<short>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<short    > > tw_v__s;
+static EDMTypeWriter< std::vector<short    > > tw_v__s(
+       new DataResetVector<short    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned short> === 
 
-template <>
-EDMTypeWriter< std::vector<unsigned short> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned short>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<unsigned
-                                  short    > > tw_v_us;
+static EDMTypeWriter< std::vector<unsigned 
+                                  short    > > tw_v_us(
+       new DataResetVector<unsigned
+                           short    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<bool> === 
 
-template <>
-EDMTypeWriter< std::vector<bool> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<bool>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<bool     > > tw_v__a;
+static EDMTypeWriter< std::vector<bool     > > tw_v__a(
+       new DataResetVector<bool     >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<char> === 
 
-template <>
-EDMTypeWriter< std::vector<char> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<char>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<char     > > tw_v__b;
+static EDMTypeWriter< std::vector<char     > > tw_v__b(
+       new DataResetVector<char     >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned char> === 
 
-template <>
-EDMTypeWriter< std::vector<unsigned char> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned char>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<unsigned
-                                  char     > > tw_v_ub;
+static EDMTypeWriter< std::vector<unsigned 
+                                  char     > > tw_v_ub(
+       new DataResetVector<unsigned
+                           char     >( DataReset::stl_read ) );
 
 
 
 // === template specialization for std::vector<long long> === 
 
-template <>
-EDMTypeWriter< std::vector<long long> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<long long>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<long long> > tw_v__l;
+static EDMTypeWriter< std::vector<long long> > tw_v__l(
+       new DataResetVector<long long>( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned long long> === 
 
-template <>
-EDMTypeWriter< std::vector<unsigned long long> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned long long>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<unsigned
-                                  long long> > tw_v_ul;
+static EDMTypeWriter< std::vector<unsigned 
+                                  long long> > tw_v_ul(
+       new DataResetVector<unsigned
+                           long long>( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<float> === 
 
-template <>
-EDMTypeWriter< std::vector<float> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<float>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<float    > > tw_v__f;
+static EDMTypeWriter< std::vector<float    > > tw_v__f(
+       new DataResetVector<float    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<double> === 
 
-template <>
-EDMTypeWriter< std::vector<double> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<double>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<double   > > tw_v__d;
+static EDMTypeWriter< std::vector<double   > > tw_v__d(
+       new DataResetVector<double   >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<std::string> === 
 
-template <>
-EDMTypeWriter< std::vector<std::string> >::EDMTypeWriter() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<std::string>( DataReset::read );
-  EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeWriter< std::vector<std::string> > tw_v__x;
+static EDMTypeWriter< std::vector<std::string> > tw_v__x(
+       new DataResetVector<std::string>( DataReset::stl_read ) );
 

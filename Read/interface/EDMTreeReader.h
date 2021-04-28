@@ -1,16 +1,16 @@
 #ifndef EDMTreeReader_h
 #define EDMTreeReader_h
 
-#include "NtuTool/Read/interface/TreeReader.h"
+#include "NtuTool/Common/interface/TreeReader.h"
 
 class EDMTreeReader: public TreeReader {
 
  public:
 
   EDMTreeReader();
-  virtual ~EDMTreeReader();
+  ~EDMTreeReader() override;
 
-  virtual TChain* initRead( const std::string& file );
+  TChain* initRead( const std::string& file ) override;
 
  protected:
 
@@ -23,8 +23,8 @@ class EDMTreeReader: public TreeReader {
 
  private:
 
-  EDMTreeReader( const EDMTreeReader& t );
-  EDMTreeReader& operator=( const EDMTreeReader& t );
+  EDMTreeReader           ( const EDMTreeReader& t ) = delete;
+  EDMTreeReader& operator=( const EDMTreeReader& t ) = delete;
 
   std::string producerName;
   std::string  processName;

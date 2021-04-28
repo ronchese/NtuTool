@@ -6,13 +6,13 @@ cd ${NTU_ROOT_DIR}
 
 rm -f export.tgz
 tar -czf export.tgz                \
-         INSTRUCTIONS              \
+         README.md                 \
          VERSION                   \
          Common/interface          \
          Common/src                \
+         Common/bin/treeAnalyze.cc \
          Read/interface            \
          Read/src                  \
-         Read/bin/treeAnalyze.cc   \
          uty/install.*h            \
          uty/envset*h              \
          uty/compile.*h            \

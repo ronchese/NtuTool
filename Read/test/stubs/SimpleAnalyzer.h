@@ -2,7 +2,7 @@
 #define SimpleAnalyzer_H
 
 #include "NtuTool/Common/test/stubs/SimpleNtuple.h"
-#include "NtuTool/Read/interface/TreeReader.h"
+#include "NtuTool/Common/interface/TreeReader.h"
 
 #include "TH1.h"
 

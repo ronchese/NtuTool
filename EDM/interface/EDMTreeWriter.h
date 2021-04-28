@@ -6,6 +6,9 @@
 
 #include "FWCore/Framework/interface/EDProducer.h"
 
+#include <map>
+
+class EDMDataHandler;
 //class DataHandlerManager;
 
 class EDMTreeWriter: public virtual EDProducerWrapper,
@@ -16,10 +19,10 @@ class EDMTreeWriter: public virtual EDProducerWrapper,
  public:
 
   EDMTreeWriter();
-  virtual ~EDMTreeWriter();
+  ~EDMTreeWriter() override;
 
-  virtual void beginJob();
-  virtual void   endJob();
+  void beginJob() override;
+  void   endJob() override;
   virtual void beginRun( edm::Run& r, edm::EventSetup const & es );
   virtual void   endRun( edm::Run& r, edm::EventSetup const & es );
 
@@ -31,11 +34,13 @@ class EDMTreeWriter: public virtual EDProducerWrapper,
 
  private:
 
-  EDMTreeWriter( const EDMTreeWriter& t );
-  EDMTreeWriter& operator=( const EDMTreeWriter& t );
+  EDMTreeWriter           ( const EDMTreeWriter& t ) = delete;
+  EDMTreeWriter& operator=( const EDMTreeWriter& t ) = delete;
 
   void build();
   void put( edm::Event& ev );
+
+  std::map<DataHandler*,EDMDataHandler*> edmHMap;
 
   static bool select;
 

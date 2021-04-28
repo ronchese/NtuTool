@@ -15,12 +15,12 @@
 //-------------------------------
 // Collaborating Class Headers --
 //-------------------------------
-
+#include "NtuTool/Common/interface/TreeTypeNames.h"
 
 //---------------
 // C++ Headers --
 //---------------
-#include <vector>
+#include <iostream>
 
 //-------------------
 // Initializations --
@@ -31,8 +31,8 @@
 // Constructors --
 //----------------
 template <class T>
-DataResetVector<T>::DataResetVector( dataType t ):
-  type( t ) {
+DataResetVector<T>::DataResetVector( resetMode m ):
+  DataReset( m ) {
 }
 
 //--------------

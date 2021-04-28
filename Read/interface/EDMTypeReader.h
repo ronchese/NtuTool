@@ -14,11 +14,12 @@
 //----------------------
 // Base Class Headers --
 //----------------------
-#include "NtuTool/Common/interface/DataHandler.h"
+#include "NtuTool/Common/interface/TypeHandler.h"
 
 //------------------------------------
 // Collaborating Class Declarations --
 //------------------------------------
+#include "NtuTool/Read/interface/EDMTypeReaderManager.h"
 
 
 //---------------
@@ -31,13 +32,16 @@
 //              ---------------------
 
 template <class T>
-class EDMTypeReader: public DataHandler {
+class EDMTypeReader: public TypeHandler<T,EDMTypeReaderManager> {
 
  public:
 
   /** Constructor
    */
-  EDMTypeReader();
+  EDMTypeReader( DataReset::resetMode mode ):
+                 TypeHandler<T,EDMTypeReaderManager>( mode ) {}
+  EDMTypeReader( DataReset* dr ):
+                 TypeHandler<T,EDMTypeReaderManager>( dr )   {}
 
   /** Destructor
    */
@@ -46,28 +50,26 @@ class EDMTypeReader: public DataHandler {
   /** Operations
    */
   /// get concrete object
-  virtual DataHandler* getInstance( const std::string& name,
-                                    const std::string& code );
+  DataHandler* getInstance( const std::string& name,
+                            const std::string& code ) override;
 
   /// Read functions
-  virtual void process( void* p );
+  void process( void* p ) override;
 
   /// Utility functions
-  virtual void* setAuxPtr( void* p, DataHandlerManager* hm = 0 );
+  void* setAuxPtr( void* p, DataHandlerManager* hm ) override;
 
  protected:
 
   EDMTypeReader( const std::string& name,
                  const std::string& code,
                  const std::string& type );
-  EDMTypeReader( bool dum );
-
-  T* dummyPtr;
+  EDMTypeReader( bool dum ) {}
 
  private:
 
-  EDMTypeReader( const EDMTypeReader& e );
-  EDMTypeReader& operator=( const EDMTypeReader& e );
+  EDMTypeReader           ( const EDMTypeReader& e ) = delete;
+  EDMTypeReader& operator=( const EDMTypeReader& e ) = delete;
 
 };
 

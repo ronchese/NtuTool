@@ -10,7 +10,7 @@
 // "TreeReader" provided by the tool
 // "TreeFilter" provided by the tool
 
-#include "NtuTool/Read/interface/TreeReader.h"
+#include "NtuTool/Common/interface/TreeReader.h"
 #include "NtuTool/Common/interface/TreeFilter.h"
 
 class SimpleFilter: private SimpleNtuple,

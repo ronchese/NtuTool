@@ -27,8 +27,8 @@ void SimpleWriter::analyze( const edm::Event& ev,
   std::cout << "event "
             << ev.id().run() << " / "
             << ev.id().event() << std::endl;
-  // function provided by the tool to automatically reset all variables
-  autoReset();
+  // reset all variables
+  reset();
   // set variables
   setData( ev.id().run() );
   // function provided by the tool to actually fill the tree

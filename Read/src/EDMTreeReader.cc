@@ -46,24 +46,23 @@ void EDMTreeReader::setProducerName( const std::string& name ) {
 
 void EDMTreeReader::initRead( TTree* tree ) {
 
-  currentTree = tree;
-  currentTree->SetMakeClass(1);
+  currentTree() = tree;
+  currentTree()->SetMakeClass(1);
 
   branch_iterator iter = treeBegin();
   branch_iterator iend = treeEnd();
   while ( iter != iend ) {
     branch_desc* bDesc = *iter++;
-    DataHandler* handler = handlerManager->setHandler( bDesc,
-                                                       bDesc->branchData );
+    DataHandler* handler = handlerManager->setHandler( bDesc );
     bDesc->dataHandler = handler;
-    void* dataPtr = 0;
-    if ( bDesc->ppRef ) dataPtr = *static_cast<void**>( bDesc->dataPtr );
-    else                dataPtr = handler->setAuxPtr(        bDesc->dataPtr );
+    void* dataPtr = ( bDesc->ppRef ? *pPtr( bDesc->dataPtr ) :
+                                     handler->setAuxPtr( bDesc->dataPtr,
+                                                         handlerManager ) );
     std::string branchName( handler->getBranchName( processName,
                                                     producerName ) );
-    if ( bDesc->branchPtr == 0 ) bDesc->branchPtr = new TBranch*;
-    currentTree->SetBranchAddress( branchName.c_str(), dataPtr,
-                                                       bDesc->branchPtr );
+    if ( bDesc->branchPtr == nullptr ) bDesc->branchPtr = new TBranch*;
+    currentTree()->SetBranchAddress( branchName.c_str(), dataPtr,
+                                     bDesc->branchPtr );
   }
 
   fillBranchMap();
@@ -79,10 +78,7 @@ void EDMTreeReader::process( int ientry ) {
   branch_iterator iend = treeEnd();
   while ( iter != iend ) {
     const branch_desc* bDesc = *iter++;
-    TBranch* branchPtr = *bDesc->branchPtr;
-    branchPtr->GetEntry( ientry );
-    DataHandler* handler = bDesc->dataHandler;
-    handler->process( bDesc->dataPtr );
+    bDesc->dataHandler->process( bDesc->dataPtr );
   }
 
   return;
@@ -92,14 +88,12 @@ void EDMTreeReader::process( int ientry ) {
 
 void EDMTreeReader::process( TBranch* b, int ientry ) {
 
-  std::map<TBranch*,branch_desc*>::const_iterator iter = branchMap.find( b );
-  std::map<TBranch*,branch_desc*>::const_iterator iend = branchMap.end();
+  const std::map<TBranch*,branch_desc*>& bMap = branchMap();
+  std::map<TBranch*,branch_desc*>::const_iterator iter = bMap.find( b );
+  std::map<TBranch*,branch_desc*>::const_iterator iend = bMap.end();
   if ( iter != iend ) {
     const branch_desc* bDesc = iter->second;
-    TBranch* branchPtr = *bDesc->branchPtr;
-    branchPtr->GetEntry( ientry );
-    DataHandler* handler = bDesc->dataHandler;
-    handler->process( bDesc->dataPtr );
+    bDesc->dataHandler->process( bDesc->dataPtr );
   }
 
   return;

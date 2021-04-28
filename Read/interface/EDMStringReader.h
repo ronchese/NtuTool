@@ -41,31 +41,30 @@ class EDMStringReader: public EDMTypeReader<std::string> {
 
   /** Destructor
    */
-  virtual ~EDMStringReader();
+  ~EDMStringReader() override;
 
   /** Operations
    */
   /// Read functions
-  virtual void process( void* p );
+  void process( void* p ) override;
 
   /// get concrete object
-  virtual DataHandler* getInstance( const std::string& name,
-                                    const std::string& code );
+  DataHandler* getInstance( const std::string& name,
+                            const std::string& code ) override;
 
   /// Utility functions
-  virtual void* setAuxPtr( void* p, DataHandlerManager* hm = 0 );
+  void* setAuxPtr( void* p, DataHandlerManager* hm ) override;
 
  protected:
 
   EDMStringReader( const std::string& name,
-                  const std::string& code,
-                  const std::string& type );
-  EDMStringReader( bool dum );
+                   const std::string& code,
+                   const std::string& type );
 
  private:
 
-  EDMStringReader( const EDMStringReader& e );
-  EDMStringReader& operator=( const EDMStringReader& e );
+  EDMStringReader           ( const EDMStringReader& e ) = delete;
+  EDMStringReader& operator=( const EDMStringReader& e ) = delete;
 
 };
 

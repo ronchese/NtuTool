@@ -37,8 +37,8 @@ static EDMStringWriter tw____c;
 EDMStringWriter::EDMStringWriter():
  EDMTypeWriter<std::string>( false ) {
   dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new TypeReset<char>( DataReset::write );
-  C__String* p = 0;
+  dataReset = new TypeReset<char>( DataReset::native_write );
+  C__String* p = nullptr;
   EDMTypeWriterManager::registerHandler( TreeTypeNames::typeCode( p ),
                                          this );
 }
@@ -46,13 +46,9 @@ EDMStringWriter::EDMStringWriter():
 
 EDMStringWriter::EDMStringWriter( const std::string& name,
                                   const std::string& code,
-                                const std::string& type ):
- EDMTypeWriter<std::string>( name, code, type ) {
-  DataHandler::dataReset = 0;
-}
-
-
-EDMStringWriter::EDMStringWriter( bool dum ) {
+                                  const std::string& type ):
+ DataHandler( name, code, type ),
+ EDMTypeWriter( nullptr ) {
 }
 
 //--------------
@@ -73,8 +69,8 @@ DataHandler* EDMStringWriter::getInstance( const std::string& name,
 
 
 void EDMStringWriter::put( edm::Event& e, const void* p ) {
-  e.put( typePtr( new std::string( static_cast<char*>(
-                                    const_cast<void*>( p ) ) ) ),
+  std::cout << "EDMStringWriter::put " << dataName << std::endl;
+  e.put( typePtr( new std::string( static_cast<const char*>( p ) ) ),
          dataName );
   return;
 }

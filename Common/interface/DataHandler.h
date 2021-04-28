@@ -20,20 +20,17 @@
 //------------------------------------
 // Collaborating Class Declarations --
 //------------------------------------
+#include "NtuTool/Common/interface/BranchInterfaceData.h"
 class DataHandlerManager;
 class DataReset;
 class TTree;
 class TBranch;
-namespace edm {
-  class EDProducer;
-  class Event;
-}
 
 //---------------
 // C++ Headers --
 //---------------
 #include <string>
-
+#include <iostream>
 //              ---------------------
 //              -- Class Interface --
 //              ---------------------
@@ -42,7 +39,6 @@ class DataHandler {
 
  public:
 
-//  enum conversionType{ null, copyString, copyVector };
   enum conversionType{ null, ppReference, copyVector };
 
   /** Constructor
@@ -71,12 +67,6 @@ class DataHandler {
                            int bufferSize = 32000,
                            int splitLevel = 99 );
 
-  /// EDProducer function
-  virtual void produces( edm::EDProducer* p );
-
-  /// Event function
-  virtual void put( edm::Event& e, const void* p );
-
   /// Branch function
   virtual std::string getBranchName( const std::string& processName,
                                      const std::string& producerName );
@@ -89,11 +79,20 @@ class DataHandler {
   virtual void buildPtr( void* p );
   virtual void clearPtr( void* p );
   void* auxiliaryPtr();
-  virtual void* setAuxPtr( void* p, DataHandlerManager* hm = 0 );
+  void* additionalInfo();
+  virtual void* setAuxPtr( void* p, DataHandlerManager* hm = nullptr );
+  virtual void* setAddInfo( void* p );
 
   virtual void setMemberPtr( TTree* tree,
                              const std::string& branchName,
                              void* dataPtr );
+  void print() const {
+    std::cout << "Handler: " << this << ' '
+              << dataName << ' '
+              << dataCode << ' '
+              << dataType << ' '
+              << dataSize << std::endl;
+  }
 
  protected:
 
@@ -102,7 +101,6 @@ class DataHandler {
   DataHandler( const std::string& name,
                const std::string& code,
                const std::string& type );
-  DataHandler( bool dum );
 
   std::string dataName;
   std::string dataCode;
@@ -110,12 +108,13 @@ class DataHandler {
   std::string dataSize;
   conversionType convType;
   void* auxPtr;
+  void* addInfo;
   DataReset* dataReset;
 
  private:
 
-  DataHandler( const DataHandler& e );
-  DataHandler& operator=( const DataHandler& e );
+  DataHandler           ( const DataHandler& e ) = delete;
+  DataHandler& operator=( const DataHandler& e ) = delete;
 
 };
 

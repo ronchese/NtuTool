@@ -15,7 +15,7 @@
 #define EDM  2
 #  if NTUPLE_TYPE == BASE
 
-#include "NtuTool/Read/interface/TreeReader.h"
+#include "NtuTool/Common/interface/TreeReader.h"
 class GenericSimpleAnalyzer: private SimpleNtuple,
                              private TreeReader {
 

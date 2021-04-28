@@ -15,6 +15,7 @@
 // Base Class Headers --
 //----------------------
 #include "NtuTool/Common/interface/DataReset.h"
+#include "NtuTool/Common/interface/TypePointerManipulator.h"
 
 //------------------------------------
 // Collaborating Class Declarations --
@@ -30,18 +31,19 @@
 //              -- Class Interface --
 //              ---------------------
 
-template<class T>
-class TypeReset: public DataReset {
+template <class T>
+class TypeReset: public DataReset,
+                 public TypePointerManipulator<T> {
 
  public:
 
   /** Constructor
    */
-  TypeReset( dataType t = null );
+  TypeReset( resetMode m = null );
 
   /** Destructor
    */
-  virtual ~TypeReset();
+  ~TypeReset() override;
 
   /** Operations
    */
@@ -51,7 +53,13 @@ class TypeReset: public DataReset {
 
  protected:
 
-  dataType type;
+  virtual void clearType( T* p );
+//  dataType type;
+
+ private:
+
+  TypeReset           ( const TypeReset& e ) = delete;
+  TypeReset& operator=( const TypeReset& e ) = delete;
 
 };
 

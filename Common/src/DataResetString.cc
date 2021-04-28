@@ -16,6 +16,7 @@
 // Collaborating Class Headers --
 //-------------------------------
 #include <string>
+#include <iostream>
 
 //---------------
 // C++ Headers --
@@ -30,8 +31,8 @@
 //----------------
 // Constructors --
 //----------------
-DataResetString::DataResetString( dataType t ):
-  type( t ) {
+DataResetString::DataResetString( resetMode m ):
+  TypeReset<std::string>( m ) {
 }
 
 //--------------
@@ -43,30 +44,8 @@ DataResetString::~DataResetString() {
 //--------------
 // Operations --
 //--------------
-void DataResetString::clearDatum( void* p, void* a ) {
-  std::string* q = static_cast<std::string*>( p );
-  *q = "";
-  return;
-}
-
-
-void DataResetString::clearArray( void* p, void* a ) {
-  std::string* q = static_cast<std::string*>( p );
-  int size = 1;
-  switch ( type ) {
-  default:
-  case null:
-    size = 1;
-    break;
-  case write:
-    size = *static_cast<int*>( a );
-    break;
-  case read:
-    size = static_cast< std::vector<std::string>* >( a )->size();
-    break;
-  }
-  std::string* r = q + size;
-  while ( r-- > q ) *r = "";
-  return;
+template<>
+void TypeReset<std::string>::clearType( std::string* p ) {
+  *p = "";
 }
 

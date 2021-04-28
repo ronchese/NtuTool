@@ -34,11 +34,11 @@ class DataReset {
 
  public:
 
-  enum dataType{ null, write, read };
+  enum resetMode{ null, native_write, stl_read };
 
   /** Constructor
    */
-  DataReset( dataType t = null );
+  DataReset( resetMode m = null );
 
   /** Destructor
    */
@@ -52,7 +52,7 @@ class DataReset {
 
  protected:
 
-  dataType type;
+  resetMode mode;
 
 };
 

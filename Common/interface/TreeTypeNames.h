@@ -45,15 +45,15 @@ class TreeTypeNames {
   /** Operations
    */
   /// Type codes used by ROOT
-  template<class T> static
+  template <class T> static
   std::string typeCode( T*  dataPtr );
-  template<class T> static
+  template <class T> static
   std::string typeCode( T** dataPtr );
 
-  /// Type names used by EDM
-  template<class T> static
+  /// Type names
+  template <class T> static
   std::string typeName( T*  dataPtr );
-  template<class T> static
+  template <class T> static
   std::string typeName( T** dataPtr );
 
  private:

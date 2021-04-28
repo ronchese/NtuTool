@@ -15,7 +15,6 @@
 //-------------------------------
 // Collaborating Class Headers --
 //-------------------------------
-#include "NtuTool/Read/interface/EDMTypeReader.h"
 #include "NtuTool/Common/interface/DataHandlerMap.h"
 
 //---------------

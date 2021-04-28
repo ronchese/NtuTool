@@ -50,7 +50,7 @@ class EDMTypeWriterManager: public DataHandlerManager {
 
  private:
 
-  virtual DataHandlerMap* handlerMap();
+  DataHandlerMap* handlerMap() override;
   static  DataHandlerMap* hm();
 
 };

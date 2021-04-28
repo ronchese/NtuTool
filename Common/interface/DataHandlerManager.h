@@ -1,6 +1,8 @@
 #ifndef DataHandlerManager_h
 #define DataHandlerManager_h
 
+#include "NtuTool/Common/interface/BranchInterfaceData.h"
+
 #include <map>
 #include <string>
 
@@ -14,9 +16,8 @@ class DataHandlerManager {
   DataHandlerManager();
   virtual ~DataHandlerManager();
 
-  DataHandler* setHandler( const void* descPtr,
-                           const std::string* branchData );
-  DataHandler* getHandler( const void* descPtr );
+  DataHandler* setHandler( const BranchInterfaceData::branch_desc* descPtr );
+  DataHandler* getHandler( const BranchInterfaceData::branch_desc* descPtr );
   DataHandler* getHandler( const std::string& dataName );
 
   /// get concrete object
@@ -24,13 +25,14 @@ class DataHandlerManager {
 
  private:
 
-  DataHandlerManager( const DataHandlerManager& t );
-  DataHandlerManager& operator=( const DataHandlerManager& t );
+  DataHandlerManager           ( const DataHandlerManager& t ) = delete;
+  DataHandlerManager& operator=( const DataHandlerManager& t ) = delete;
 
   typedef std::map< const void*, DataHandler* > data_map;
   typedef data_map::const_iterator data_iterator;
 
   data_map dataMap;
+  std::map< std::string, DataHandler* > nameMap;
 
   virtual DataHandlerMap* handlerMap() = 0;
 

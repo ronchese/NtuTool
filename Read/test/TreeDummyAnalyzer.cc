@@ -15,7 +15,7 @@
 //-------------------------------
 // Collaborating Class Headers --
 //-------------------------------
-#include "NtuTool/Read/interface/TreeReader.h"
+#include "NtuTool/Common/interface/TreeReader.h"
 
 //---------------
 // C++ Headers --

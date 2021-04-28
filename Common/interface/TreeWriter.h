@@ -11,7 +11,7 @@ class TreeWriter: public virtual TreeWrapper {
  public:
 
   TreeWriter();
-  virtual ~TreeWriter();
+  ~TreeWriter() override;
 
   virtual void initWrite( TFile* file );
   virtual void fill();
@@ -21,8 +21,8 @@ class TreeWriter: public virtual TreeWrapper {
 
  private:
 
-  TreeWriter( const TreeWriter& t );
-  TreeWriter& operator=( const TreeWriter& t );
+  TreeWriter           ( const TreeWriter& t ) = delete;
+  TreeWriter& operator=( const TreeWriter& t ) = delete;
 
   TDirectory* treeDir;
 
