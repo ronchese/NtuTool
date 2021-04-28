@@ -1,0 +1,161 @@
+#include <iostream>
+
+#include "NtuTool/Read/interface/NANOTreeReader.h"
+#include "NtuTool/Read/interface/NANOTypeReaderManager.h"
+#include "NtuTool/Read/interface/NANOHandler.h"
+#include "NtuTool/Common/interface/DataHandlerManager.h"
+#include "NtuTool/Common/interface/DataHandler.h"
+#include "NtuTool/Common/interface/DataConvert.h"
+
+#include "TFile.h"
+#include "TChain.h"
+
+
+NANOTreeReader::NANOTreeReader() {
+  handlerManager = new NANOTypeReaderManager;
+}
+
+
+NANOTreeReader::~NANOTreeReader() {
+}
+
+
+TChain* NANOTreeReader::initRead( const std::string& file ) {
+  currentFile = file;
+  TChain* c = new TChain( "Events" );
+  c->Add( file.c_str() );
+  initRead( c );
+  return c;
+}
+
+
+void NANOTreeReader::initRead( TTree* tree ) {
+
+  currentTree() = tree;
+  currentTree()->SetMakeClass(1);
+
+  branch_iterator iter = treeBegin();
+  branch_iterator iend = treeEnd();
+  while ( iter != iend ) {
+    branch_desc* bDesc = *iter++;
+    DataHandler* handler = handlerManager->setHandler( bDesc );
+    std::string firstName = ( bDesc->firstBranch            == nullptr ?
+                              "NNULL" :
+                              *BranchInterfaceData::getInfo( bDesc->firstBranch,
+                              NANOHandler::nanoTableName, "NULL" ) );
+    if ( bDesc->splitLevel < 0 )
+        handler->setAuxPtr( bDesc->dataPtr, handlerManager );
+    bDesc->dataHandler = handler;
+  }
+  void* sizePtr = nullptr;
+  const std::string* tName = nullptr;
+  int aSize = -1;
+  branch_desc* bSize = nullptr;
+  iter = treeBegin();
+  while ( iter != iend ) {
+    branch_desc* bDesc = *iter++;
+    if ( bDesc->firstBranch == nullptr ) {
+      tName = BranchInterfaceData::getInfo( bDesc, NANOHandler::nanoTableName,
+                                            bDesc->branchName->c_str() );
+      aSize = BranchInterfaceData::getInfo( bDesc, NANOHandler::nanoTableSize,
+                                            10000 );
+      sizePtr = nullptr;
+      bSize = nullptr;
+    }
+    DataHandler* handler = bDesc->dataHandler;
+    if ( handler == nullptr ) continue;
+    int dSize = dynamic_cast<NANOHandler*>( handler )->cSize( nullptr );
+    bool tSize = false;
+    bool mSize = false;
+    std::string bName = "";
+    if ( dSize < 0 ) {
+      const branch_desc* nextBranch = bDesc->nextBranch;
+      if ( nextBranch != nullptr ) {
+        DataHandler* nextHandler = nextBranch->dataHandler;
+        if ( nextHandler != nullptr ) {
+          dSize = dynamic_cast<NANOHandler*>( nextHandler )->cSize( nullptr );
+          if ( dSize >= 0 ) tSize = true;
+	}
+      }
+    }
+    else
+    if ( ( handler->getConv() != DataHandler::copyVector ) &&
+         ( bDesc->firstBranch == nullptr ) ) mSize = true;
+    if ( tSize ) {
+      bName = "n" + *tName;
+      bSize = bDesc;
+    }
+    else {
+      if ( mSize ){
+        sizePtr = new unsigned int( 0 );
+	std::string sizeBName = "n" + *tName;
+        currentTree()->SetBranchAddress( sizeBName.c_str(),
+                                         static_cast<unsigned int*>( sizePtr ),
+                                         new TBranch* );
+        addInts.push_back( static_cast<unsigned int*>( sizePtr ) );
+      }
+      bName = *tName + "_" + handler->getName();
+    }
+    if ( bDesc->splitLevel < 0 ) {
+      NANOHandler::AdditionalInfo* aInfo = new NANOHandler::AdditionalInfo;
+      if ( handler->getConv() == DataHandler::copyVector ) {
+        aInfo->maxSize = aSize;
+        aInfo->arraySize = BranchInterface::uPtr( handler->auxiliaryPtr() );
+      }
+      else {
+        aInfo->maxSize = 1;
+        aInfo->arraySize = nullptr;
+      }
+      handler->setAddInfo( aInfo );
+      currentTree()->SetBranchAddress( bName.c_str(),
+                                       ( aInfo->arrayPtr == nullptr ?
+                                         bDesc->dataPtr : aInfo->arrayPtr ),
+                                       bDesc->branchPtr );
+    }
+    if ( sizePtr != nullptr ) {
+      handler->setAuxPtr( sizePtr, handlerManager );
+      NANOHandler::AdditionalInfo* aInfo = new NANOHandler::AdditionalInfo;
+      aInfo->arraySize = BranchInterface::uPtr( sizePtr );
+      aInfo->maxSize = aSize;
+      handler->setAddInfo( aInfo );
+      std::string tmpName = bName;
+      currentTree()->SetBranchAddress( tmpName.c_str(), aInfo->arrayPtr,
+                                                        bDesc->branchPtr );
+    }
+    if ( bSize != nullptr ) sizePtr = bSize->dataPtr;
+  }
+
+  fillBranchMap();
+
+  return;
+
+}
+
+
+void NANOTreeReader::process( int ientry ) {
+  branch_iterator iter = treeBegin();
+  branch_iterator iend = treeEnd();
+  while ( iter != iend ) {
+    const branch_desc* bDesc = *iter++;
+    DataHandler* handler = bDesc->dataHandler;
+    if ( handler == nullptr ) continue;
+    handler->process( bDesc->ppRef ? *( this->pPtr( bDesc->dataPtr ) ) :
+                                                    bDesc->dataPtr     );
+  }
+  return;
+}
+
+
+void NANOTreeReader::process( TBranch* b, int ientry ) {
+  const std::map<TBranch*,branch_desc*>& bMap = branchMap();
+  std::map<TBranch*,branch_desc*>::const_iterator iter = bMap.find( b );
+  std::map<TBranch*,branch_desc*>::const_iterator iend = bMap.end();
+  if ( iter != iend ) {
+    const branch_desc* bDesc = iter->second;
+    DataHandler* handler = bDesc->dataHandler;
+    if ( handler == nullptr ) return;
+    handler->process( bDesc->dataPtr );
+  }
+  return;
+}
+
