@@ -61,8 +61,8 @@ void NANOTreeWriter::initWrite() {
     NANOTableHandler* nanoHandler = dynamic_cast<NANOTableHandler*>( handler );
     nanoHMap[handler] = nanoHandler;
     if ( bDesc->firstBranch == nullptr ) nanoHandler->produces( this,
-                *BranchInterfaceData::getInfo( bDesc,
-                NANOHandler::nanoTableName, bDesc->branchName->c_str() ) );
+                BranchInterfaceData::getInfo( bDesc,
+                NANOHandler::nanoTableName, *bDesc->branchName ) );
   }
 
   return;
@@ -86,20 +86,20 @@ void NANOTreeWriter::put( edm::Event& ev ) {
   void* table = nullptr;
   branch_iterator iter = treeBegin();
   branch_iterator iend = treeEnd();
-  const std::string* tName = nullptr;
+  std::string tName;
   while ( iter != iend ) {
     const branch_desc* bDesc = *iter++;
     DataHandler* handler = bDesc->dataHandler;
     if ( bDesc->firstBranch == nullptr ) {
       table = nullptr;
       tName = BranchInterfaceData::getInfo( bDesc,
-              NANOHandler::nanoTableName, bDesc->branchName->c_str() );
+              NANOHandler::nanoTableName, *bDesc->branchName );
     }
     table = nanoHMap[handler]->put( ev, bDesc, table );
     if ( bDesc->nextBranch == nullptr ) {
       std::unique_ptr<nanoaod::FlatTable> u(
                       static_cast<nanoaod::FlatTable*>( table ) );
-      ev.put( std::move( u ), *tName );
+      ev.put( std::move( u ), tName );
     }
     if ( bDesc->ppRef ) handler->clearPtr( bDesc->dataPtr );
   }

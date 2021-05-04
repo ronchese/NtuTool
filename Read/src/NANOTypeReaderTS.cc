@@ -44,7 +44,7 @@ int NANOTypeReader<int>::cSize( const void* p ) {
 }
 template <>
 void* NANOTypeReader<int>::tmpArray( int n ) { return nullptr; }
-static NANOTypeReader<int      > tr____i( DataReset::native_write, new NANOHandler::ConvertToArray<int,int> );
+static NANOTypeReader<int      > tr____i( DataReset::native_write, nullptr );
 
 
 // === template specialization for unsigned int === 
@@ -102,7 +102,7 @@ int NANOTypeReader<unsigned char>::cSize( const void* p ) {
 template <>
 void* NANOTypeReader<unsigned char>::tmpArray( int n ) { return nullptr; }
 static NANOTypeReader<unsigned
-                     char     > tr___ub( DataReset::native_write, new NANOHandler::ConvertToArray<unsigned char,unsigned char> );
+                     char     > tr___ub( DataReset::native_write, nullptr );
 
 
 // === template specialization for bool  === 
@@ -113,7 +113,7 @@ int NANOTypeReader<bool     >::cSize( const void* p ) {
 }
 template <>
 void* NANOTypeReader<bool>::tmpArray( int n ) { return new bool[n]; }
-static NANOTypeReader<bool     > tr____a( DataReset::native_write, new NANOHandler::ConvertToArray<bool,bool> );
+static NANOTypeReader<bool     > tr____a( DataReset::native_write, nullptr );
 
 
 // === template specialization for long long === 
@@ -147,7 +147,7 @@ int NANOTypeReader<float>::cSize( const void* p ) {
 }
 template <>
 void* NANOTypeReader<float>::tmpArray( int n ) { return nullptr; }
-static NANOTypeReader<float    > tr____f( DataReset::native_write, new NANOHandler::ConvertToArray<float,float> );
+static NANOTypeReader<float    > tr____f( DataReset::native_write, nullptr );
 
 
 // === template specialization for double === 

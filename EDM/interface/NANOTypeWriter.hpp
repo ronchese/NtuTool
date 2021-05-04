@@ -108,25 +108,19 @@ void* NANOTypeWriter<T>::put( edm::Event& e,
   }
   if ( t == nullptr ) {
     bool single = ( s < 0 );
-//    table = new nanoaod::FlatTable( single ? 1 : s,
-//                *BranchInterfaceData::getInfo( b,
-//                NANOHandler::nanoTableName, *b->branchName ),
-//                single, false );
-//    table->setDoc( *BranchInterfaceData::getInfo( b,
-//                   NANOHandler::nanoBranchDoc, *b->branchName ) );
     table = new nanoaod::FlatTable( single ? 1 : s,
-                *BranchInterfaceData::getInfo( b,
-                NANOHandler::nanoTableName, b->branchName->c_str() ),
+                BranchInterfaceData::getInfo( b,
+                NANOHandler::nanoTableName, *b->branchName ),
                 single, false );
-    table->setDoc( *BranchInterfaceData::getInfo( b,
-                   NANOHandler::nanoBranchDoc, b->branchName->c_str() ) );
+    table->setDoc( BranchInterfaceData::getInfo( b,
+                   NANOHandler::nanoBranchDoc, *b->branchName ) );
   }
   else {
     table = static_cast<nanoaod::FlatTable*>( t );
   }
   if ( keep ) addC( p, table, *b->branchName,
-                    *BranchInterfaceData::getInfo( b,
-                    NANOHandler::nanoBranchDoc, b->branchName->c_str() ) );
+                    BranchInterfaceData::getInfo( b,
+                    NANOHandler::nanoBranchDoc, *b->branchName ) );
   return table;
 }
 

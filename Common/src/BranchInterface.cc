@@ -105,7 +105,6 @@ BranchInterface::branch_desc* BranchInterface::newBranch(
   bDesc->dataPtr     = dataPtr;
   bDesc->branchData  = new std::string( branchData );
   bDesc->branchPtr   = nullptr;
-//  bDesc->tableSize   = 10000;
   bDesc->bufferSize  =
   bDesc->splitLevel  = -999;
   bDesc->ppRef       = false;

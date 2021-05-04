@@ -39,16 +39,12 @@ void NANOTreeReader::initRead( TTree* tree ) {
   while ( iter != iend ) {
     branch_desc* bDesc = *iter++;
     DataHandler* handler = handlerManager->setHandler( bDesc );
-    std::string firstName = ( bDesc->firstBranch            == nullptr ?
-                              "NNULL" :
-                              *BranchInterfaceData::getInfo( bDesc->firstBranch,
-                              NANOHandler::nanoTableName, "NULL" ) );
     if ( bDesc->splitLevel < 0 )
         handler->setAuxPtr( bDesc->dataPtr, handlerManager );
     bDesc->dataHandler = handler;
   }
   void* sizePtr = nullptr;
-  const std::string* tName = nullptr;
+  std::string tName;
   int aSize = -1;
   branch_desc* bSize = nullptr;
   iter = treeBegin();
@@ -56,7 +52,7 @@ void NANOTreeReader::initRead( TTree* tree ) {
     branch_desc* bDesc = *iter++;
     if ( bDesc->firstBranch == nullptr ) {
       tName = BranchInterfaceData::getInfo( bDesc, NANOHandler::nanoTableName,
-                                            bDesc->branchName->c_str() );
+                                           *bDesc->branchName );
       aSize = BranchInterfaceData::getInfo( bDesc, NANOHandler::nanoTableSize,
                                             10000 );
       sizePtr = nullptr;
@@ -65,8 +61,8 @@ void NANOTreeReader::initRead( TTree* tree ) {
     DataHandler* handler = bDesc->dataHandler;
     if ( handler == nullptr ) continue;
     int dSize = dynamic_cast<NANOHandler*>( handler )->cSize( nullptr );
-    bool tSize = false;
-    bool mSize = false;
+    bool tSize = false; // native variable followed by array or std container
+    bool mSize = false; // std container as first branch in a table
     std::string bName = "";
     if ( dSize < 0 ) {
       const branch_desc* nextBranch = bDesc->nextBranch;
@@ -82,29 +78,27 @@ void NANOTreeReader::initRead( TTree* tree ) {
     if ( ( handler->getConv() != DataHandler::copyVector ) &&
          ( bDesc->firstBranch == nullptr ) ) mSize = true;
     if ( tSize ) {
-      bName = "n" + *tName;
+      bName = "n" + tName;
       bSize = bDesc;
     }
     else {
-      if ( mSize ){
+      if ( mSize ) {
         sizePtr = new unsigned int( 0 );
-	std::string sizeBName = "n" + *tName;
+        std::string sizeBName = "n" + tName;
         currentTree()->SetBranchAddress( sizeBName.c_str(),
                                          static_cast<unsigned int*>( sizePtr ),
                                          new TBranch* );
         addInts.push_back( static_cast<unsigned int*>( sizePtr ) );
       }
-      bName = *tName + "_" + handler->getName();
+      bName = tName + "_" + handler->getName();
     }
     if ( bDesc->splitLevel < 0 ) {
       NANOHandler::AdditionalInfo* aInfo = new NANOHandler::AdditionalInfo;
       if ( handler->getConv() == DataHandler::copyVector ) {
         aInfo->maxSize = aSize;
-        aInfo->arraySize = BranchInterface::uPtr( handler->auxiliaryPtr() );
       }
       else {
         aInfo->maxSize = 1;
-        aInfo->arraySize = nullptr;
       }
       handler->setAddInfo( aInfo );
       currentTree()->SetBranchAddress( bName.c_str(),
@@ -112,10 +106,9 @@ void NANOTreeReader::initRead( TTree* tree ) {
                                          bDesc->dataPtr : aInfo->arrayPtr ),
                                        bDesc->branchPtr );
     }
-    if ( sizePtr != nullptr ) {
+    else {
       handler->setAuxPtr( sizePtr, handlerManager );
       NANOHandler::AdditionalInfo* aInfo = new NANOHandler::AdditionalInfo;
-      aInfo->arraySize = BranchInterface::uPtr( sizePtr );
       aInfo->maxSize = aSize;
       handler->setAddInfo( aInfo );
       std::string tmpName = bName;

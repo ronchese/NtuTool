@@ -62,15 +62,9 @@ DataHandler* NANOTypeReader<T>::getInstance( const std::string& name,
 
 template <class T>
 void NANOTypeReader<T>::process( void* p ) {
-  const unsigned int* sizePtr = nullptr;
   AdditionalInfo* aInfo =
                   static_cast<AdditionalInfo*>( this->additionalInfo() );
-  if ( aInfo != nullptr ) sizePtr = aInfo->arraySize;
-  int nTrans = -1;
-  if ( sizePtr != nullptr ) nTrans = *sizePtr;
-  else
-  if ( this->convType == DataHandler::copyVector ) nTrans = *this->iPtr( this->auxPtr );
-  else nTrans = 1;
+  int nTrans = ( this->auxPtr != p ? *this->iPtr( this->auxPtr ) : 1 );
   if ( nTrans < 0 ) return;
   if ( aInfo->arrayPtr == nullptr ) return;
   this->translate( aInfo->arrayPtr, this->dPtr( p ), nTrans );
@@ -88,7 +82,7 @@ void* NANOTypeReader<T>::setAddInfo( void* p ) {
 
 template <class T>
 void NANOTypeReader<T>::translate( void* sPtr, void* dPtr, int n ) {
-    if ( nConv != nullptr ) (*nConv)( sPtr, dPtr, n );
-    return;
+  if ( nConv != nullptr ) (*nConv)( sPtr, dPtr, n );
+  return;
 }
 

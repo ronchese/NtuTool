@@ -19,9 +19,10 @@ class BranchInterfaceData {
       auto& b = e.second;
       delete b->branchName;
       delete b->branchData;
-//      to fix, only forward declaration for DataHandler is available,
-//      full header inclusion is forbidden 
-//      because DataHandler uses BranchInterfaceData
+// to fix: only forward declaration for DataHandler is available,
+// full header inclusion is forbidden 
+// because DataHandler uses BranchInterfaceData
+// and a circular inclusion would appear
 //      delete b->dataHandler;
     }
   }
@@ -36,7 +37,6 @@ class BranchInterfaceData {
     void*        dataPtr;
     std::string* branchData;
     TBranch**    branchPtr;
-//    int          tableSize;
     int          bufferSize;
     int          splitLevel;
     bool         ppRef;
@@ -46,14 +46,18 @@ class BranchInterfaceData {
     std::map<int,const void*> addInfo;
   };
 
-  static const std::string* getInfo( const branch_desc* b, int t,
+  static const std::string& getInfo( const branch_desc* b, int t,
                                      const char* d ) {
     std::string s( d );
     static std::set<std::string> ds;
-    return &*( ds.insert( s ).first );
+    const std::string& ref = *( ds.insert( s ).first );
+    if ( b == nullptr ) return ref;
+    const std::map<int,const void*>& m = b->addInfo;
+    std::map<int,const void*>::const_iterator iter = m.find( t );
+    return ( iter == m.end() ? ref : *static_cast<const std::string*>( iter->second ) );
   }
   template<class T>
-  static const T getInfo( const branch_desc* b, int t, const T& d ) {
+  static const T& getInfo( const branch_desc* b, int t, const T& d ) {
     if ( b == nullptr ) return d;
     const std::map<int,const void*>& m = b->addInfo;
     std::map<int,const void*>::const_iterator iter = m.find( t );

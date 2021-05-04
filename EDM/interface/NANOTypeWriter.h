@@ -95,11 +95,6 @@ class NANOTypeWriter: public TypeHandler<T,NANOTypeWriterManager>,
              const std::string& name, const std::string& doc,
              nanoaod::FlatTable::ColumnType type );
 
-  template <class I>
-  void addC( const void* p, int n, void* t,
-             const std::string& name, const std::string& doc,
-             nanoaod::FlatTable::ColumnType type );
-
 };
 
 #include "NtuTool/EDM/interface/NANOTypeWriter.hpp"

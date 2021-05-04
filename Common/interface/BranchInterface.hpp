@@ -44,8 +44,9 @@ BranchInterface* BranchInterface::setBranch( const char* branchName,
 template <class T>
 BranchInterface* BranchInterface::setInfo( int type, const T& i ) {
   branch_desc* bDesc = branchList().back();
-  const void*& ptr = bDesc->addInfo[type];
-  if ( ptr == nullptr ) ptr = new T( i );
+  std::map<int,const void*>& m = bDesc->addInfo;
+  std::map<int,const void*>::const_iterator iter = m.find( type );
+  if ( iter == m.end() ) m[type] = new T( i );
   return biShadow;
 }
 

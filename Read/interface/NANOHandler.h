@@ -51,7 +51,6 @@ class NANOHandler {
 
   struct AdditionalInfo {
     void* arrayPtr;
-    const unsigned int* arraySize;
     int maxSize;
   };
 
