@@ -92,7 +92,6 @@ template <class T>
 void* NANOTypeWriter<T>::put( edm::Event& e,
                               const BranchInterfaceData::branch_desc* b,
                               void* t ) {
-  this->print();
   void* p = ( this->convType == DataHandler::ppReference ? this->auxPtr : b->dataPtr );
   nanoaod::FlatTable* table;
   int s = cSize( p );
