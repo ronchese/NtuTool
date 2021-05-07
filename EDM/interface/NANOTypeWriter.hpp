@@ -100,7 +100,6 @@ void* NANOTypeWriter<T>::put( edm::Event& e,
     const BranchInterfaceData::branch_desc* n = b->nextBranch;
     if ( n != nullptr ) {
       void* q =  ( n->ppRef ? n->dataHandler->auxiliaryPtr() : n->dataPtr );
-      n->dataHandler->print();
       s = dynamic_cast<NANOHandler*>( n->dataHandler )->cSize( q );
       keep = ( s < 0 );
     }
