@@ -2,24 +2,22 @@
 #define EDMTreeReader_h
 
 #include "NtuTool/Common/interface/TreeReader.h"
+#include "NtuTool/Read/interface/TreeDataProcess.h"
 
-class EDMTreeReader: public TreeReader {
+class EDMTreeReader: public TreeDataProcess,
+                     public virtual TreeReader {
 
  public:
 
   EDMTreeReader();
   ~EDMTreeReader() override;
 
-  TChain* initRead( const std::string& file ) override;
-
  protected:
 
   void setProcessName(  const std::string& name );
   void setProducerName( const std::string& name );
 
-  virtual void initRead( TTree* tree );
-  virtual void process( int ientry );
-  virtual void process( TBranch* b, int ientry );
+  void initRead( TTree* tree ) override;
 
  private:
 

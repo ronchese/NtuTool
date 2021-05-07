@@ -118,6 +118,12 @@ void TreeReader::process( TBranch* b, int ientry ) {
 }
 
 
+void TreeReader::process( const branch_desc* b, int ientry ) {
+  b->dataHandler->process( b->ppRef ? *( this->pPtr( b->dataPtr ) ) :
+                                                     b->dataPtr     );
+}
+
+
 TreeReader*& TreeReader::instance() {
   static TreeReader* readerInstance = nullptr;
   return readerInstance;

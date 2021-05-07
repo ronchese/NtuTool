@@ -12,20 +12,12 @@
 
 
 NANOTreeReader::NANOTreeReader() {
+  treeName = "Events";
   handlerManager = new NANOTypeReaderManager;
 }
 
 
 NANOTreeReader::~NANOTreeReader() {
-}
-
-
-TChain* NANOTreeReader::initRead( const std::string& file ) {
-  currentFile = file;
-  TChain* c = new TChain( "Events" );
-  c->Add( file.c_str() );
-  initRead( c );
-  return c;
 }
 
 
@@ -122,33 +114,5 @@ void NANOTreeReader::initRead( TTree* tree ) {
 
   return;
 
-}
-
-
-void NANOTreeReader::process( int ientry ) {
-  branch_iterator iter = treeBegin();
-  branch_iterator iend = treeEnd();
-  while ( iter != iend ) {
-    const branch_desc* bDesc = *iter++;
-    DataHandler* handler = bDesc->dataHandler;
-    if ( handler == nullptr ) continue;
-    handler->process( bDesc->ppRef ? *( this->pPtr( bDesc->dataPtr ) ) :
-                                                    bDesc->dataPtr     );
-  }
-  return;
-}
-
-
-void NANOTreeReader::process( TBranch* b, int ientry ) {
-  const std::map<TBranch*,branch_desc*>& bMap = branchMap();
-  std::map<TBranch*,branch_desc*>::const_iterator iter = bMap.find( b );
-  std::map<TBranch*,branch_desc*>::const_iterator iend = bMap.end();
-  if ( iter != iend ) {
-    const branch_desc* bDesc = iter->second;
-    DataHandler* handler = bDesc->dataHandler;
-    if ( handler == nullptr ) return;
-    handler->process( bDesc->dataPtr );
-  }
-  return;
 }
 

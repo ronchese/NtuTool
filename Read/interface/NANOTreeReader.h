@@ -2,22 +2,20 @@
 #define NANOTreeReader_h
 
 #include "NtuTool/Common/interface/TreeReader.h"
+#include "NtuTool/Read/interface/TreeDataProcess.h"
 #include <vector>
 
-class NANOTreeReader: public TreeReader {
+class NANOTreeReader: public TreeDataProcess,
+                      public virtual TreeReader {
 
  public:
 
   NANOTreeReader();
   ~NANOTreeReader() override;
 
-  TChain* initRead( const std::string& file ) override;
-
  protected:
 
   void initRead( TTree* tree ) override;
-  void process( int ientry ) override;
-  void process( TBranch* b, int ientry ) override;
 
  private:
 

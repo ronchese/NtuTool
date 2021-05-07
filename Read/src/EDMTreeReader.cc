@@ -11,24 +11,12 @@
 
 
 EDMTreeReader::EDMTreeReader() {
+  treeName = "Events";
   handlerManager = new EDMTypeReaderManager;
 }
 
 
 EDMTreeReader::~EDMTreeReader() {
-}
-
-
-TChain* EDMTreeReader::initRead( const std::string& file ) {
-
-  std::cout << "EDMTreeReader: " << file << std::endl;
-  currentFile = file;
-
-  TChain* c = new TChain( "Events" );
-  c->Add( file.c_str() );
-  initRead( c );
-  return c;
-
 }
 
 
@@ -66,35 +54,6 @@ void EDMTreeReader::initRead( TTree* tree ) {
   }
 
   fillBranchMap();
-
-  return;
-
-}
-
-
-void EDMTreeReader::process( int ientry ) {
-
-  branch_iterator iter = treeBegin();
-  branch_iterator iend = treeEnd();
-  while ( iter != iend ) {
-    const branch_desc* bDesc = *iter++;
-    bDesc->dataHandler->process( bDesc->dataPtr );
-  }
-
-  return;
-
-}
-
-
-void EDMTreeReader::process( TBranch* b, int ientry ) {
-
-  const std::map<TBranch*,branch_desc*>& bMap = branchMap();
-  std::map<TBranch*,branch_desc*>::const_iterator iter = bMap.find( b );
-  std::map<TBranch*,branch_desc*>::const_iterator iend = bMap.end();
-  if ( iter != iend ) {
-    const branch_desc* bDesc = iter->second;
-    bDesc->dataHandler->process( bDesc->dataPtr );
-  }
 
   return;
 
