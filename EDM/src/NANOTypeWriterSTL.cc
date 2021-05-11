@@ -33,7 +33,9 @@
 // === template specialization for std::string === 
 
 template <>
-int NANOTypeWriter<std::string>::cSize( const void* p ) { return this->cPtr( p )->size(); }
+int NANOTypeWriter<std::string>::cSize( const void* p ) {
+  return this->cPtr( p )->size();
+}
 template <>
 void NANOTypeWriter<std::string>::addC(
      const void* p, void* t, const std::string& name, const std::string& doc ) {
