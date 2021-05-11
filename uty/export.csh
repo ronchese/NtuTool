@@ -6,7 +6,6 @@ cd ${NTU_ROOT_DIR}
 
 rm -f export.tgz
 tar -czf export.tgz                \
-         README.md                 \
          VERSION                   \
          Common/interface          \
          Common/src                \
