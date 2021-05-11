@@ -22,7 +22,6 @@
 //------------------------------------
 #include "NtuTool/EDM/interface/NANOTypeWriterManager.h"
 #include "NtuTool/EDM/interface/NANOTableHandler.h"
-//#include "NtuTool/EDM/interface/NANODataHandler.h"
 #include "DataFormats/NanoAOD/interface/FlatTable.h"
 
 //---------------
@@ -66,10 +65,7 @@ class NANOTypeWriter: public TypeHandler<T,NANOTypeWriterManager>,
   void* put( edm::Event& e,
              const BranchInterfaceData::branch_desc* b, void* t ) override;
 
-  /// Utility functions
-  void buildPtr( void* p ) override;
-  void clearPtr( void* p ) override;
-
+/// pointer type definitions
   typedef std::unique_ptr<T> typePtr;
   typedef std::unique_ptr< std::vector<T> > vectPtr;
 
@@ -80,7 +76,6 @@ class NANOTypeWriter: public TypeHandler<T,NANOTypeWriterManager>,
                   const std::string& type );
   NANOTypeWriter( bool dum ) {}
 
-//  nanoaod::FlatTable* tPtr( void* t );
   int cSize( const void* p ) override;
   void addC( const void* p, void* t,
              const std::string& name, const std::string& doc ) override;

@@ -92,15 +92,18 @@ template <class T>
 void* NANOTypeWriter<T>::put( edm::Event& e,
                               const BranchInterfaceData::branch_desc* b,
                               void* t ) {
-  void* p = ( this->convType == DataHandler::ppReference ? this->auxPtr : b->dataPtr );
+  void* p = ( this->convType == DataHandler::copyVector ?
+              b->dataPtr : this->auxPtr );
   nanoaod::FlatTable* table;
   int s = cSize( p );
   bool keep = true;
   if ( s < 0 ) {
     const BranchInterfaceData::branch_desc* n = b->nextBranch;
     if ( n != nullptr ) {
-      void* q =  ( n->ppRef ? n->dataHandler->auxiliaryPtr() : n->dataPtr );
-      s = dynamic_cast<NANOHandler*>( n->dataHandler )->cSize( q );
+      DataHandler* nextHandler = n->dataHandler;
+      void* q = ( nextHandler->getConv() == DataHandler::copyVector ?
+                  n->dataPtr : nextHandler->auxiliaryPtr() );
+      s = dynamic_cast<NANOHandler*>( nextHandler )->cSize( q );
       keep = ( s < 0 );
     }
   }
@@ -120,19 +123,6 @@ void* NANOTypeWriter<T>::put( edm::Event& e,
                     BranchInterfaceData::getInfo( b,
                     NANOHandler::nanoBranchDoc, *b->branchName ) );
   return table;
-}
-
-
-template <class T>
-void NANOTypeWriter<T>::buildPtr( void* p ) {
-  this->convType = DataHandler::ppReference;
-  return;
-}
-
-
-template <class T>
-void NANOTypeWriter<T>::clearPtr( void* p ) {
-  return;
 }
 
 

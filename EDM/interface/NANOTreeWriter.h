@@ -13,7 +13,7 @@ class NANOTableHandler;
 class NANOTreeWriter: public virtual EDProducerWrapper,
                       public virtual TreeWrapper {
 
-  friend class EDMNtupleFilter;
+  friend class NANONtupleFilter;
 
  public:
 

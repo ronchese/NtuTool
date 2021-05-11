@@ -54,7 +54,6 @@ void NANOTreeWriter::initWrite() {
     branch_desc* bDesc = *iter++;
     DataHandler* handler = handlerManager->setHandler( bDesc );
     bDesc->dataHandler = handler;
-    if ( bDesc->ppRef ) handler->buildPtr( nullptr );
     void* p = bDesc->dataPtr;
     handler->setAuxPtr( bDesc->ppRef ? *BranchInterface::pPtr( p ) : p,
 			handlerManager );
@@ -72,7 +71,8 @@ void NANOTreeWriter::initWrite() {
 
 void NANOTreeWriter::produce( edm::Event& ev, const edm::EventSetup& es ) {
   reset();
-  if ( ( select = fill( ev, es ) ) ) put( ev );
+  select = fill( ev, es );
+  put( ev );
   return;
 }
 
@@ -101,7 +101,6 @@ void NANOTreeWriter::put( edm::Event& ev ) {
                       static_cast<nanoaod::FlatTable*>( table ) );
       ev.put( std::move( u ), tName );
     }
-    if ( bDesc->ppRef ) handler->clearPtr( bDesc->dataPtr );
   }
   return;
 }
