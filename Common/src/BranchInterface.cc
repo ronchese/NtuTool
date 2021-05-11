@@ -67,15 +67,7 @@ BranchInterface* BranchInterface::setInfo( int type, const char* s ) {
 void BranchInterface::fillBranchMap() {
   auto& bMap = biData->bMap;
   bMap.clear();
-//  for ( const auto& bDesc : biData->bList ) bMap[*bDesc->branchPtr] = bDesc;
-  for ( const auto& bDesc : biData->bList ) {
-    std::cout << "fillMap: "
-              << *bDesc->branchName << ' '
-              << *bDesc->branchPtr << ' '
-              <<  bDesc->branchPtr << ' '
-              <<  bDesc->  dataPtr << std::endl;
-    bMap[bDesc->branchPtr] = bDesc;
-  }
+  for ( const auto& bDesc : biData->bList ) bMap[bDesc->branchPtr] = bDesc;
   return;
 }
 
