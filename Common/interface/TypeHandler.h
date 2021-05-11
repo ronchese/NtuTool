@@ -60,7 +60,7 @@ class TypeHandler: public virtual DataHandler,
  protected:
 
   Type* dummyPtr;
-  virtual void* setAuxPtr( void* p, DataHandlerManager* hm ) {
+  void* setAuxPtr( void* p, DataHandlerManager* hm ) override {
     return ( this->auxPtr = ( this->convType == DataHandler::copyVector ?
                               this->arraySize( hm ) : p ) );
   }
