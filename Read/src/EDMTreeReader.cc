@@ -46,8 +46,15 @@ void EDMTreeReader::initRead( TTree* tree ) {
     void* dataPtr = ( bDesc->ppRef ? *pPtr( bDesc->dataPtr ) :
                                      handler->setAuxPtr( bDesc->dataPtr,
                                                          handlerManager ) );
-    std::string branchName( handler->getBranchName( processName,
-                                                    producerName ) );
+    std::string branchName = handler->getType();
+    if ( handler->getConv() == DataHandler::copyVector ) branchName += "s";
+    branchName += "_";
+    branchName += producerName;
+    branchName += "_";
+    branchName += handler->getName();
+    branchName += "_";
+    branchName += processName;
+    branchName += ".obj";
     if ( bDesc->branchPtr == nullptr ) bDesc->branchPtr = new TBranch*;
     currentTree()->SetBranchAddress( branchName.c_str(), dataPtr,
                                      bDesc->branchPtr );

@@ -113,22 +113,6 @@ TBranch* DataHandler::branch( TTree* tree, const std::string* name, void** p,
 }
 
 
-std::string DataHandler::getBranchName( const std::string& processName,
-                                        const std::string& producerName ) {
-  std::string
-  name( dataType );
-  if ( convType == copyVector ) name += "s";
-  name += "_";
-  name += producerName;
-  name += "_";
-  name += dataName;
-  name += "_";
-  name += processName;
-  name += ".obj";
-  return name;
-}
-
-
 void DataHandler::process( void* p ) {
   return;
 }

@@ -67,10 +67,6 @@ class DataHandler {
                            int bufferSize = 32000,
                            int splitLevel = 99 );
 
-  /// Branch function
-  virtual std::string getBranchName( const std::string& processName,
-                                     const std::string& producerName );
-
   /// Read functions
   virtual void process( void* p );
 
