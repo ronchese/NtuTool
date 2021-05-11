@@ -10,6 +10,7 @@ BranchInterface* BranchInterface::setBranch( const char* branchName,
                                              int splitLevel,
                                              TBranch** branchPtr ) {
 
+  if ( branchPtr == nullptr ) branchPtr = new TBranch*;
   std::string
   dataName  = branchName;
   dataName += "/";
@@ -29,6 +30,7 @@ BranchInterface* BranchInterface::setBranch( const char* branchName,
                                              int bufferSize,
                                              int splitLevel,
                                              TBranch** branchPtr ) {
+  if ( branchPtr == nullptr ) branchPtr = new TBranch*;
   std::string
   dataName  = branchName;
   dataName += "/";

@@ -37,6 +37,7 @@ BranchInterface* BranchInterface::setBranch( const char* branchName,
                                              void* dataPtr,
                                              const char* branchData,
                                              TBranch** branchPtr ) {
+  if ( branchPtr == nullptr ) branchPtr = new TBranch*;
   newBranch( branchName, dataPtr, branchData )->branchPtr  = branchPtr;
   return biShadow;
 }
@@ -47,6 +48,7 @@ BranchInterface* BranchInterface::setBranch( const char* branchName,
                                              int bufferSize,
                                              const char* branchData,
                                              TBranch** branchPtr ) {
+  if ( branchPtr == nullptr ) branchPtr = new TBranch*;
   branch_desc* bDesc =
   newBranch( branchName, dataPtr, branchData );
   bDesc->bufferSize = bufferSize;
@@ -65,14 +67,34 @@ BranchInterface* BranchInterface::setInfo( int type, const char* s ) {
 void BranchInterface::fillBranchMap() {
   auto& bMap = biData->bMap;
   bMap.clear();
-  for ( const auto& bDesc : biData->bList ) bMap[*bDesc->branchPtr] = bDesc;
+//  for ( const auto& bDesc : biData->bList ) bMap[*bDesc->branchPtr] = bDesc;
+  for ( const auto& bDesc : biData->bList ) {
+    std::cout << "fillMap: "
+              << *bDesc->branchName << ' '
+              << *bDesc->branchPtr << ' '
+              <<  bDesc->branchPtr << ' '
+              <<  bDesc->  dataPtr << std::endl;
+    bMap[bDesc->branchPtr] = bDesc;
+  }
   return;
 }
 
 
-void BranchInterface::process( TBranch* b, int ientry ) {
+void BranchInterface::process( int ientry ) {
 // default preliminary process - dummy
   return;
+}
+
+
+void BranchInterface::process( TBranch** b, int ientry ) {
+// default preliminary process - dummy
+  return;
+}
+
+
+void BranchInterface::process( const branch_desc* b, int ientry ) {
+  b->dataHandler->process( b->ppRef ? *( this->pPtr( b->dataPtr ) ) :
+                                                     b->dataPtr     );
 }
 
 

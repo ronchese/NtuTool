@@ -61,9 +61,11 @@ class BranchInterface {
   typedef branch_list::const_iterator branch_iterator;
   typedef branch_list::const_reverse_iterator branch_rev_iter;
 
-  const std::map<TBranch*,branch_desc*>& branchMap() { return biData->bMap; }
+  const std::map<TBranch**,branch_desc*>& branchMap() { return biData->bMap; }
   void fillBranchMap();
-  virtual void process( TBranch* b, int ientry );
+  virtual void process( int ientry );
+  virtual void process( TBranch** b, int ientry );
+  virtual void process( const branch_desc* b, int ientry );
 
   branch_iterator treeBegin();
   branch_iterator treeEnd();

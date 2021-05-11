@@ -2,6 +2,7 @@
 #define TreeDataProcess_h
 
 #include "NtuTool/Common/interface/TreeReader.h"
+#include <iostream>
 
 class TreeDataProcess: public virtual TreeReader {
 
@@ -19,10 +20,10 @@ class TreeDataProcess: public virtual TreeReader {
     while ( iter != iend ) process( *iter++, ientry );
     return;
   }
-  void process( TBranch* b, int ientry ) override {
-    const std::map<TBranch*,branch_desc*>& bMap = branchMap();
-    std::map<TBranch*,branch_desc*>::const_iterator iter = bMap.find( b );
-    std::map<TBranch*,branch_desc*>::const_iterator iend = bMap.end();
+  void process( TBranch** b, int ientry ) override {
+    const std::map<TBranch**,branch_desc*>& bMap = branchMap();
+    std::map<TBranch**,branch_desc*>::const_iterator iter = bMap.find( b );
+    std::map<TBranch**,branch_desc*>::const_iterator iend = bMap.end();
     if ( iter != iend ) process( iter->second, ientry );
     return;
   }

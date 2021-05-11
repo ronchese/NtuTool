@@ -54,7 +54,8 @@ class BranchInterfaceData {
     if ( b == nullptr ) return ref;
     const std::map<int,const void*>& m = b->addInfo;
     std::map<int,const void*>::const_iterator iter = m.find( t );
-    return ( iter == m.end() ? ref : *static_cast<const std::string*>( iter->second ) );
+    return ( iter == m.end() ? ref :
+             *static_cast<const std::string*>( iter->second ) );
   }
   template<class T>
   static const T& getInfo( const branch_desc* b, int t, const T& d ) {
@@ -72,7 +73,7 @@ class BranchInterfaceData {
   typedef std::vector<branch_desc*> branch_list;
   branch_desc* lastBranch;
   branch_list bList;
-  std::map<TBranch*,branch_desc*> bMap;
+  std::map<TBranch**,branch_desc*> bMap;
 
  private:
 
