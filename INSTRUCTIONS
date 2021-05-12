@@ -84,17 +84,18 @@ hs.root    : is the ouptut histogram file
            : to each input file
 -a         : set the max number of events to accept, if negative its applied 
            : to each input file
-x          : a flag to draw the histograms at the end (as coded in plot() )
+x          : running mode, see in the following
            : at the end of the execution
 -v key val : to set user parameter "key" as "val"
 -c cfgFile : to read all parameters from cfgFile
 
 alternatives:
 
-i       a flag to have a ROOT prompt at the end of the execution
-j       a flag to draw the histograms at the end (as coded in plot() )
+x       draw the histograms at the end ( as coded in plot() )
+i       have a ROOT prompt at the end of the execution
+j       a to draw the histograms at the end ( as coded in plot() )
         at the end of the execution and then have a ROOT prompt
-b       a flag to simply save the histograms
+b       simply save the histograms (default)
 
 -v histoMode RECREATE
         to open the output file with RECREATE option (CREATE by default)
