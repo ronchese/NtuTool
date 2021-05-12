@@ -78,6 +78,7 @@ void NANOTreeWriter::produce( edm::Event& ev, const edm::EventSetup& es ) {
 
 
 bool NANOTreeWriter::fill( const edm::Event& ev, const edm::EventSetup& es ) {
+// default analysis - dummy
   return true;
 }
 
