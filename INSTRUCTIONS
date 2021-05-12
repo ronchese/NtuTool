@@ -91,7 +91,8 @@ x          : running mode, see in the following
 
 alternatives:
 
-x       draw the histograms at the end ( as coded in plot() )
+x       draw the histograms at the end ( as coded in plot() , use "exit ROOT" 
+        from a graphic ROOT canvas to terminate the process )
 i       have a ROOT prompt at the end of the execution
 j       a to draw the histograms at the end ( as coded in plot() )
         at the end of the execution and then have a ROOT prompt
