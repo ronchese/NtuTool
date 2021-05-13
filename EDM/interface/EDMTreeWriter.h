@@ -9,7 +9,6 @@
 #include <map>
 
 class EDMDataHandler;
-//class DataHandlerManager;
 
 class EDMTreeWriter: public virtual EDProducerWrapper,
                      public virtual TreeWrapper {
@@ -43,8 +42,6 @@ class EDMTreeWriter: public virtual EDProducerWrapper,
   std::map<DataHandler*,EDMDataHandler*> edmHMap;
 
   static bool select;
-
-//  DataHandlerManager* handlerManager;
 
 };
 
