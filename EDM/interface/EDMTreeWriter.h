@@ -28,7 +28,7 @@ class EDMTreeWriter: public virtual EDProducerWrapper,
 
  protected:
 
-  void produce( edm::Event& ev, const edm::EventSetup& es );
+  void produce( edm::Event& ev, const edm::EventSetup& es ) override;
   virtual void initWrite();
   virtual bool fill( const edm::Event& ev, const edm::EventSetup& es );
 
