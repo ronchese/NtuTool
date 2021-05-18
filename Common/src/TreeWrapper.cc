@@ -205,56 +205,6 @@ int TreeWrapper::acceptedEvents() {
   return acceptedEvts;
 }
 
-/*
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             const char* branchData ) {
-
-  newBranch( branchName, dataPtr, branchData )->branchPtr  = nullptr;
-  return;
-
-}
-
-
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             const char* branchData,
-                             TBranch** branchPtr ) {
-
-  newBranch( branchName, dataPtr, branchData )->branchPtr  = branchPtr;
-  return;
-
-}
-
-
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             int bufferSize,
-                             int splitLevel,
-                             const char* branchData ) {
-
-  branch_desc* bDesc =
-    newBranch( branchName, dataPtr, branchData );
-  bDesc->bufferSize = bufferSize;
-  bDesc->splitLevel = splitLevel;
-  bDesc->branchPtr  = nullptr;
-  return;
-
-}
-
-
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             int bufferSize,
-                             int splitLevel,
-                             const char* branchData,
-                             TBranch** branchPtr ) {
-
-  branch_desc* bDesc =
-  newBranch( branchName, dataPtr, branchData );
-  bDesc->bufferSize = bufferSize;
-  bDesc->splitLevel = splitLevel;
-  bDesc->branchPtr  = branchPtr;
-  return;
-
-}
-*/
 
 void TreeWrapper::reset() {
 // default analysis - no operation 
