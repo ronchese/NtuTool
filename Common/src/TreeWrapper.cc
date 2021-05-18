@@ -146,6 +146,8 @@ void TreeWrapper::plot( int argc, char* argv[], char flag ) {
   std::string name( treeName + "_app" );
   const char* cn = name.c_str();
   switch ( flag ) {
+  case 'y':
+    plot();
   case 'b':
     return;
   case 'i':
