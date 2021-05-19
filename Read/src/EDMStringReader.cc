@@ -28,7 +28,7 @@
 //-------------------
 // Initializations --
 //-------------------
-static EDMStringReader tr____c;
+
 
 //----------------
 // Constructors --
@@ -76,3 +76,6 @@ void* EDMStringReader::setAuxPtr( void* p, DataHandlerManager* hm ) {
   return auxPtr = new std::string;
 }
 
+// static object
+
+static const EDMStringReader ter____c;

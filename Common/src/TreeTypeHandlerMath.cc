@@ -5,5 +5,5 @@
 
 // === template specialization for math::XYZVector === 
 
-static TreeTypeHandler<math::XYZVector> tw_mxyz( nullptr );
+static const TreeTypeHandler<math::XYZVector> tth_mxyz( nullptr );
 

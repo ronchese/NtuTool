@@ -39,9 +39,9 @@ class TreeTypeHandler: public TypeHandler<T,Manager> {
   /** Constructor
    */
   TreeTypeHandler( DataReset::resetMode mode ):
-                  TypeHandler<T,Manager>( mode ) {}
+      TypeHandler<T,Manager>( mode ) {}
   TreeTypeHandler( DataReset* dr ):
-                  TypeHandler<T,Manager>( dr )   {}
+      TypeHandler<T,Manager>( dr )   {}
 
   /** Destructor
    */
@@ -61,8 +61,8 @@ class TreeTypeHandler: public TypeHandler<T,Manager> {
  protected:
 
   TreeTypeHandler( const std::string& name,
-                  const std::string& code,
-                  const std::string& type );
+                   const std::string& code,
+                   const std::string& type );
   TreeTypeHandler( bool dum ) {}
 
  private:

@@ -28,7 +28,7 @@
 //-------------------
 // Initializations --
 //-------------------
-static NANOStringReader tr____c;
+
 
 //----------------
 // Constructors --
@@ -66,3 +66,6 @@ DataHandler* NANOStringReader::getInstance( const std::string& name,
   return handler;
 }
 
+// static object
+
+static const NANOStringReader tnr____c;

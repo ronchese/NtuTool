@@ -31,66 +31,65 @@
 
 // === template specialization for int === 
 
-static TreeTypeHandler<int      > tw____i( DataReset::native_write );
+static const TreeTypeHandler<int      > tth____i( DataReset::native_write );
 
 
 // === template specialization for unsigned int === 
 
-static TreeTypeHandler<unsigned
-                      int      > tw___ui( DataReset::native_write );
+static const TreeTypeHandler<unsigned
+                             int      > tth___ui( DataReset::native_write );
 
 
 // === template specialization for short === 
 
-static TreeTypeHandler<short    > tw____s( DataReset::native_write );
+static const TreeTypeHandler<short    > tth____s( DataReset::native_write );
 
 
 // === template specialization for unsigned short === 
 
-static TreeTypeHandler<unsigned
-                      short    > tw___us( DataReset::native_write );
+static const TreeTypeHandler<unsigned
+                             short    > tth___us( DataReset::native_write );
 
 
 // === template specialization for char & C/C++ string === 
 
 template <>
 TreeTypeHandler<char>::TreeTypeHandler( DataReset::resetMode mode ):
-                      TypeHandler<char,TreeTypeManager>( mode ) {
+                           TypeHandler<char,TreeTypeManager>( mode ) {
   C__String* p = nullptr;
-  TreeTypeManager::registerHandler( TreeTypeNames::typeCode( p ),
-                                    this );
+  TreeTypeManager::registerHandler( TreeTypeNames::typeCode( p ), this );
 }
-static TreeTypeHandler<char     > tw____b( DataReset::native_write );
+static const TreeTypeHandler<char     > tth____b( DataReset::native_write );
 
 
 // === template specialization for unsigned char  === 
 
-static TreeTypeHandler<unsigned
-                     char     > tw___ub( DataReset::native_write );
+static const TreeTypeHandler<unsigned
+                             char     > tth___ub( DataReset::native_write );
 
 
 // === template specialization for bool === 
 
-static TreeTypeHandler<bool> tw____a( DataReset::native_write );
+static const TreeTypeHandler<bool     > tth____a( DataReset::native_write );
 
 
 // === template specialization for long long === 
 
-static TreeTypeHandler<long long> tw____l( DataReset::native_write );
+static const TreeTypeHandler<long long> tth____l( DataReset::native_write );
 
 
 // === template specialization for unsigned long long === 
 
-static TreeTypeHandler<unsigned
-                     long long> tw___ul( DataReset::native_write );
+static const TreeTypeHandler<unsigned
+                             long long> tth___ul( DataReset::native_write );
 
 
 // === template specialization for float === 
 
-static TreeTypeHandler<float    > tw____f( DataReset::native_write );
+static const TreeTypeHandler<float    > tth____f( DataReset::native_write );
 
 
 // === template specialization for double === 
 
-static TreeTypeHandler<double   > tw____d( DataReset::native_write );
+static const TreeTypeHandler<double   > tth____d( DataReset::native_write );
 

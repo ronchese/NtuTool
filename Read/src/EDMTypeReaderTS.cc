@@ -37,55 +37,59 @@
 
 // === template specialization for int === 
 
-static EDMTypeReader<int               > tr____i( DataReset::stl_read );
+static const EDMTypeReader<int      > ter____i( DataReset::stl_read );
 
 
 // === template specialization for unsigned int === 
 
-static EDMTypeReader<unsigned int      > tr___ui( DataReset::stl_read );
+static const EDMTypeReader<unsigned
+                           int      > ter___ui( DataReset::stl_read );
 
 
 // === template specialization for short === 
 
-static EDMTypeReader<short             > tr____s( DataReset::stl_read );
+static const EDMTypeReader<short    > ter____s( DataReset::stl_read );
 
 
 // === template specialization for unsigned short === 
 
-static EDMTypeReader<unsigned short    > tr___us( DataReset::stl_read );
+static const EDMTypeReader<unsigned
+                           short    > ter___us( DataReset::stl_read );
 
 
 // === template specialization for char === 
 
-static EDMTypeReader<char              > tr____b( DataReset::stl_read );
+static const EDMTypeReader<char     > ter____b( DataReset::stl_read );
 
 
 // === template specialization for unsigned char  === 
 
-static EDMTypeReader<unsigned char     > tr___ub( DataReset::stl_read );
+static const EDMTypeReader<unsigned
+                           char     > ter___ub( DataReset::stl_read );
 
 
 // === template specialization for bool  === 
 
-static EDMTypeReader<bool              > tr____a( DataReset::stl_read );
+static const EDMTypeReader<bool     > ter____a( DataReset::stl_read );
 
 
 // === template specialization for long long === 
 
-static EDMTypeReader<long long         > tr____l( DataReset::stl_read );
+static const EDMTypeReader<long long> ter____l( DataReset::stl_read );
 
 
 // === template specialization for unsigned long long === 
 
-static EDMTypeReader<unsigned long long> tr___ul( DataReset::stl_read );
+static const EDMTypeReader<unsigned
+                           long long> ter___ul( DataReset::stl_read );
 
 
 // === template specialization for float === 
 
-static EDMTypeReader<float             > tr____f( DataReset::stl_read );
+static const EDMTypeReader<float    > ter____f( DataReset::stl_read );
 
 
 // === template specialization for double === 
 
-static EDMTypeReader<double            > tr____d( DataReset::stl_read );
+static const EDMTypeReader<double   > ter____d( DataReset::stl_read );
 
