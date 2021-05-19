@@ -15,6 +15,7 @@ class NANOTreeReader: public TreeDataProcess,
 
  protected:
 
+  using TreeReader::initRead;
   void initRead( TTree* tree ) override;
 
  private:

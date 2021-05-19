@@ -17,6 +17,7 @@ class EDMTreeReader: public TreeDataProcess,
   void setProcessName(  const std::string& name );
   void setProducerName( const std::string& name );
 
+  using TreeReader::initRead;
   void initRead( TTree* tree ) override;
 
  private:
