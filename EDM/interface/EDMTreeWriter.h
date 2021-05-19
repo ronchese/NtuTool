@@ -22,8 +22,8 @@ class EDMTreeWriter: public virtual EDProducerWrapper,
 
   void beginJob() override;
   void   endJob() override;
-  virtual void beginRun( edm::Run& r, edm::EventSetup const & es );
-  virtual void   endRun( edm::Run& r, edm::EventSetup const & es );
+  void beginRun( const edm::Run& r, const edm::EventSetup& es ) override;
+  void   endRun( const edm::Run& r, const edm::EventSetup& es ) override;
 
  protected:
 

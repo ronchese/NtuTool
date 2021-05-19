@@ -31,12 +31,12 @@ void EDMTreeWriter::endJob() {
 }
 
 
-void EDMTreeWriter::beginRun( edm::Run& r, edm::EventSetup const & es ) {
+void EDMTreeWriter::beginRun( const edm::Run& r, const edm::EventSetup& es ) {
   return;
 }
 
 
-void EDMTreeWriter::endRun( edm::Run& r, edm::EventSetup const & es ) {
+void EDMTreeWriter::endRun( const edm::Run& r, const edm::EventSetup& es ) {
   return;
 }
 

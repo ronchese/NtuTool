@@ -36,12 +36,12 @@ void NANOTreeWriter::endJob() {
 }
 
 
-void NANOTreeWriter::beginRun( edm::Run& r, edm::EventSetup const & es ) {
+void NANOTreeWriter::beginRun( const edm::Run& r, const edm::EventSetup& es ) {
   return;
 }
 
 
-void NANOTreeWriter::endRun( edm::Run& r, edm::EventSetup const & es ) {
+void NANOTreeWriter::endRun( const edm::Run& r, const edm::EventSetup& es ) {
   return;
 }
 
