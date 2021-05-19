@@ -54,6 +54,10 @@ class DataReset {
 
   resetMode mode;
 
+ private:
+
+  DataReset           ( const DataReset& e ) = delete;
+  DataReset& operator=( const DataReset& e ) = delete;
 };
 
 

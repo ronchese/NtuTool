@@ -48,8 +48,8 @@ class TypeReset: public DataReset,
   /** Operations
    */
   /// reset data
-  virtual void clearDatum( void* p, void* a );
-  virtual void clearArray( void* p, void* a );
+  void clearDatum( void* p, void* a ) override;
+  void clearArray( void* p, void* a ) override;
 
  protected:
 
