@@ -14,6 +14,9 @@ using namespace std;
 // here these operations are encapsulated in a different class (SimpleFill)
 // to allow its reusage in different contexts, i.e. the example that does not
 // use NtuTool (simpleLegacyWrite.cc).
+// The important point here is inheriting from both "SimpleNtuple", with the
+// ntuple definition from the user, and "TreeWriter", from the library taking
+// care of the actual calls to "TTree::Branch".
 class SimpleNtupleWriter: public SimpleNtuple, // ntuple definition,
                           public SimpleFill,   // assign values to data,
                           public TreeWriter {  // create branches and

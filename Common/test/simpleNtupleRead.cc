@@ -16,6 +16,9 @@ using namespace std;
 // as well as doing the analysis; here these operations are encapsulated
 // in a different class (SimpleAnalyze) to allow its reusage in different
 // contexts, i.e. the example that does not use NtuTool (simpleLegacyRead.cc).
+// The important point here is inheriting from both "SimpleNtuple", with the
+// ntuple definition from the user, and "TreeReader", from the library taking
+// care of the actual calls to "TTree::SetBranchAddress".
 class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
                           public SimpleAnalyze, // analyze data and fill histos
                           public TreeReader {   // create branches and
