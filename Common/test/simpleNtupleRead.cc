@@ -123,6 +123,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
     c->cd( 2 ); hContA->Draw();
     c->cd( 3 ); hContI->Draw();
     c->cd( 4 ); hContF->Draw();
+    c->Print( "c.pdf" );
   }
   // A function "save()" can be declared, but if relevant histograms are 
   // marked with "autoSavedObjects" (see the "book()" function) it can be 
