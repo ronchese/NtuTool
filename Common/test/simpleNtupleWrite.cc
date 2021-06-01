@@ -9,7 +9,11 @@
 
 using namespace std;
 
-// This class is just to assemble parts
+// This class is just to assemble parts from other classes.
+// Usually values can be assigned to ntuple data directly in this class;
+// here these operations are encapsulated in a different class (SimpleFill)
+// to allow its reusage in different contexts, i.e. the example that does not
+// use NtuTool (simpleLegacyWrite.cc).
 class SimpleNtupleWriter: public SimpleNtuple, // ntuple definition,
                           public SimpleFill,   // assign values to data,
                           public TreeWriter {  // create branches and

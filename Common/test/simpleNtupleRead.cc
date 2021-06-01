@@ -11,19 +11,17 @@
 
 using namespace std;
 
-// This class do some assembling of parts from other classes;
+// This class do some assembling of parts from other classes.
 // Usually histograms can be declared and created directly in this class,
 // as well as doing the analysis; here these operations are encapsulated
 // in a different class (SimpleAnalyze) to allow its reusage in different
-// Histograms declaration and creation, as well as data analysis, are
-// encapsulated in another class ("SimpleAnalyze") to allow reusage
-// in other contexts, normally that code could stay inside this class.
-class SimpleLegacyReader: public SimpleNtuple,  // ntuple definition,
+// contexts, i.e. the example that does not use NtuTool (simpleLegacyRead.cc).
+class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
                           public SimpleAnalyze, // analyze data and fill histos
                           public TreeReader {   // create branches and
                                                 //   read ntuple from file
  public:
-  SimpleLegacyReader() {
+  SimpleNtupleReader() {
     // Here an integer cut is set ("nCut" is declared at the bottom of the
     // definition of this class) as an "user parameter", so that it can
     // be changed at run time giving a new value in the command line, e.g.:
@@ -146,7 +144,7 @@ class SimpleLegacyReader: public SimpleNtuple,  // ntuple definition,
 // It's essential to instantiate a global "SimpleLegacyReader" object,
 // so that it's created before the execution starts; it's then retrieved
 // and used inside the library according to the needs.
-static SimpleLegacyReader reader;
+static SimpleNtupleReader reader;
 
 int main( int argc, char* argv[] ) {
 
