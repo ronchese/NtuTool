@@ -1,3 +1,4 @@
+#include "NtuTool/Common/test/LegacyTree.h"
 #include "NtuTool/Common/test/SimpleAnalyze.h"
 
 #include "TFile.h"
@@ -8,27 +9,14 @@
 
 using namespace std;
 
-// This class is just to have direct access to data structure members
-class SimpleLegacyReader: public SimpleAnalyze {
+// This class do some assembling of parts from other classes.
+// Usually histograms can be declared and created directly in this class,
+// as well as doing the analysis; here these operations are encapsulated
+// in a different class (SimpleAnalyze) to allow its reusage in different
+// contexts, i.e. the example that does uses NtuTool (simpleNtupleRead.cc).
+class SimpleLegacyReader: public LegacyTree,
+                          public SimpleAnalyze {
  public:
-  // Data link to ntuple branches
-  void setBranches( TTree* tree ) {
-    // define branches
-    tree->SetBranchAddress( "iRun", &i_run, &b_i_run );
-    tree->SetBranchAddress( "iEvt", &i_evt, &b_i_evt );
-    tree->SetBranchAddress( "nArr", &n_arr, &b_n_arr );
-    tree->SetBranchAddress( "iArr",  i_arr, &b_i_arr );
-    // "i_vec" is a std::vector, not a pointer, and a pointer to pointer
-    // is needed: a pointer is then declared and the pointer to it is taken.
-    // A static pointer is used to keep it in memory after this function
-    // is done.
-    static std::vector<int>* i_vpt = &i_vec;
-    tree->SetBranchAddress( "iVec", &i_vpt, &b_i_vec );
-    tree->SetBranchAddress( "fVpt", &f_vpt, &b_f_vpt );
-//    n_arr = n_max; // array length set at maximum to reset all elements
-//                   // at zero at the first call to "setAndFill(...)"
-    return;
-  }
   // Histograms creation
   void book() {
     TObject* dum = nullptr; // dummy pointer to fake an "autoSavedObject"
@@ -36,6 +24,8 @@ class SimpleLegacyReader: public SimpleAnalyze {
   }
   // Data analysis
   void analyze( TTree* tree, int i ) {
+    resetNtupleContent();   // reset ntuple content, not strictly necessary
+                            //                   (in LegacyTree   )
     tree->GetEntry( i );    // get an entry from ntuple file
     fillHisto();            // analyze data and
                             // fill histograms   (in SimpleAnalyze)
@@ -74,7 +64,7 @@ int main() {
 
   // create branches
   cout << "create branches" << endl;
-  reader.setBranches( tree );
+  reader.setBranchesRead( tree );
 
   // create histograms
   reader.book();

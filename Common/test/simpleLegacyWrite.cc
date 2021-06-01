@@ -1,3 +1,4 @@
+#include "NtuTool/Common/test/LegacyTree.h"
 #include "NtuTool/Common/test/SimpleFill.h"
 
 #include "TFile.h"
@@ -7,32 +8,16 @@
 
 using namespace std;
 
-// This class is just to have direct access to data structure members
-class SimpleLegacyWriter: public SimpleFill {
+// This class do some assembling of parts from other classes.
+// Usually values can be assigned to ntuple data directly in this class;
+// here these operations are encapsulated in a different class (SimpleFill)
+// to allow its reusage in different contexts, i.e. the example that uses
+// NtuTool (simpleNtupleWrite.cc).
+class SimpleLegacyWriter: public LegacyTree,
+                          public SimpleFill {
  public:
-  void setBranches( TTree* tree ) {
-    // define branches
-    b_i_run = tree->Branch( "iRun", &i_run,       "iRun/i" ); // a number
-    b_i_evt = tree->Branch( "iEvt", &i_evt,       "iEvt/i" ); // a number
-    b_n_arr = tree->Branch( "nArr", &n_arr,       "nArr/i" ); // an array
-    b_i_arr = tree->Branch( "iArr",  i_arr, "iArr[nArr]/I" ); // with its size
-    b_i_vec = tree->Branch( "iVec", &i_vec, 1000, 99 ); // a vector (in stack)
-                                  // i_vec is a std::vector  :
-                                  // address by pointer
-    b_f_vpt = tree->Branch( "fVpt", &f_vpt, 1000, 99 ); // a vector (in heap)
-                                  // f_vpt is a std::vector* :
-                                  // address by pointer to pointer
-    n_arr = n_max; // array length set at maximum to reset all elements
-                   // at zero at the first call to "setAndFill(...)"
-    return;
-  }
   void setAndFill( int n, TTree* tree ) {
-    // reset ntuple content
-    int* iptr = i_arr + n_arr;
-    while ( iptr-- > i_arr ) *iptr = 0;
-    n_arr = 0;
-    i_vec.clear();
-    f_vpt->clear();
+    resetNtupleContent();      // reset ntuple content  (in LegacyTree )
     // set variables
     setData( ( n / 1000 ) + 1, // assign values to data (in SimpleFill )
              ( n % 1000 ) + 1 );
@@ -58,7 +43,7 @@ int main() {
 
   // create branches
   cout << "create branches" << endl;
-  writer.setBranches( tree );
+  writer.setBranchesWrite( tree );
 
   // event loop
   cout << "event loop" << endl;
