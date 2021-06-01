@@ -3,8 +3,8 @@
 
 #include "NtuTool/Common/test/SimpleData.h"
 #include <iostream>
-// Class to fill a simple data structure with random numbers
 
+// Class to fill a simple data structure with random numbers
 class SimpleFill: public virtual SimpleData {
 
  public:
