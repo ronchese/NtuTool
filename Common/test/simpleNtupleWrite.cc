@@ -9,10 +9,13 @@
 
 using namespace std;
 
+// This example code actually uses NtuTool functionalities:
+// see "simpleLegacyWrite.cc" for a comparison.
+
 // This class is just to assemble parts from other classes.
 // Usually values can be assigned to ntuple data directly in this class;
-// here these operations are encapsulated in a different class (SimpleFill)
-// to allow its reusage in different contexts, i.e. the example that does not
+// here these operations are encapsulated in another class (SimpleFill)
+// to allow its reusage in a different context, i.e. the example that does not
 // use NtuTool (simpleLegacyWrite.cc).
 // The important point here is inheriting from both "SimpleNtuple", with the
 // ntuple definition from the user, and "TreeWriter", from the library taking

@@ -9,11 +9,15 @@
 
 using namespace std;
 
+// This example code does NOT use NtuTool functionalities, it's just a 
+// reference to show how code handling ntuples changes using NtuTool:
+// see "simpleNtupleRead.cc" for a comparison.
+
 // This class do some assembling of parts from other classes.
 // Usually histograms can be declared and created directly in this class,
 // as well as doing the analysis; here these operations are encapsulated
-// in a different class (SimpleAnalyze) to allow its reusage in different
-// contexts, i.e. the example that does uses NtuTool (simpleNtupleRead.cc).
+// in another class (SimpleAnalyze) to allow its reusage in a different
+// context, i.e. the example that uses NtuTool (simpleNtupleRead.cc).
 class SimpleLegacyReader: public LegacyTree,
                           public SimpleAnalyze {
  public:

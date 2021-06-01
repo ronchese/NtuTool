@@ -11,11 +11,14 @@
 
 using namespace std;
 
+// This example code actually uses NtuTool functionalities:
+// see "simpleLegacyRead.cc" for a comparison.
+
 // This class do some assembling of parts from other classes.
 // Usually histograms can be declared and created directly in this class,
 // as well as doing the analysis; here these operations are encapsulated
-// in a different class (SimpleAnalyze) to allow its reusage in different
-// contexts, i.e. the example that does not use NtuTool (simpleLegacyRead.cc).
+// in another class (SimpleAnalyze) to allow its reusage in a different
+// context, i.e. the example that does not use NtuTool (simpleLegacyRead.cc).
 // The important point here is inheriting from both "SimpleNtuple", with the
 // ntuple definition from the user, and "TreeReader", from the library taking
 // care of the actual calls to "TTree::SetBranchAddress".

@@ -6,7 +6,7 @@
 
 #include <vector>
 
-// Class to fill a simple data structure with random numbers
+// Class to analyze a simple data structure with random numbers
 
 class SimpleAnalyze: public virtual SimpleData {
 

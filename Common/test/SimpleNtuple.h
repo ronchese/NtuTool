@@ -5,9 +5,16 @@
 #include "NtuTool/Common/interface/TreeWrapper.h"
 #include <iostream>
 
-// The class with the tree definition must inherit from "TreeWrapper".
-// Data are encapsulated in another class ("SimpleData") to allow 
-// reusage in other contexts, normally data could stay inside this class.
+// This example code actually uses NtuTool functionalities:
+// see "LegacyTree.h" for a comparison.
+
+// The class with the tree definition must inherit from "TreeWrapper", doing
+// that it's possible define the ntuple structure just once (see "setup()"
+// function) and 
+// Data are encapsulated in another class ("SimpleData") to allow reusage
+// in a different context, i.e. in examples using NtuTool (LegacyTree.h),
+// normally data could stay inside this class.
+
 class SimpleNtuple: public virtual SimpleData,
                     public virtual TreeWrapper {
 
@@ -21,11 +28,12 @@ class SimpleNtuple: public virtual SimpleData,
   void setup() {
     // "treeName" must be assigned the name chosen by the user for the tree,
     // specifying the full path:
-    // the TTree object and all the subfolders are created by the tool
+    // the TTree object and all the subfolders are created by the tool,
 //    treeName = "ntuFolder/simpleNtuple";
     treeName = "simpleNtuple";
     // Associate variables to branches, the same calls can be used 
-    // when writing and reading ntuples
+    // when writing and reading ntuples in place of different calls 
+    // to "Branch" (when writing) or "SetBranchAddress" (when reading).
     setBranch( "iRun", &i_run, "iRun/i"      , &b_i_run ); // a number
     setBranch( "iEvt", &i_evt, "iEvt/i"      , &b_i_evt ); // a number
     setBranch( "nArr", &n_arr, "nArr/i"      , &b_n_arr ); // an array

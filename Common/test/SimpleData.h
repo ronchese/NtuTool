@@ -25,8 +25,8 @@ class SimpleData {
 
   // Data declarations
 
-  unsigned int i_run;                 // a number
-  unsigned int i_evt;                 // a number
+  unsigned int i_run;        // a number
+  unsigned int i_evt;        // a number
 
   unsigned int  n_max;
   unsigned int  n_arr;

@@ -5,6 +5,7 @@
 #include <iostream>
 
 // Class to fill a simple data structure with random numbers
+
 class SimpleFill: public virtual SimpleData {
 
  public:

@@ -8,11 +8,18 @@
 
 using namespace std;
 
+// This example code does NOT use NtuTool functionalities, it's just a 
+// reference to show how code handling ntuples changes using NtuTool:
+// see "simpleNtupleWrite.cc" for a comparison.
+
 // This class do some assembling of parts from other classes.
 // Usually values can be assigned to ntuple data directly in this class;
-// here these operations are encapsulated in a different class (SimpleFill)
-// to allow its reusage in different contexts, i.e. the example that uses
+// here these operations are encapsulated in another class (SimpleFill)
+// to allow its reusage in a different context, i.e. the example that uses
 // NtuTool (simpleNtupleWrite.cc).
+// That, as well as the encapsulation of branch creation in another class
+// (LegacyTree) allows also the reusage in contexts where the ntuple is
+// accessed by other programs.
 class SimpleLegacyWriter: public LegacyTree,
                           public SimpleFill {
  public:

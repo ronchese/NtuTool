@@ -6,6 +6,10 @@
 
 #include "NtuTool/Common/test/SimpleData.h"
 
+// This example code does NOT use NtuTool functionalities, it's just a 
+// reference to show how code handling ntuples changes using NtuTool:
+// see "SimpleNtuple.h" for a comparison.
+
 // This class encapsulate the calls to "Branch" (when writing ntuples)
 // and SetBranchAddress (when reading ntuples).
 // This is done to allow reusage in different contexts, i.e. in the
@@ -18,6 +22,10 @@
 // A function is also included to reset the ntuple content; that operation
 // can be done automatically when using the NtuTool classes
 // (see "SimpleNtuple" class).
+// Data are encapsulated in another class ("SimpleData") to allow reusage
+// in a different context too, i.e. in examples using NtuTool (SimpleNtuple.h),
+// normally data could stay inside this class.
+
 class LegacyTree: public virtual SimpleData {
 
  public:
