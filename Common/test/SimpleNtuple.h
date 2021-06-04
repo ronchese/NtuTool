@@ -10,7 +10,7 @@
 
 // The class with the tree definition must inherit from "TreeWrapper", doing
 // that it's possible define the ntuple structure just once (see "setup()"
-// function) and 
+// function) and use that both when writing the ntuple and/or analyzing it.
 // Data are encapsulated in another class ("SimpleData") to allow reusage
 // in a different context, i.e. in examples using NtuTool (LegacyTree.h),
 // normally data could stay inside this class.
