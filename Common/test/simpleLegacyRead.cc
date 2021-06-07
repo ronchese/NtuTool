@@ -20,12 +20,15 @@ using namespace std;
 // context, i.e. the example that uses NtuTool (simpleNtupleRead.cc).
 class SimpleLegacyReader: public LegacyTree,
                           public SimpleAnalyze {
+
  public:
+
   // Histograms creation
   void book() {
     TObject* dum = nullptr; // dummy pointer to fake an "autoSavedObject"
     createHisto( dum );     // create histograms (in SimpleAnalyze)
   }
+
   // Data analysis
   void analyze( TTree* tree, int i ) {
     resetNtupleContent();   // reset ntuple content, not strictly necessary
@@ -35,6 +38,7 @@ class SimpleLegacyReader: public LegacyTree,
                             // fill histograms   (in SimpleAnalyze)
     return;
   }
+
   // Histogram saving
   void save( const std::string& name ) {
     // open output ROOT file
@@ -50,6 +54,7 @@ class SimpleLegacyReader: public LegacyTree,
     delete hist;
     return;
   }
+
 };
 
 int main() {

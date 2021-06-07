@@ -22,7 +22,9 @@ using namespace std;
 // accessed by other programs.
 class SimpleLegacyWriter: public LegacyTree,
                           public SimpleFill {
+
  public:
+
   void setAndFill( int n, TTree* tree ) {
     resetNtupleContent();      // reset ntuple content  (in LegacyTree )
     // set variables
@@ -32,6 +34,7 @@ class SimpleLegacyWriter: public LegacyTree,
     tree->Fill();
     return;
   }
+
 };
 
 int main() {

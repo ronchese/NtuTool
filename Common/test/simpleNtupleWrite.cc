@@ -24,7 +24,9 @@ class SimpleNtupleWriter: public SimpleNtuple, // ntuple definition,
                           public SimpleFill,   // assign values to data,
                           public TreeWriter {  // create branches and
                                                //   write ntuple to file
+
  public:
+
   void setBranches( TFile* file ) {
     // Branches are created using the calls in the function "setup()"
     // and "initWrite()", in place of calling specific Branch
@@ -33,12 +35,14 @@ class SimpleNtupleWriter: public SimpleNtuple, // ntuple definition,
     initWrite( file );         // create tree branches    (in TreeWriter  )
     return;
   }
+
   void setAndFill( int n ) {
     reset();                   // reset ntuple content    (in SimpleNtuple)
     setData( ( n / 1000 ) + 1, // assign values to data   (in SimpleFill  )
              ( n % 1000 ) + 1 );
     fill();                    // write ntuple to file    (in TreeWriter  )
   }
+
 };
 
 int main() {

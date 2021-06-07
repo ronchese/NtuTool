@@ -26,7 +26,9 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
                           public SimpleAnalyze, // analyze data and fill histos
                           public TreeReader {   // create branches and
                                                 //   read ntuple from file
+
  public:
+
   SimpleNtupleReader() {
     // Here an integer cut is set ("nCut" is declared at the bottom of the
     // definition of this class) as an "user parameter", so that it can
@@ -45,6 +47,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
 //                                   // setUserParameter( "nCut", nCut = 6 );
 //                                   // (the value can be itself an expression)
   }
+
   // Operations to be done at the execution begin
   void beginJob() override {   // virtual function defined in TreeWrapper
     setup();                   // define ntuple structure (in SimpleNtuple)
@@ -66,6 +69,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
 //                                   // getUserParameter( "nCut", nCut );
     return;
   }
+
   // Histograms creation
   void book() override {       // virtual function defined in TreeWrapper
     createHisto( autoSavedObject ); // forward the call to class "SimpleAnalyze"
@@ -74,7 +78,8 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
                                // file                    (in TreeWrapper )
     return;
   }
-//  optional preliminary processing
+
+  //  Optional preliminary processing
 //  bool getEntry( int ientry ) override {
                                // virtual function defined in TreeWrapper:
                                // some preliminary processing can be done here,
@@ -87,6 +92,8 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
 //    currentTree()->GetEntry( ientry ); // otherwise read the full data
 //    return true;                       // and go on with the analysis
 //  }
+
+  // Data analysis
   bool analyze( int entry, int event_file, int event_tot ) override {
                                // virtual function defined in TreeWrapper
     // Data are automatically reset and read from ntuple file for each
@@ -102,6 +109,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
                  // it can be used in other libraries implementing additional
                  // functionalities.
   }
+
   // Operations to be done at the execution end
   void endJob() override {       // virtual function defined in TreeWrapper
     // Any other operation to be done at the execution end can be put
@@ -113,6 +121,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
     // operation to do when starting the analysis of a new ntuple file.
     return;
   }
+
   // Optional function to draw some plots at the execution end: see the
   // INSTRUCTIONS file for details about running options.
   // This function is executed before saving histograms, so any operation 
@@ -131,6 +140,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
     c->cd( 4 ); hContF->Draw();
     c->Print( "c.pdf" );
   }
+
   // A function "save()" can be declared, but if relevant histograms are 
   // marked with "autoSavedObjects" (see the "book()" function) it can be 
   // left not declared and not implemented.
@@ -145,7 +155,11 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
 //    hContF->Write();
 //    return;
 //  }
+
+  // Parameters used in the (pre)selection and analysis
+  // See (set/get)UserParameter above for additional informations
   int nCut;
+
 };
 
 // It's essential to instantiate a global "SimpleNtupleReader" object,
