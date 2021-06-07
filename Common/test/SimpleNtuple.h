@@ -3,7 +3,6 @@
 
 #include "NtuTool/Common/test/SimpleData.h"
 #include "NtuTool/Common/interface/TreeWrapper.h"
-#include <iostream>
 
 // This example code actually uses NtuTool functionalities:
 // see "LegacyTree.h" for a comparison.
@@ -25,12 +24,16 @@ class SimpleNtuple: public virtual SimpleData,
   ~SimpleNtuple() override {
   }
 
-  void setup() {
-    // "treeName" must be assigned the name chosen by the user for the tree,
-    // specifying the full path:
-    // the TTree object and all the subfolders are created by the tool,
-//    treeName = "ntuFolder/simpleNtuple";
-    treeName = "simpleNtuple";
+  void setup( bool setName = true ) {
+    if ( setName ) {
+      // "treeName" must be assigned the name chosen by the user for the tree,
+      // specifying the full path: the TTree object and all the subfolders
+      // are created automatically.
+      // The bool flag is used for contexts where the tree name is fixed
+      // and cannot be modified by the user.
+//      treeName = "ntuFolder/simpleNtuple";
+      treeName = "simpleNtuple";
+    }
     // Associate variables to branches, the same calls can be used 
     // when writing and reading ntuples in place of different calls 
     // to "Branch" (when writing) or "SetBranchAddress" (when reading).
