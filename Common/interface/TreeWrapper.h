@@ -15,6 +15,10 @@ class TObject;
 class TDirectory;
 class TList;
 
+#define SET_USER_PARAMETER(NAME) setUserParameter(#NAME,NAME);
+#define GET_USER_PARAMETER(NAME) getUserParameter(#NAME,NAME);
+#define ASS_USER_PARAMETER(NAME,VALUE) setUserParameter(#NAME,NAME=VALUE);
+
 class TreeWrapper: public BranchInterface {
 
  public:
