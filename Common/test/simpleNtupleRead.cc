@@ -81,9 +81,9 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
                                // e.g. read just some branch and choose if
                                // this entry is to be kept or skipped without 
                                // spending the time to read the whole data
-                               // structure. If the functin
+                               // structure
 //    b_n_arr->GetEntry( ientry );       // read only n_arr from file
-//    if ( n_arr < nCut ) return false;  // if less than 6 skip this entry
+//    if ( n_arr < nCut ) return false;  // if less than a cut skip this entry
 //    currentTree()->GetEntry( ientry ); // otherwise read the full data
 //    return true;                       // and go on with the analysis
 //  }
@@ -148,7 +148,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
   int nCut;
 };
 
-// It's essential to instantiate a global "SimpleLegacyReader" object,
+// It's essential to instantiate a global "SimpleNtupleReader" object,
 // so that it's created before the execution starts; it's then retrieved
 // and used inside the library according to the needs.
 static SimpleNtupleReader reader;
