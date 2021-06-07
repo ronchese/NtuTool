@@ -1,11 +1,11 @@
-#include "FWCore/Framework/interface/EDFilter.h"
 #include "NtuTool/EDM/interface/EDMTreeWriter.h"
+#include "NtuTool/EDM/interface/EDFilterWrapper.h"
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 
-class EDMNtupleFilter: public edm::EDFilter {
+class EDMNtupleFilter: public EDFilterWrapper {
 
  public:
 
