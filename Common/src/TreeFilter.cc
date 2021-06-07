@@ -97,34 +97,19 @@ void TreeFilter::initWSkim( TFile* file ) {
   branch_iterator iend = treeEnd();
   while ( iter != iend ) {
     branch_desc* bDesc = *iter++;
-//    const std::string& bName = bDesc->branchName;
-//    std::map<std::string,bool>::const_iterator iter =
-//                                skimMap.find( bDesc->branchName );
-//    if ( ( iter != skimMap.end ) && ( iter->second ) ) continue;
     if ( skimDrop.find( *bDesc->branchName ) != skimDrop.end() ) continue;
     DataHandler* handler = fhManager->setHandler( bDesc );
-//    bDesc->dataHandler = handler;
-//    TBranch* b = nullptr;
     void** dataPtr = nullptr;
     if ( bDesc->splitLevel < 0 ) handler->setAuxPtr( bDesc->dataPtr,
                                                      fhManager );
     if ( bDesc->ppRef ) dataPtr = pPtr( bDesc->dataPtr );
     else                dataPtr =      &bDesc->dataPtr;
-//    if ( bDesc->ppRef ) dataPtr =  static_cast<void**>( bDesc->dataPtr );
-//    else                dataPtr = &bDesc->dataPtr;
     if ( bDesc->splitLevel < 0 )
          filterTree->Branch( bDesc->branchName->c_str(),
                              bDesc->dataPtr,
                              bDesc->branchData->c_str() );
     else handler->branch( filterTree, bDesc->branchName, dataPtr,
                                       bDesc->bufferSize, bDesc->splitLevel );
-//      if ( bDesc->splitLevel < 0 )
-//           b = currentTree->Branch( bDesc->branchName->c_str(),
-//                                    bDesc->dataPtr,
-//                                    bDesc->branchData->c_str() );
-//      else b = handler->branch( currentTree, bDesc->branchName, dataPtr,
-//                                bDesc->bufferSize, bDesc->splitLevel );
-//      if ( bDesc->branchPtr != nullptr ) *bDesc->branchPtr = b;
   }
 
   return;

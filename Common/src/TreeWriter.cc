@@ -51,7 +51,8 @@ void TreeWriter::initWrite( TFile* file ) {
                                                      handlerManager );
     if ( bDesc->ppRef ) dataPtr =  pPtr( bDesc->dataPtr );
     else                dataPtr = &bDesc->dataPtr;
-    if ( file != nullptr ) {
+    if ( file == nullptr ) continue;
+//    if ( file != nullptr ) {
       if ( bDesc->splitLevel < 0 ) {
         if ( bDesc->bufferSize < 0 )
            b = currentTree()->Branch( bDesc->branchName->c_str(),
@@ -66,7 +67,7 @@ void TreeWriter::initWrite( TFile* file ) {
       else b = handler->branch( currentTree(), bDesc->branchName, dataPtr,
                                 bDesc->bufferSize, bDesc->splitLevel );
       if ( bDesc->branchPtr != nullptr ) *bDesc->branchPtr = b;
-    }
+//    }
   }
 
   return;

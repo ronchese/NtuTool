@@ -91,11 +91,6 @@ void TreeReader::initRead( TTree* tree ) {
                                                      handlerManager );
     currentTree()->SetBranchAddress( bDesc->branchName->c_str(), dataPtr,
                                      bDesc->branchPtr );
-    std::cout << "TreeReader::initRead "
-              << bDesc->branchName->c_str() << ' '
-              << dataPtr << ' '
-              << bDesc->branchPtr << ' '
-              << *bDesc->branchPtr << std::endl;
   }
 
   fillBranchMap();

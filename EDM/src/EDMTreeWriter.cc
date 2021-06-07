@@ -6,8 +6,6 @@
 #include "NtuTool/Common/interface/DataHandlerManager.h"
 #include "NtuTool/Common/interface/DataHandler.h"
 
-#include <string>
-
 
 bool EDMTreeWriter::select = true;
 

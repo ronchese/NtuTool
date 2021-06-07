@@ -2,7 +2,6 @@
 #define SimpleFill_H
 
 #include "NtuTool/Common/test/SimpleData.h"
-#include <iostream>
 
 // Class to fill a simple data structure with random numbers
 
