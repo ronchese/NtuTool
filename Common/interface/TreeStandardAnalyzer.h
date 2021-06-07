@@ -48,15 +48,15 @@ class TreeStandardAnalyzer {
   /// run the application
   virtual int run( int argc, char* argv[] );
 
-  /// loop over files
-  virtual int loop( TreeReader* tr, std::ifstream& treeListFile,
-                    int evtmax, int evskip, int accmax, bool anaexe = true );
-
  protected:
 
   /** Constructor
    */
   TreeStandardAnalyzer();
+
+  /// loop over files
+  virtual int loop( TreeReader* tr, std::ifstream& treeListFile,
+                    int evtmax, int evskip, int accmax, bool anaexe = true );
 
  private:
 
