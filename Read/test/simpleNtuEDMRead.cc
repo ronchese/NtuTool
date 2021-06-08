@@ -5,7 +5,6 @@
 
 #include "TFile.h"
 #include "TTree.h"
-#include "TCanvas.h"
 
 #include <iostream>
 
