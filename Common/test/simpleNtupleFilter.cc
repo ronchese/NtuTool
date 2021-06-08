@@ -24,7 +24,7 @@ using namespace std;
 // care of the actual calls to "TTree::SetBranchAddress".
 class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
                           public SimpleAnalyze, // analyze data and fill histos
-                          public TreeFilter   , // create a skim ntuple
+                          public TreeFilter,    // create a skim ntuple
                           public TreeReader {   // create branches and
                                                 //   read ntuple from file
 
