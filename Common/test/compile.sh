@@ -10,14 +10,14 @@ echo "NTU_TOOL_DIR undefined: source ..../NtuTool/uty/envset.[sh|csh]"
 exit
 fi
 
-rm -f simpleLegacyWrite
+rm -f ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite
 c++ -Wall `root-config --cflags`                     \
     -I ${NTU_TOOL_DIR}/include                       \
     -o ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite \
     ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite.cc \
     `root-config --libs`
 
-rm -f simpleNtupleWrite
+rm -f ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite
 c++ -Wall `root-config --cflags`                     \
     -I ${NTU_TOOL_DIR}/include                       \
     -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite \
@@ -25,14 +25,14 @@ c++ -Wall `root-config --cflags`                     \
     -L${NTU_TOOL_DIR}/lib -lNtupleTool               \
     `root-config --libs`
 
-rm -f simpleLegacyRead
+rm -f ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead
 c++ -Wall `root-config --cflags`                    \
     -I ${NTU_TOOL_DIR}/include                      \
     -o ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead \
     ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead.cc \
     `root-config --libs`
 
-rm -f simpleNtupleRead
+rm -f ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead
 c++ -Wall `root-config --cflags`                    \
     -I ${NTU_TOOL_DIR}/include                      \
     -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead \
@@ -40,7 +40,7 @@ c++ -Wall `root-config --cflags`                    \
     -L${NTU_TOOL_DIR}/lib -lNtupleTool              \
     `root-config --libs` -lGpad
 
-rm -f simpleNtupleFilter
+rm -f ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter
 c++ -Wall `root-config --cflags`                      \
     -I ${NTU_TOOL_DIR}/include                        \
     -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter \
