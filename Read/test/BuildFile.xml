@@ -1,0 +1,6 @@
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/Read"/>
+<use   name="root"/>
+<bin   file="simpleNtuEDMRead.cc"  name="simpleNtuEDMRead">
+  <lib   name="Gpad"/>
+</bin>
