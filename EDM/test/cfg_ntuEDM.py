@@ -10,6 +10,7 @@ process.source = cms.Source("EmptySource",
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 
 process.simpleNtuEDMModule = cms.EDProducer( 'SimpleNtuEDMModule',
+### cut used in the event selection
     nCut = cms.uint32( 6 )
 )
 

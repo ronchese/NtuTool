@@ -37,9 +37,11 @@ class SimpleLegacyModule: public EDAnalyzerWrapper,
  public:
 
   explicit SimpleLegacyModule( const edm::ParameterSet& ps ) {
+    nCut = ps.getParameter<unsigned int>( "nCut" );
     name = ps.getUntrackedParameter<string>( "fileName" );
     mode = ps.getUntrackedParameter<string>( "fileMode" );
   }
+
   ~SimpleLegacyModule() override {
   }
 
@@ -62,7 +64,7 @@ class SimpleLegacyModule: public EDAnalyzerWrapper,
     edm::EventID id = ev.id();
     setData( id.run(), id.event() );
     // actually fill the tree
-    tree->Fill();
+    if ( n_arr > nCut ) tree->Fill();
     return;
   }
 
@@ -73,6 +75,10 @@ class SimpleLegacyModule: public EDAnalyzerWrapper,
 
  private:
 
+  // parameters used in event selection
+  unsigned int nCut;
+
+  // output ROOT file informations
   string name; // ROOT file name
   string mode; // ROOT file open mode ( "NEW", "CREATE", "RECREATE", "READ" )
   TFile* file; // ROOT file pointer
