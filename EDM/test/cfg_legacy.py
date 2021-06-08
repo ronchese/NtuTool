@@ -22,6 +22,9 @@ process.simpleLegacyModule = cms.EDAnalyzer( 'SimpleLegacyModule',
    ,
 ### if the ROOT file is opened via TFileService then "fileMode" is neglected
     fileMode = cms.untracked.string('RECREATE')
+   ,
+### cut used in the event selection
+    nCut = cms.uint32( 6 )
 )
 
 
