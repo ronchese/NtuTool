@@ -35,8 +35,7 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
   // Any difference is well marked to be easily spotted.
 
   SimpleNtupleFilter() {
-    setUserParameter<int>( "nCut", 6 );
-    setUserParameter<int>( "sumCut", 18 );
+    setUserParameter<int>( "iCut", 18 );
     // === SPECIFIC INSTRUCTIONS ===
     // additional info to set default name and mode for skimmed ntuple,
     // can be overridden at runtime in the command line
@@ -47,8 +46,7 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
   // Operations to be done at the execution begin
   void beginJob() override {
     setup();
-    nCut = getUserParameter<int>( "nCut" );
-    sumCut = getUserParameter<int>( "sumCut" );
+    iCut = getUserParameter<int>( "iCut" );
     // === SPECIFIC INSTRUCTIONS ===
     // open file for skimmed ntuple
     TDirectory* currentDir = gDirectory;
@@ -79,11 +77,10 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
     fillHisto();
     // === SPECIFIC INSTRUCTIONS ===
     // skim events
-    int i = n_arr;
-    bool select;
-    while ( i-- ) if ( i_arr[i] > sumCut ) select = true;
+    bool select = vCut( iCut ); // select events with at least one element
+                                // in "i_arr" larger than "iCut"
     if ( select ) fillSkim();
-    return true;
+    return select;
   }
 
   // Operations to be done at the execution end
@@ -100,8 +97,7 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
 
   // Parameters used in the (pre)selection and analysis
   // See (set/get)UserParameter above for additional informations.
-  int nCut;
-  int sumCut;
+  int iCut;
 
   // === SPECIFIC INSTRUCTIONS ===
   // ROOT file for skimmed ntuple

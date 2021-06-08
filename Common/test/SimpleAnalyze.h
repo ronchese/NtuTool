@@ -14,6 +14,7 @@ class SimpleAnalyze: public virtual SimpleData {
 
   SimpleAnalyze() {
   }
+
   ~SimpleAnalyze() override {
   }
 
@@ -36,6 +37,14 @@ class SimpleAnalyze: public virtual SimpleData {
     hContF = new TH1F( "ContF", "ContF", 100, -20.0, 30.0 );
     return;
   }
+
+  bool vCut( int cut ) {
+    // look for at least one element in "i_arr" larger than "cut"
+    int i = n_arr;
+    while ( i-- ) if ( i_arr[i] > cut ) return true;
+    return false;
+  }
+
   void fillHisto() {
     hCount->Fill( n_arr );
     const auto& f_vec = *f_vpt;

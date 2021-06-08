@@ -34,9 +34,10 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
     // definition of this class) as an "user parameter", so that it can
     // be changed at run time giving a new value in the command line, e.g.:
     // ..../simpleNtupleRead .... -v nCut 7
-    // and then retrieved (see the "beginJob" function)
-    setUserParameter<int>( "nCut", 6 );
-    // The value type (int in this case) is specified when the value is
+    // and then retrieved (see the "beginJob" function),
+    // with no need to recompile
+    setUserParameter<unsigned int>( "nCut", 6 );
+    // The value type (unsigned int in this case) is specified when the value is
     // given as a constant, to avoid misinterpretations; the value is
     // anyway stored with its representation as a string.
     // Two macros can be used when the parameter name is the same as
@@ -58,7 +59,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
     // as overriding a virtual function defined in TreeWrapper, for any
     // operation to do when starting the analysis of a new ntuple file.
     // Here the value of the parameter "nCut" is retrieved; 
-    nCut = getUserParameter<int>( "nCut" );
+    nCut = getUserParameter<unsigned int>( "nCut" );
     // The value type (int in this case) is specified because values are stored
     // as strings, and they've to be interpreted correctly.
     // Alternatively the target value can be passed as a parameter:
@@ -158,7 +159,7 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
 
   // Parameters used in the (pre)selection and analysis
   // See (set/get)UserParameter above for additional informations
-  int nCut;
+  unsigned int nCut;
 
 };
 

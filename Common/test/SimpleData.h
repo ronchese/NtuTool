@@ -28,8 +28,8 @@ class SimpleData {
   unsigned int i_run;        // a number
   unsigned int i_evt;        // a number
 
-  unsigned int  n_max;
-  unsigned int  n_arr;
+  unsigned int n_max;
+  unsigned int n_arr;
   int* i_arr;                // an array with "n_arr" (up to "n_max") elements
 
   std::vector<int>    i_vec; // a vector (in the stack)
