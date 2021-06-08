@@ -18,6 +18,7 @@ c++ -Wall `root-config --cflags`       \
     -I ${NTU_TOOL_DIR}/include         \
     -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
     ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
+    -L${NTU_TOOL_DIR}/lib -lNtupleTool \
     `root-config --libs`
 
 export EXAMPLE_NAME=simpleNtupleWrite
@@ -26,6 +27,7 @@ c++ -Wall `root-config --cflags`       \
     -I ${NTU_TOOL_DIR}/include         \
     -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
     ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
+    -L${NTU_TOOL_DIR}/lib -lNtupleTool \
     `root-config --libs`
 
 export EXAMPLE_NAME=simpleLegacyRead
@@ -34,6 +36,7 @@ c++ -Wall `root-config --cflags`       \
     -I ${NTU_TOOL_DIR}/include         \
     -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
     ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
+    -L${NTU_TOOL_DIR}/lib -lNtupleTool \
     `root-config --libs`
 
 export EXAMPLE_NAME=simpleNtupleRead
@@ -42,6 +45,7 @@ c++ -Wall `root-config --cflags`       \
     -I ${NTU_TOOL_DIR}/include         \
     -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
     ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
+    -L${NTU_TOOL_DIR}/lib -lNtupleTool \
     `root-config --libs` -lGpad
 
 export EXAMPLE_NAME=simpleNtupleFilter
@@ -50,5 +54,6 @@ c++ -Wall `root-config --cflags`       \
     -I ${NTU_TOOL_DIR}/include         \
     -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
     ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
+    -L${NTU_TOOL_DIR}/lib -lNtupleTool \
     `root-config --libs`
 
