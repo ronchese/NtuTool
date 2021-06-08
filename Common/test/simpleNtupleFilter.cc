@@ -37,7 +37,7 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
   SimpleNtupleFilter() {
     setUserParameter<int>( "nCut", 6 );
     setUserParameter<int>( "sumCut", 18 );
-    // *** SPECIFIC INSTRUCTIONS ***
+    // === SPECIFIC INSTRUCTIONS ===
     // additional info to set default name and mode for skimmed ntuple,
     // can be overridden at runtime in the command line
     setUserParameter( "filterName", "simple_filter.root" );
@@ -49,14 +49,17 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
     setup();
     nCut = getUserParameter<int>( "nCut" );
     sumCut = getUserParameter<int>( "sumCut" );
-    // *** SPECIFIC INSTRUCTIONS *** open file for skimmed ntuple
+    // === SPECIFIC INSTRUCTIONS ===
+    // open file for skimmed ntuple
     TDirectory* currentDir = gDirectory;
     filterFile = new TFile( getUserParameter( "filterName" ).c_str(),
                             getUserParameter( "filterMode" ).c_str() );
-    // *** SPECIFIC INSTRUCTIONS *** setup skimmed ntuple dropping a branch
+    // === SPECIFIC INSTRUCTIONS ===
+    // setup skimmed ntuple dropping a branch
     dropBranch( "fVpt" );
     initWSkim( filterFile );
-    // *** SPECIFIC INSTRUCTIONS *** restore ROOT environment
+    // === SPECIFIC INSTRUCTIONS ===
+    // restore ROOT environment
     currentDir->cd();
     return;
   }
@@ -74,7 +77,8 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
   // Data analysis
   bool analyze( int entry, int event_file, int event_tot ) override {
     fillHisto();
-    // *** SPECIFIC INSTRUCTIONS *** skim events
+    // === SPECIFIC INSTRUCTIONS ===
+    // skim events
     int i = n_arr;
     bool select;
     while ( i-- ) if ( i_arr[i] > sumCut ) select = true;
@@ -84,7 +88,8 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
 
   // Operations to be done at the execution end
   void endJob() override {
-    // *** SPECIFIC INSTRUCTIONS *** close skim ntuple and file
+    // === SPECIFIC INSTRUCTIONS ===
+    // close skim ntuple and file
     closeSkim();
     return;
   }
@@ -98,7 +103,8 @@ class SimpleNtupleFilter: public SimpleNtuple,  // ntuple definition,
   int nCut;
   int sumCut;
 
-  // *** SPECIFIC INSTRUCTIONS *** ROOT file for skimmed ntuple
+  // === SPECIFIC INSTRUCTIONS ===
+  // ROOT file for skimmed ntuple
   TFile* filterFile;
 
 };
