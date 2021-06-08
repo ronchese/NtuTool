@@ -34,7 +34,7 @@ process.out = cms.OutputModule(
 
 
 process.p = cms.Path(process.simpleNtuEDMModule
-                     *process.ntuFilter
+#                     *process.ntuFilter
 )
 
 process.e = cms.EndPath(process.out)
