@@ -10,41 +10,45 @@ echo "NTU_TOOL_DIR undefined: source ..../NtuTool/uty/envset.[sh|csh]"
 exit
 fi
 
-rm -f ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite
-c++ -Wall `root-config --cflags`                     \
-    -I ${NTU_TOOL_DIR}/include                       \
-    -o ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite \
-    ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite.cc \
+export NTU_EXA_PATH=${NTU_TOOL_DIR}/Common/test
+
+export EXAMPLE_NAME=simpleLegacyWrite
+rm -f ${NTU_EXA_PATH}/${EXAMPLE_NAME}
+c++ -Wall `root-config --cflags`       \
+    -I ${NTU_TOOL_DIR}/include         \
+    -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
+    ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
     `root-config --libs`
 
-rm -f ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite
-c++ -Wall `root-config --cflags`                     \
-    -I ${NTU_TOOL_DIR}/include                       \
-    -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite \
-    ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite.cc \
-    -L${NTU_TOOL_DIR}/lib -lNtupleTool               \
+export EXAMPLE_NAME=simpleNtupleWrite
+rm -f ${NTU_EXA_PATH}/${EXAMPLE_NAME}
+c++ -Wall `root-config --cflags`       \
+    -I ${NTU_TOOL_DIR}/include         \
+    -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
+    ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
     `root-config --libs`
 
-rm -f ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead
-c++ -Wall `root-config --cflags`                    \
-    -I ${NTU_TOOL_DIR}/include                      \
-    -o ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead \
-    ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead.cc \
+export EXAMPLE_NAME=simpleLegacyRead
+rm -f ${NTU_EXA_PATH}/${EXAMPLE_NAME}
+c++ -Wall `root-config --cflags`       \
+    -I ${NTU_TOOL_DIR}/include         \
+    -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
+    ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
     `root-config --libs`
 
-rm -f ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead
-c++ -Wall `root-config --cflags`                    \
-    -I ${NTU_TOOL_DIR}/include                      \
-    -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead \
-    ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead.cc \
-    -L${NTU_TOOL_DIR}/lib -lNtupleTool              \
+export EXAMPLE_NAME=simpleNtupleRead
+rm -f ${NTU_EXA_PATH}/${EXAMPLE_NAME}
+c++ -Wall `root-config --cflags`       \
+    -I ${NTU_TOOL_DIR}/include         \
+    -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
+    ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
     `root-config --libs` -lGpad
 
-rm -f ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter
-c++ -Wall `root-config --cflags`                      \
-    -I ${NTU_TOOL_DIR}/include                        \
-    -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter \
-    ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter.cc \
-    -L${NTU_TOOL_DIR}/lib -lNtupleTool                \
+export EXAMPLE_NAME=simpleNtupleFilter
+rm -f ${NTU_EXA_PATH}/${EXAMPLE_NAME}
+c++ -Wall `root-config --cflags`       \
+    -I ${NTU_TOOL_DIR}/include         \
+    -o ${NTU_EXA_PATH}/${EXAMPLE_NAME} \
+    ${NTU_EXA_PATH}/${EXAMPLE_NAME}.cc \
     `root-config --libs`
 
