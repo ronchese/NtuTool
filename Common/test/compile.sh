@@ -13,14 +13,14 @@ fi
 rm -f simpleLegacyWrite
 c++ -Wall `root-config --cflags`                     \
     -I ${NTU_TOOL_DIR}/include                       \
-    -o simpleLegacyWrite                             \
+    -o ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite \
     ${NTU_TOOL_DIR}/Common/test/simpleLegacyWrite.cc \
     `root-config --libs`
 
 rm -f simpleNtupleWrite
 c++ -Wall `root-config --cflags`                     \
     -I ${NTU_TOOL_DIR}/include                       \
-    -o simpleNtupleWrite                             \
+    -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite \
     ${NTU_TOOL_DIR}/Common/test/simpleNtupleWrite.cc \
     -L${NTU_TOOL_DIR}/lib -lNtupleTool               \
     `root-config --libs`
@@ -28,14 +28,14 @@ c++ -Wall `root-config --cflags`                     \
 rm -f simpleLegacyRead
 c++ -Wall `root-config --cflags`                    \
     -I ${NTU_TOOL_DIR}/include                      \
-    -o simpleLegacyRead                             \
+    -o ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead \
     ${NTU_TOOL_DIR}/Common/test/simpleLegacyRead.cc \
     `root-config --libs`
 
 rm -f simpleNtupleRead
 c++ -Wall `root-config --cflags`                    \
     -I ${NTU_TOOL_DIR}/include                      \
-    -o simpleNtupleRead                             \
+    -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead \
     ${NTU_TOOL_DIR}/Common/test/simpleNtupleRead.cc \
     -L${NTU_TOOL_DIR}/lib -lNtupleTool              \
     `root-config --libs` -lGpad
@@ -43,7 +43,7 @@ c++ -Wall `root-config --cflags`                    \
 rm -f simpleNtupleFilter
 c++ -Wall `root-config --cflags`                      \
     -I ${NTU_TOOL_DIR}/include                        \
-    -o simpleNtupleFilter                             \
+    -o ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter \
     ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter.cc \
     -L${NTU_TOOL_DIR}/lib -lNtupleTool                \
     `root-config --libs`
