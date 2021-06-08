@@ -40,3 +40,11 @@ c++ -Wall `root-config --cflags`                    \
     -L${NTU_TOOL_DIR}/lib -lNtupleTool              \
     `root-config --libs` -lGpad
 
+rm -f simpleNtupleFilter
+c++ -Wall `root-config --cflags`                      \
+    -I ${NTU_TOOL_DIR}/include                        \
+    -o simpleNtupleFilter                             \
+    ${NTU_TOOL_DIR}/Common/test/simpleNtupleFilter.cc \
+    -L${NTU_TOOL_DIR}/lib -lNtupleTool                \
+    `root-config --libs`
+
