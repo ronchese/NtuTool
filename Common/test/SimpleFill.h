@@ -10,13 +10,20 @@ class SimpleFill: public virtual SimpleData {
  public:
 
   SimpleFill() {
-    srandom( 1 );
   }
+
   ~SimpleFill() override {
   }
 
   // Function to set variables
   void setData( int iRun, int iEvt ) {
+    // set seed: it;s done here and not in the constructor to avoid having
+    // different generations when using other libraries setting it themselves
+    static bool seed = true;
+    if ( seed ) {
+      srandom( 1 );
+      seed = false;
+    }
     // It's assumed here that the ntuple content has been reset before 
     // calling this, so that the array is written from the first element
     // and std::vectors are empty
