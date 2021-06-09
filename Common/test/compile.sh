@@ -1,13 +1,14 @@
 #!/bin/sh
 
-if [ ! -s "${ROOTSYS}" ]; then
-echo "ROOTSYS undefined: source ..../root/bin/thisroot.[sh|csh]"
-exit
+if [ "___"`which root-config | awk -F/ '($NF=="root-config"){print $0}'`"___" = "______" ]; then
+  echo "ROOT environment not set: issue the command:"
+  echo "source ..../root/bin/thisroot.[sh|csh]"
+  exit
 fi
 
-if [ ! -s "${NTU_TOOL_DIR}" ]; then
-echo "NTU_TOOL_DIR undefined: source ..../NtuTool/uty/envset.[sh|csh]"
-exit
+if [ "___"`printenv | awk -F= '($1=="NTU_TOOL_DIR"){print $0}'`"___" = "______" ]; then
+  echo "NTU_TOOL_DIR undefined: source ..../NtuTool/uty/envset.[sh|csh]"
+  exit
 fi
 
 export NTU_EXA_PATH=${NTU_TOOL_DIR}/Common/test
