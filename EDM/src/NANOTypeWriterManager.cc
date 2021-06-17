@@ -31,7 +31,6 @@
 // Constructors --
 //----------------
 NANOTypeWriterManager::NANOTypeWriterManager() {
-  std::cout << "new NANOTypeWriterManager" << std::endl;
 }
 
 //--------------
