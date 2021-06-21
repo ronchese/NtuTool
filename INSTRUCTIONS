@@ -1,8 +1,8 @@
 
  -------------- Description --------------
 
-The package can be used in CMSSW environment or exported on any PC where
-ROOT is installed.
+The NtuTool package can be used in CMSSW environment or exported on any PC
+where ROOT is installed.
 
 The package is structured as a CMSSW subsystem, with 3 packages:
 NtuTool/Common : code to read, write and handle ntuples, with no dependence
