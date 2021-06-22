@@ -14,6 +14,36 @@ NtuTool/Read   : code to read EDM ntuples or NANOAOD as if they were legacy
                  flat ntuples, in a transparent way, also outside CMSSW
                  environment.
 
+The main idea followed to create the NtuTool library is making easily available
+the following functionalities:
+- define the ntuple only once and reuse the same code when producing the
+  ntuple itself and/or analyzing it, via an unique set of calls to 
+  "setBranch(...)" with the same parameters as the ROOT function "Branch(...)";
+- translate internally those calls to the ones required to produce EDM ntuples
+  or NANOAOD if required;
+- build a standalone executable for ntuple analysis without using "makeClass";
+- specify the ntuple file list and the output histogram file in the command
+  line;
+- specify the number of events to process, or skip, in the command line;
+- allow the customization of parameters, e.g. cuts, in the command line
+  without the need of recompiling.
+
+The ntuple production workflow goes through the following main steps:
+- ntuple definition,
+- loop where at each iteration the data structure is filled and then 
+  made persistent through a call to the library function "fill()",
+- close the ntuple.
+
+The ntuple analysis workflow goes through the following main steps:
+- call to "beginJob()" for preliminary operations including
+  ntuple structure definition,
+- call to "book()" to create histograms,
+- repeated calls to "analyze()" for each ntuple entry,
+- call to "endJob()" for conclusive operations,
+- call to an optional function "plot()" to draw histograms,
+- call to "save()" to save histograms
+  (an automatic saving mechanism is available).
+
 In the following some simple examples are shown; some of them do not actually 
 use the NtuTool library and are included as a reference for comparison.
 The examples analyzing ntuples through NtuTool library are shown in the
