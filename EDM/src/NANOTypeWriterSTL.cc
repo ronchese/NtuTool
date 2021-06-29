@@ -114,7 +114,7 @@ int    NANOTypeWriter  < std::vector<unsigned
   return this->cPtr( p )->size();
 }
 template <>
-void   NANOTypeWriter  < std::vector<unsigned 
+void   NANOTypeWriter  < std::vector<unsigned
                                      short    > >::addC( const void* p, void* t,
        const std::string& name, const std::string& doc ) {
   NANOTableHandler::addC<std::vector<unsigned
