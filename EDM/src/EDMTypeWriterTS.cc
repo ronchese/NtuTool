@@ -29,56 +29,56 @@
 // Operations --
 //--------------
 
-// === template specialization for int === 
+// === template specialization for int ===
 
 static EDMTypeWriter<int      > tw____i( DataReset::native_write );
 
 
-// === template specialization for unsigned int === 
+// === template specialization for unsigned int ===
 
 static EDMTypeWriter<unsigned
                      int      > tw___ui( DataReset::native_write );
 
 
-// === template specialization for short === 
+// === template specialization for short ===
 
 static EDMTypeWriter<short    > tw____s( DataReset::native_write );
 
 
-// === template specialization for unsigned short === 
+// === template specialization for unsigned short ===
 
 static EDMTypeWriter<unsigned
                      short    > tw___us( DataReset::native_write );
 
 
-// === template specialization for char === 
+// === template specialization for char ===
 
 static EDMTypeWriter<char     > tw____b( DataReset::native_write );
 
 
-// === template specialization for unsigned char  === 
+// === template specialization for unsigned char ===
 
 static EDMTypeWriter<unsigned
                      char     > tw___ub( DataReset::native_write );
 
 
-// === template specialization for long long === 
+// === template specialization for long long ===
 
 static EDMTypeWriter<long long> tw____l( DataReset::native_write );
 
 
-// === template specialization for unsigned long long === 
+// === template specialization for unsigned long long ===
 
 static EDMTypeWriter<unsigned
                      long long> tw___ul( DataReset::native_write );
 
 
-// === template specialization for float === 
+// === template specialization for float ===
 
 static EDMTypeWriter<float    > tw____f( DataReset::native_write );
 
 
-// === template specialization for double === 
+// === template specialization for double ===
 
 static EDMTypeWriter<double   > tw____d( DataReset::native_write );
 

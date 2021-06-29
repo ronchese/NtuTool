@@ -30,15 +30,15 @@
 // Operations --
 //--------------
 
-// === template specialization for std::string === 
+// === template specialization for std::string ===
 
 template <>
-int NANOTypeWriter<std::string>::cSize( const void* p ) {
+int    NANOTypeWriter<std::string>::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter<std::string>::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
+void   NANOTypeWriter<std::string>::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
   NANOTableHandler::addC<const char*, unsigned char>(
                     cPtr( p )->c_str(), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::UInt8Column );
@@ -48,210 +48,230 @@ static NANOTypeWriter<std::string> tw____x(
        new DataResetString( DataReset::native_write ) );
 
 
-// === template specialization for std::vector<int> === 
+// === template specialization for std::vector<int> ===
 
 template <>
-int NANOTypeWriter< std::vector<int> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<int      > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<int> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  tPtr( t )->template addColumn<int>( name, *cPtr( p ), doc,
-                                      nanoaod::FlatTable::IntColumn, -1 );
+void   NANOTypeWriter  < std::vector<int      > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  tPtr( t )->template addColumn     <int      >( name, *cPtr( p ), doc,
+                      nanoaod::FlatTable::IntColumn, -1 );
   return;
 }
-static NANOTypeWriter< std::vector<int      > > tw_v__i(
-       new DataResetVector<int>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<int      > > tw_v__i(
+       new DataResetVector          <int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned int> === 
+// === template specialization for std::vector<unsigned int> ===
 
 template <>
-int NANOTypeWriter< std::vector<unsigned int> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<unsigned
+                                     int      > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<unsigned int> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  NANOTableHandler::addC<std::vector<unsigned int>, int>(
+void   NANOTypeWriter  < std::vector<unsigned
+                                     int      > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  NANOTableHandler::addC<std::vector<unsigned
+                                     int      >, int>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::IntColumn );
   return;
 }
-static NANOTypeWriter< std::vector<unsigned int      > > tw_v_ui(
-       new DataResetVector<unsigned int>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<unsigned 
+                                     int      > > tw_v_ui(
+       new DataResetVector          <unsigned
+                                     int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<short> === 
+// === template specialization for std::vector<short> ===
 
 template <>
-int NANOTypeWriter< std::vector<short> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<short    > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<short> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  NANOTableHandler::addC<std::vector<short>, int>(
+void   NANOTypeWriter  < std::vector<short    > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  NANOTableHandler::addC<std::vector<short    >, int>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::IntColumn );
   return;
 }
-static NANOTypeWriter< std::vector<short    > > tw_v__s(
-       new DataResetVector<short>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<short    > > tw_v__s(
+       new DataResetVector          <short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned short> === 
+// === template specialization for std::vector<unsigned short> ===
 
 template <>
-int NANOTypeWriter< std::vector<unsigned short> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<unsigned
+                                     short    > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<unsigned short> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  NANOTableHandler::addC<std::vector<unsigned short>, int>(
+void   NANOTypeWriter  < std::vector<unsigned 
+                                     short    > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  NANOTableHandler::addC<std::vector<unsigned
+                                     short    >, int>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::IntColumn );
   return;
 }
-static NANOTypeWriter< std::vector<unsigned short    > > tw_v_us(
-       new DataResetVector<unsigned short>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<unsigned
+                                     short    > > tw_v_us(
+       new DataResetVector          <unsigned
+                                     short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<bool> === 
+// === template specialization for std::vector<bool> ===
 
 template <>
-int NANOTypeWriter<  std::vector<bool> >::cSize( const void* p ) {
+int    NANOTypeWriter  <  std::vector<bool     > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<bool> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  tPtr( t )->template addColumn<bool>( name, *cPtr( p ), doc,
-                                       nanoaod::FlatTable::BoolColumn, -1 );
+void   NANOTypeWriter  < std::vector<bool     > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  tPtr( t )->template addColumn     <bool     >( name, *cPtr( p ), doc,
+                      nanoaod::FlatTable::BoolColumn, -1 );
   return;
 }
-static NANOTypeWriter< std::vector<bool     > > tw_v__a(
-       new DataResetVector<bool>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<bool     > > tw_v__a(
+       new DataResetVector          <bool     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<char> === 
+// === template specialization for std::vector<char> ===
 
 template <>
-int NANOTypeWriter< std::vector<char> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<char     > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<char> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  NANOTableHandler::addC<std::vector<char>, unsigned char>(
+void   NANOTypeWriter  < std::vector<char     > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  NANOTableHandler::addC<std::vector<char     >, unsigned char>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::UInt8Column );
   return;
 }
-static NANOTypeWriter< std::vector<char     > > tw_v__b(
-       new DataResetVector<char>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<char     > > tw_v__b(
+       new DataResetVector          <char     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned char> === 
+// === template specialization for std::vector<unsigned char> ===
 
 template <>
-int NANOTypeWriter<  std::vector<unsigned char> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<unsigned
+                                     char     > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<unsigned char> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  tPtr( t )->template addColumn<unsigned char>( name, *cPtr( p ), doc,
-                                      nanoaod::FlatTable::UInt8Column, -1 );
+void   NANOTypeWriter  < std::vector<unsigned
+                                     char     > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  tPtr( t )->template addColumn     <unsigned 
+                                     char     >( name, *cPtr( p ), doc,
+                      nanoaod::FlatTable::UInt8Column, -1 );
   return;
 }
-static NANOTypeWriter< std::vector<unsigned char     > > tw_v_ub(
-       new DataResetVector<char>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<unsigned
+                                     char     > > tw_v_ub(
+       new DataResetVector          <unsigned
+                                     char     >( DataReset::stl_read ) );
 
 
 
-// === template specialization for std::vector<long long> === 
+// === template specialization for std::vector<long long> ===
 
 template <>
-int NANOTypeWriter< std::vector<long long> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<long long> >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<long long> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
+void   NANOTypeWriter  < std::vector<long long> >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
   NANOTableHandler::addC<std::vector<long long>, int>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::IntColumn );
   return;
 }
-static NANOTypeWriter< std::vector<long long> > tw_v__l(
-       new DataResetVector<long long>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<long long> > tw_v__l(
+       new DataResetVector          <long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned long long> === 
+// === template specialization for std::vector<unsigned long long> ===
 
 template <>
-int NANOTypeWriter< std::vector<unsigned long long> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<unsigned
+                                     long long> >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<unsigned long long> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  NANOTableHandler::addC<std::vector<unsigned long long>, int>(
+void   NANOTypeWriter  < std::vector<unsigned
+                                     long long> >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  NANOTableHandler::addC<std::vector<unsigned
+                                     long long>, int>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::IntColumn );
   return;
 }
-static NANOTypeWriter< std::vector<unsigned long long> > tw_v_ul(
-       new DataResetVector<unsigned long long>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<unsigned
+                                     long long> > tw_v_ul(
+       new DataResetVector          <unsigned
+                                     long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<float> === 
+// === template specialization for std::vector<float> ===
 
 template <>
-int NANOTypeWriter< std::vector<float> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<float    > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<float> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  tPtr( t )->template addColumn<float>( name, *cPtr( p ), doc,
-                                        nanoaod::FlatTable::FloatColumn, -1 );
+void   NANOTypeWriter  < std::vector<float    > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  tPtr( t )->template addColumn     <float    >( name, *cPtr( p ), doc,
+                      nanoaod::FlatTable::FloatColumn, -1 );
   return;
 }
-static NANOTypeWriter< std::vector<float    > > tw_v__f(
-       new DataResetVector<float>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<float    > > tw_v__f(
+       new DataResetVector          <float    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<double> === 
+// === template specialization for std::vector<double> ===
 
 template <>
-int NANOTypeWriter< std::vector<double> >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<double   > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<double> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
-  NANOTableHandler::addC<std::vector<double>, float>(
+void   NANOTypeWriter  < std::vector<double   > >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
+  NANOTableHandler::addC<std::vector<double   >, float>(
                     *cPtr( p ), cSize( p ), t, name, doc,
                     nanoaod::FlatTable::FloatColumn );
   return;
 }
-static NANOTypeWriter< std::vector<double   > > tw_v__d(
-       new DataResetVector<double>( DataReset::stl_read ) );
+static NANOTypeWriter  < std::vector<double   > > tw_v__d(
+       new DataResetVector          <double   >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<std::string> === 
+// === template specialization for std::vector<std::string> ===
 
 template <>
-int NANOTypeWriter< std::vector<std::string> >::cSize( const void* p ) {
+int    NANOTypeWriter< std::vector<std::string> >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
-void NANOTypeWriter< std::vector<std::string> >::addC(
-     const void* p, void* t, const std::string& name, const std::string& doc ) {
+void   NANOTypeWriter< std::vector<std::string> >::addC( const void* p, void* t,
+       const std::string& name, const std::string& doc ) {
 }
 static NANOTypeWriter< std::vector<std::string> > tw_v__x(
        new DataResetVector<std::string>( DataReset::stl_read ) );

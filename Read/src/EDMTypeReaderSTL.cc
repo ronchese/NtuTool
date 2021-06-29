@@ -35,19 +35,19 @@
 // Operations --
 //--------------
 
-// === template specialization for std::string === 
+// === template specialization for std::string ===
 
 static const EDMTypeReader< std::string            > ter____x(
-                    new DataResetString                    ( DataReset::stl_read ) );
+                    new DataResetString           ( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<int> === 
+// === template specialization for std::vector<int> ===
 
 static const EDMTypeReader< std::vector<int      > > ter_v__i(
-                    new DataResetVector<int               >( DataReset::stl_read ) );
+                    new DataResetVector<int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned int> === 
+// === template specialization for std::vector<unsigned int> ===
 
 static const EDMTypeReader< std::vector<unsigned
                                         int      > > ter_v_ui(
@@ -55,13 +55,13 @@ static const EDMTypeReader< std::vector<unsigned
                                         int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<short> === 
+// === template specialization for std::vector<short> ===
 
 static const EDMTypeReader< std::vector<short    > > ter_v__s(
                     new DataResetVector<short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned short> === 
+// === template specialization for std::vector<unsigned short> ===
 
 static const EDMTypeReader< std::vector<unsigned
                                         short    > > ter_v_us(
@@ -69,13 +69,13 @@ static const EDMTypeReader< std::vector<unsigned
                                         short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<char> === 
+// === template specialization for std::vector<char> ===
 
 static const EDMTypeReader< std::vector<char     > > ter_v__b(
                     new DataResetVector<char     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned char> === 
+// === template specialization for std::vector<unsigned char> ===
 
 static const EDMTypeReader< std::vector<unsigned
                                         char     > > ter_v_ub(
@@ -83,19 +83,19 @@ static const EDMTypeReader< std::vector<unsigned
                                         char     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<bool> === 
+// === template specialization for std::vector<bool> ===
 
 static const EDMTypeReader< std::vector<bool     > > ter_v__a(
                     new DataResetVector<bool     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<long long> === 
+// === template specialization for std::vector<long long> ===
 
 static const EDMTypeReader< std::vector<long long> > ter_v__l(
                     new DataResetVector<long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned long long> === 
+// === template specialization for std::vector<unsigned long long> ===
 
 static const EDMTypeReader< std::vector<unsigned
                                         long long> > ter_v_ul(
@@ -103,19 +103,19 @@ static const EDMTypeReader< std::vector<unsigned
                                         long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<float> === 
+// === template specialization for std::vector<float> ===
 
 static const EDMTypeReader< std::vector<float    > > ter_v__f(
                     new DataResetVector<float    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<double> === 
+// === template specialization for std::vector<double> ===
 
 static const EDMTypeReader< std::vector<double   > > ter_v__d(
                     new DataResetVector<double   >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<std::string> === 
+// === template specialization for std::vector<std::string> ===
 
 static const EDMTypeReader< std::vector<std::string> > ter_v__x(
                     new DataResetVector<std::string>( DataReset::stl_read ) );

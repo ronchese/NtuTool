@@ -35,61 +35,61 @@
 // Operations --
 //--------------
 
-// === template specialization for int === 
+// === template specialization for int ===
 
 static const EDMTypeReader<int      > ter____i( DataReset::stl_read );
 
 
-// === template specialization for unsigned int === 
+// === template specialization for unsigned int ===
 
 static const EDMTypeReader<unsigned
                            int      > ter___ui( DataReset::stl_read );
 
 
-// === template specialization for short === 
+// === template specialization for short ===
 
 static const EDMTypeReader<short    > ter____s( DataReset::stl_read );
 
 
-// === template specialization for unsigned short === 
+// === template specialization for unsigned short ===
 
 static const EDMTypeReader<unsigned
                            short    > ter___us( DataReset::stl_read );
 
 
-// === template specialization for char === 
+// === template specialization for char ===
 
 static const EDMTypeReader<char     > ter____b( DataReset::stl_read );
 
 
-// === template specialization for unsigned char  === 
+// === template specialization for unsigned char ===
 
 static const EDMTypeReader<unsigned
                            char     > ter___ub( DataReset::stl_read );
 
 
-// === template specialization for bool  === 
+// === template specialization for bool ===
 
 static const EDMTypeReader<bool     > ter____a( DataReset::stl_read );
 
 
-// === template specialization for long long === 
+// === template specialization for long long ===
 
 static const EDMTypeReader<long long> ter____l( DataReset::stl_read );
 
 
-// === template specialization for unsigned long long === 
+// === template specialization for unsigned long long ===
 
 static const EDMTypeReader<unsigned
                            long long> ter___ul( DataReset::stl_read );
 
 
-// === template specialization for float === 
+// === template specialization for float ===
 
 static const EDMTypeReader<float    > ter____f( DataReset::stl_read );
 
 
-// === template specialization for double === 
+// === template specialization for double ===
 
 static const EDMTypeReader<double   > ter____d( DataReset::stl_read );
 

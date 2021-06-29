@@ -30,7 +30,7 @@
 // Operations --
 //--------------
 
-// === template specialization for std::string === 
+// === template specialization for std::string ===
 
 static const TreeTypeHandler< std::string          > tth____x(
                       new DataResetString( DataReset::native_write ) );
@@ -40,13 +40,13 @@ static const TreeTypeHandler< std::string          > tth____x(
 
 
 
-// === template specialization for std::vector<int> === 
+// === template specialization for std::vector<int> ===
 
 static const TreeTypeHandler< std::vector<int      > > tth_v__i(
                       new DataResetVector<int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned int> === 
+// === template specialization for std::vector<unsigned int> ===
 
 static const TreeTypeHandler< std::vector<unsigned
                                           int      > > tth_v_ui(
@@ -54,13 +54,13 @@ static const TreeTypeHandler< std::vector<unsigned
                                           int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<short> === 
+// === template specialization for std::vector<short> ===
 
 static const TreeTypeHandler< std::vector<short    > > tth_v__s(
                       new DataResetVector<short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned short> === 
+// === template specialization for std::vector<unsigned short> ===
 
 static const TreeTypeHandler< std::vector<unsigned
                                           short    > > tth_v_us(
@@ -68,19 +68,19 @@ static const TreeTypeHandler< std::vector<unsigned
                                           short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<bool> === 
+// === template specialization for std::vector<bool> ===
 
 static const TreeTypeHandler< std::vector<bool     > > tth_v__a(
                       new DataResetVector<bool     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<char> === 
+// === template specialization for std::vector<char> ===
 
 static const TreeTypeHandler< std::vector<char     > > tth_v__b(
                       new DataResetVector<char     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned char> === 
+// === template specialization for std::vector<unsigned char> ===
 
 static const TreeTypeHandler< std::vector<unsigned
                                           char     > > tth_v_ub(
@@ -89,13 +89,13 @@ static const TreeTypeHandler< std::vector<unsigned
 
 
 
-// === template specialization for std::vector<long long> === 
+// === template specialization for std::vector<long long> ===
 
 static const TreeTypeHandler< std::vector<long long> > tth_v__l(
                       new DataResetVector<long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned long long> === 
+// === template specialization for std::vector<unsigned long long> ===
 
 static const TreeTypeHandler< std::vector<unsigned
                                           long long> > tth_v_ul(
@@ -103,20 +103,20 @@ static const TreeTypeHandler< std::vector<unsigned
                                           long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<float> === 
+// === template specialization for std::vector<float> ===
 
 static const TreeTypeHandler< std::vector<float    > > tth_v__f(
                       new DataResetVector<float    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<double> === 
+// === template specialization for std::vector<double> ===
 
 static const TreeTypeHandler< std::vector<double   > > tth_v__d(
                       new DataResetVector<double   >( DataReset::stl_read ) );
 
 
 
-// === template specialization for std::vector<std::string> === 
+// === template specialization for std::vector<std::string> ===
 
 static const TreeTypeHandler< std::vector<std::string> > tth_v__x(
                       new DataResetVector<std::string>( DataReset::stl_read ) );
@@ -125,42 +125,42 @@ static const TreeTypeHandler< std::vector<std::string> > tth_v__x(
 // === template specializations for std::vector< std::vector<...> > ===
 
 
-// === template specialization for std::vector< std::vector<int      > > === 
+// === template specialization for std::vector< std::vector<int      > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<int      > > > tth_w__i( nullptr );
 
 
 // === template specialization for std::vector< std::vector<unsigned
-//                                                          int      > > === 
+//                                                          int      > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<unsigned
                                           int      > > > tth_w_ui( nullptr );
 
 
-// === template specialization for std::vector< std::vector<short    > > === 
+// === template specialization for std::vector< std::vector<short    > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<short    > > > tth_w__s( nullptr );
 
 
 // === template specialization for std::vector< std::vector<unsigned
-//                                                          short    > > === 
+//                                                          short    > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<unsigned
                                           short    > > > tth_w_us( nullptr );
 
 
-// === template specialization for std::vector< std::vector<char     > > === 
+// === template specialization for std::vector< std::vector<char     > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<char     > > > tth_w__b( nullptr );
 
 
 // === template specialization for std::vector< std::vector<unsigned
-//                                                          char     > > === 
+//                                                          char     > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<unsigned
@@ -168,33 +168,33 @@ static const TreeTypeHandler< std::vector
 
 
 
-// === template specialization for std::vector< std::vector<bool     > > === 
+// === template specialization for std::vector< std::vector<bool     > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<bool     > > > tth_w__a( nullptr );
 
 
-// === template specialization for std::vector< std::vector<long long> > === 
+// === template specialization for std::vector< std::vector<long long> > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<long long> > > tth_w__l( nullptr );
 
 
 // === template specialization for std::vector< std::vector<unsigned
-//                                                          long long> > === 
+//                                                          long long> > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<unsigned
                                           long long> > > tth_w_ul( nullptr );
 
 
-// === template specialization for std::vector< std::vector<float    > > === 
+// === template specialization for std::vector< std::vector<float    > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<float    > > > tth_w__f( nullptr );
 
 
-// === template specialization for std::vector< std::vector<double   > > === 
+// === template specialization for std::vector< std::vector<double   > > ===
 
 static const TreeTypeHandler< std::vector
                             < std::vector<double   > > > tth_w__d( nullptr );
