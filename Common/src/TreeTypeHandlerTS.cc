@@ -1,4 +1,4 @@
-1/*
+/*
  *  See header file for a description of this class.
  *
  *  $Date: 2010-12-09 11:49:02 $
