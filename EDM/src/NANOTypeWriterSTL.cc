@@ -82,7 +82,7 @@ void   NANOTypeWriter  < std::vector<unsigned
                     nanoaod::FlatTable::IntColumn );
   return;
 }
-static NANOTypeWriter  < std::vector<unsigned 
+static NANOTypeWriter  < std::vector<unsigned
                                      int      > > tw_v_ui(
        new DataResetVector          <unsigned
                                      int      >( DataReset::stl_read ) );
