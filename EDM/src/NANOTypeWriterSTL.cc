@@ -132,7 +132,7 @@ static NANOTypeWriter  < std::vector<unsigned
 // === template specialization for std::vector<bool> ===
 
 template <>
-int    NANOTypeWriter  <  std::vector<bool     > >::cSize( const void* p ) {
+int    NANOTypeWriter  < std::vector<bool     > >::cSize( const void* p ) {
   return this->cPtr( p )->size();
 }
 template <>
