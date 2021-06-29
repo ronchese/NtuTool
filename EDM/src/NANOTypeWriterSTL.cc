@@ -62,7 +62,7 @@ void   NANOTypeWriter  < std::vector<int      > >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<int      > > tw_v__i(
-       new DataResetVector          <int      >( DataReset::stl_read ) );
+                 new DataResetVector<int      >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned int> ===
@@ -84,7 +84,7 @@ void   NANOTypeWriter  < std::vector<unsigned
 }
 static NANOTypeWriter  < std::vector<unsigned
                                      int      > > tw_v_ui(
-       new DataResetVector          <unsigned
+                 new DataResetVector<unsigned
                                      int      >( DataReset::stl_read ) );
 
 
@@ -103,7 +103,7 @@ void   NANOTypeWriter  < std::vector<short    > >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<short    > > tw_v__s(
-       new DataResetVector          <short    >( DataReset::stl_read ) );
+                 new DataResetVector<short    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned short> ===
@@ -125,7 +125,7 @@ void   NANOTypeWriter  < std::vector<unsigned
 }
 static NANOTypeWriter  < std::vector<unsigned
                                      short    > > tw_v_us(
-       new DataResetVector          <unsigned
+                 new DataResetVector<unsigned
                                      short    >( DataReset::stl_read ) );
 
 
@@ -143,7 +143,7 @@ void   NANOTypeWriter  < std::vector<bool     > >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<bool     > > tw_v__a(
-       new DataResetVector          <bool     >( DataReset::stl_read ) );
+                 new DataResetVector<bool     >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<char> ===
@@ -161,7 +161,7 @@ void   NANOTypeWriter  < std::vector<char     > >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<char     > > tw_v__b(
-       new DataResetVector          <char     >( DataReset::stl_read ) );
+                 new DataResetVector<char     >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned char> ===
@@ -182,7 +182,7 @@ void   NANOTypeWriter  < std::vector<unsigned
 }
 static NANOTypeWriter  < std::vector<unsigned
                                      char     > > tw_v_ub(
-       new DataResetVector          <unsigned
+                 new DataResetVector<unsigned
                                      char     >( DataReset::stl_read ) );
 
 
@@ -202,7 +202,7 @@ void   NANOTypeWriter  < std::vector<long long> >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<long long> > tw_v__l(
-       new DataResetVector          <long long>( DataReset::stl_read ) );
+                 new DataResetVector<long long>( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned long long> ===
@@ -224,7 +224,7 @@ void   NANOTypeWriter  < std::vector<unsigned
 }
 static NANOTypeWriter  < std::vector<unsigned
                                      long long> > tw_v_ul(
-       new DataResetVector          <unsigned
+                 new DataResetVector<unsigned
                                      long long>( DataReset::stl_read ) );
 
 
@@ -242,7 +242,7 @@ void   NANOTypeWriter  < std::vector<float    > >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<float    > > tw_v__f(
-       new DataResetVector          <float    >( DataReset::stl_read ) );
+                 new DataResetVector<float    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<double> ===
@@ -260,7 +260,7 @@ void   NANOTypeWriter  < std::vector<double   > >::addC( const void* p, void* t,
   return;
 }
 static NANOTypeWriter  < std::vector<double   > > tw_v__d(
-       new DataResetVector          <double   >( DataReset::stl_read ) );
+                 new DataResetVector<double   >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<std::string> ===
@@ -274,5 +274,5 @@ void   NANOTypeWriter< std::vector<std::string> >::addC( const void* p, void* t,
        const std::string& name, const std::string& doc ) {
 }
 static NANOTypeWriter< std::vector<std::string> > tw_v__x(
-       new DataResetVector<std::string>( DataReset::stl_read ) );
+               new DataResetVector<std::string>( DataReset::stl_read ) );
 

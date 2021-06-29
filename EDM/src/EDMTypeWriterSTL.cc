@@ -34,86 +34,86 @@
 // === template specialization for std::string ===
 
 static EDMTypeWriter<std::string> tw____x(
-       new DataResetString( DataReset::native_write ) );
+              new DataResetString( DataReset::native_write ) );
 
 
 // === template specialization for std::vector<int> ===
 
 static EDMTypeWriter< std::vector<int      > > tw_v__i(
-       new DataResetVector<int      >( DataReset::stl_read ) );
+              new DataResetVector<int      >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned int> ===
 
 static EDMTypeWriter< std::vector<unsigned 
                                   int      > > tw_v_ui(
-       new DataResetVector<unsigned
-                           int      >( DataReset::stl_read ) );
+              new DataResetVector<unsigned
+                                  int      >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<short> ===
 
 static EDMTypeWriter< std::vector<short    > > tw_v__s(
-       new DataResetVector<short    >( DataReset::stl_read ) );
+              new DataResetVector<short    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned short> ===
 
 static EDMTypeWriter< std::vector<unsigned 
                                   short    > > tw_v_us(
-       new DataResetVector<unsigned
-                           short    >( DataReset::stl_read ) );
+              new DataResetVector<unsigned
+                                  short    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<bool> ===
 
 static EDMTypeWriter< std::vector<bool     > > tw_v__a(
-       new DataResetVector<bool     >( DataReset::stl_read ) );
+              new DataResetVector       <bool     >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<char> ===
 
 static EDMTypeWriter< std::vector<char     > > tw_v__b(
-       new DataResetVector<char     >( DataReset::stl_read ) );
+              new DataResetVector<char     >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned char> ===
 
 static EDMTypeWriter< std::vector<unsigned 
                                   char     > > tw_v_ub(
-       new DataResetVector<unsigned
-                           char     >( DataReset::stl_read ) );
+       new DataResetVector       <unsigned
+                                  char     >( DataReset::stl_read ) );
 
 
 
 // === template specialization for std::vector<long long> ===
 
 static EDMTypeWriter< std::vector<long long> > tw_v__l(
-       new DataResetVector<long long>( DataReset::stl_read ) );
+              new DataResetVector<long long>( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<unsigned long long> ===
 
 static EDMTypeWriter< std::vector<unsigned 
                                   long long> > tw_v_ul(
-       new DataResetVector<unsigned
-                           long long>( DataReset::stl_read ) );
+              new DataResetVector<unsigned
+                                  long long>( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<float> ===
 
 static EDMTypeWriter< std::vector<float    > > tw_v__f(
-       new DataResetVector<float    >( DataReset::stl_read ) );
+              new DataResetVector<float    >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<double> ===
 
 static EDMTypeWriter< std::vector<double   > > tw_v__d(
-       new DataResetVector<double   >( DataReset::stl_read ) );
+              new DataResetVector<double   >( DataReset::stl_read ) );
 
 
 // === template specialization for std::vector<std::string> ===
 
 static EDMTypeWriter< std::vector<std::string> > tw_v__x(
-       new DataResetVector<std::string>( DataReset::stl_read ) );
+              new DataResetVector<std::string>( DataReset::stl_read ) );
 
