@@ -35,7 +35,7 @@
 // Operations --
 //--------------
 
-// === template specialization for int === 
+// === template specialization for int ===
 
 //template <>
 template <>
@@ -48,22 +48,22 @@ static const NANOTypeReader<int      > tnr____i( DataReset::native_write,
        nullptr );
 
 
-// === template specialization for unsigned int === 
+// === template specialization for unsigned int ===
 
 template <>
 int          NANOTypeReader<unsigned
-                      int      >::cSize( const void* p ) {
+                            int      >::cSize( const void* p ) {
   return ( convType == copyVector ? 1 : -1 );
 }
 template <>
 void*        NANOTypeReader<unsigned
-		      int      >::tmpArray( int n ) { return new int[n]; }
+		            int      >::tmpArray( int n ) { return new int[n]; }
 static const NANOTypeReader<unsigned
-		      int      > tnr___ui( DataReset::native_write,
+		            int      > tnr___ui( DataReset::native_write,
        new NANOHandler::ConvertToArray<int,unsigned int> );
 
 
-// === template specialization for short === 
+// === template specialization for short ===
 
 template <>
 int          NANOTypeReader<short    >::cSize( const void* p ) {
@@ -75,7 +75,7 @@ static const NANOTypeReader<short    > tnr____s( DataReset::native_write,
        new NANOHandler::ConvertToArray<int,short> );
 
 
-// === template specialization for unsigned short === 
+// === template specialization for unsigned short ===
 
 template <>
 int          NANOTypeReader<unsigned
@@ -84,13 +84,13 @@ int          NANOTypeReader<unsigned
 }
 template <>
 void*        NANOTypeReader<unsigned
-                            short>::tmpArray( int n ) { return new int[n]; }
+                            short    >::tmpArray( int n ) { return new int[n]; }
 static const NANOTypeReader<unsigned
                             short    > tnr___us( DataReset::native_write,
              new NANOHandler::ConvertToArray<int,unsigned short> );
 
 
-// === template specialization for char === 
+// === template specialization for char ===
 
 template <>
 int          NANOTypeReader<char     >::cSize( const void* p ) {
@@ -102,22 +102,22 @@ static const NANOTypeReader<char     > tnr____b( DataReset::native_write,
        new NANOHandler::ConvertToArray<unsigned char,char> );
 
 
-// === template specialization for unsigned char  === 
+// === template specialization for unsigned char ===
 
 template <>
 int          NANOTypeReader<unsigned
-                            char>::cSize( const void* p ) {
+                            char     >::cSize( const void* p ) {
   return ( convType == copyVector ? 1 : -1 );
 }
 template <>
 void*        NANOTypeReader<unsigned
-                            char>::tmpArray( int n ) { return nullptr; }
+                            char     >::tmpArray( int n ) { return nullptr; }
 static const NANOTypeReader<unsigned
                             char     > tnr___ub( DataReset::native_write,
        nullptr );
 
 
-// === template specialization for bool  === 
+// === template specialization for bool ===
 
 template <>
 int          NANOTypeReader<bool     >::cSize( const void* p ) {
@@ -129,7 +129,7 @@ static const NANOTypeReader<bool     > tnr____a( DataReset::native_write,
        nullptr );
 
 
-// === template specialization for long long === 
+// === template specialization for long long ===
 
 template <>
 int          NANOTypeReader<long long>::cSize( const void* p ) {
@@ -141,7 +141,7 @@ static const NANOTypeReader<long long> tnr____l( DataReset::native_write,
              new NANOHandler::ConvertToArray<int,long long> );
 
 
-// === template specialization for unsigned long long === 
+// === template specialization for unsigned long long ===
 
 template <>
 int          NANOTypeReader<unsigned
@@ -156,7 +156,7 @@ static const NANOTypeReader<unsigned
              new NANOHandler::ConvertToArray<int,unsigned long long> );
 
 
-// === template specialization for float === 
+// === template specialization for float ===
 
 template <>
 int          NANOTypeReader<float    >::cSize( const void* p ) {
@@ -168,7 +168,7 @@ static const NANOTypeReader<float    > tnr____f( DataReset::native_write,
        nullptr );
 
 
-// === template specialization for double === 
+// === template specialization for double ===
 
 template <>
 int          NANOTypeReader<double   >::cSize( const void* p ) {

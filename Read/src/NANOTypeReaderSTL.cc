@@ -35,7 +35,7 @@
 // Operations --
 //--------------
 
-// === template specialization for std::string === 
+// === template specialization for std::string ===
 
 template <>
 int          NANOTypeReader<std::string>::cSize( const void* p ) {
@@ -46,11 +46,11 @@ void*        NANOTypeReader<std::string>::tmpArray( int n ) {
   return new unsigned char[n];
 }
 static const NANOTypeReader<std::string> tnr____x(
-              new DataResetString( DataReset::stl_read ),
-              new NANOHandler::ConvertToString );
+             new DataResetString( DataReset::stl_read ),
+             new NANOHandler::ConvertToString );
 
 
-// === template specialization for std::vector<int> === 
+// === template specialization for std::vector<int> ===
 
 template <>
 int          NANOTypeReader< std::vector<int      > >::cSize( const void* p ) {
@@ -65,7 +65,7 @@ static const NANOTypeReader< std::vector<int      > > tnr_v__i(
                      new NANOHandler::ConvertToVector<int,int> );
 
 
-// === template specialization for std::vector<unsigned int> === 
+// === template specialization for std::vector<unsigned int> ===
 
 template <>
 int          NANOTypeReader< std::vector<unsigned
@@ -84,7 +84,7 @@ static const NANOTypeReader< std::vector<unsigned
                      new NANOHandler::ConvertToVector<int,unsigned int> );
 
 
-// === template specialization for std::vector<short> === 
+// === template specialization for std::vector<short> ===
 
 template <>
 int          NANOTypeReader< std::vector<short    > >::cSize( const void* p ) {
@@ -99,7 +99,7 @@ static const NANOTypeReader< std::vector<short    > > tnr_v__s(
                      new NANOHandler::ConvertToVector<int,short> );
 
 
-// === template specialization for std::vector<unsigned short> === 
+// === template specialization for std::vector<unsigned short> ===
 
 template <>
 int          NANOTypeReader< std::vector<unsigned
@@ -118,7 +118,7 @@ static const NANOTypeReader< std::vector<unsigned
                      new NANOHandler::ConvertToVector<int,unsigned short> );
 
 
-// === template specialization for std::vector<char> === 
+// === template specialization for std::vector<char> ===
 
 template <>
 int          NANOTypeReader< std::vector<char     > >::cSize( const void* p ) {
@@ -133,7 +133,7 @@ static const NANOTypeReader< std::vector<char     > > tnr_v__b(
                      new NANOHandler::ConvertToVector<unsigned char,char> );
 
 
-// === template specialization for std::vector<unsigned char> === 
+// === template specialization for std::vector<unsigned char> ===
 
 template <>
 int          NANOTypeReader<  std::vector<unsigned
@@ -152,7 +152,7 @@ static const NANOTypeReader< std::vector<unsigned
                      new NANOHandler::ConvertToVector<unsigned char,unsigned char> );
 
 
-// === template specialization for std::vector<bool> === 
+// === template specialization for std::vector<bool> ===
 
 template <>
 int         NANOTypeReader<  std::vector<bool     > >::cSize( const void* p ) {
@@ -167,7 +167,7 @@ static const NANOTypeReader< std::vector<bool     > > tnr_v__a(
                      new NANOHandler::ConvertToVector<bool,bool> );
 
 
-// === template specialization for std::vector<long long> === 
+// === template specialization for std::vector<long long> ===
 
 template <>
 int          NANOTypeReader< std::vector<long long> >::cSize( const void* p ) {
@@ -182,7 +182,7 @@ static const NANOTypeReader< std::vector<long long> > tnr_v__l(
                      new NANOHandler::ConvertToVector<int,long long> );
 
 
-// === template specialization for std::vector<unsigned long long> === 
+// === template specialization for std::vector<unsigned long long> ===
 
 template <>
 int          NANOTypeReader< std::vector<unsigned
@@ -201,7 +201,7 @@ static const NANOTypeReader< std::vector<unsigned
                      new NANOHandler::ConvertToVector<int,unsigned long long> );
 
 
-// === template specialization for std::vector<float> === 
+// === template specialization for std::vector<float> ===
 
 template <>
 int          NANOTypeReader< std::vector<float    > >::cSize( const void* p ) {
@@ -216,7 +216,7 @@ static const NANOTypeReader< std::vector<float    > > tnr_v__f(
                      new NANOHandler::ConvertToVector<float,float> );
 
 
-// === template specialization for std::vector<double> === 
+// === template specialization for std::vector<double> ===
 
 template <>
 int          NANOTypeReader< std::vector<double   > >::cSize( const void* p ) {
@@ -231,7 +231,7 @@ static const NANOTypeReader< std::vector<double   > > tnr_v__d(
                      new NANOHandler::ConvertToVector<float,double> );
 
 /*
-// === template specialization for std::vector<std::string> === 
+// === template specialization for std::vector<std::string> ===
 
 template <>
 int          NANOTypeReader< std::vector<std::string> >::cSize( const void* p ) {

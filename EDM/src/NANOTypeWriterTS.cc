@@ -31,7 +31,7 @@
 // Operations --
 //--------------
 
-// === template specialization for int === 
+// === template specialization for int ===
 
 template <>
 int    NANOTypeWriter<int      >::cSize( const void* p ) {
@@ -47,7 +47,7 @@ void   NANOTypeWriter<int      >::addC( const void* p, void* t,
 static NANOTypeWriter<int      > tw____i( DataReset::native_write );
 
 
-// === template specialization for unsigned int === 
+// === template specialization for unsigned int ===
 
 template <>
 int    NANOTypeWriter<unsigned
@@ -66,7 +66,7 @@ static NANOTypeWriter<unsigned
                       int      > tw___ui( DataReset::native_write );
 
 
-// === template specialization for short === 
+// === template specialization for short ===
 
 template <>
 int    NANOTypeWriter<short    >::cSize( const void* p ) {
@@ -82,7 +82,7 @@ void   NANOTypeWriter<short    >::addC( const void* p, void* t,
 static NANOTypeWriter<short    > tw____s( DataReset::native_write );
 
 
-// === template specialization for unsigned short === 
+// === template specialization for unsigned short ===
 
 template <>
 int    NANOTypeWriter<unsigned
@@ -101,7 +101,7 @@ static NANOTypeWriter<unsigned
                       short    > tw___us( DataReset::native_write );
 
 
-// === template specialization for char === 
+// === template specialization for char ===
 
 template <>
 int    NANOTypeWriter<char     >::cSize( const void* p ) {
@@ -117,7 +117,7 @@ void   NANOTypeWriter<char     >::addC( const void* p, void* t,
 static NANOTypeWriter<char     > tw____b( DataReset::native_write );
 
 
-// === template specialization for unsigned char  === 
+// === template specialization for unsigned char ===
 
 template <>
 int    NANOTypeWriter<unsigned
@@ -136,7 +136,7 @@ static NANOTypeWriter<unsigned
                       char     > tw___ub( DataReset::native_write );
 
 
-// === template specialization for bool  === 
+// === template specialization for bool ===
 
 template <>
 int    NANOTypeWriter<bool     >::cSize( const void* p ) {
@@ -153,7 +153,7 @@ static NANOTypeWriter<unsigned
                       char     > tw____o( DataReset::native_write );
 
 
-// === template specialization for long long === 
+// === template specialization for long long ===
 
 template <>
 int    NANOTypeWriter<long long>::cSize( const void* p ) {
@@ -169,7 +169,7 @@ void   NANOTypeWriter<long long>::addC( const void* p, void* t,
 static NANOTypeWriter<long long> tw____l( DataReset::native_write );
 
 
-// === template specialization for unsigned long long === 
+// === template specialization for unsigned long long ===
 
 template <>
 int    NANOTypeWriter<unsigned
@@ -188,7 +188,7 @@ static NANOTypeWriter<unsigned
                       long long> tw___ul( DataReset::native_write );
 
 
-// === template specialization for float === 
+// === template specialization for float ===
 
 template <>
 int    NANOTypeWriter<float    >::cSize( const void* p ) {
@@ -204,7 +204,7 @@ void   NANOTypeWriter<float    >::addC( const void* p, void* t,
 static NANOTypeWriter<float    > tw____f( DataReset::native_write );
 
 
-// === template specialization for double === 
+// === template specialization for double ===
 
 template <>
 int    NANOTypeWriter<double   >::cSize( const void* p ) {
