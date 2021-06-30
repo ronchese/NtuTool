@@ -59,5 +59,6 @@ class DataHandlerMap {
 };
 
 
-#endif // DataHandlerMap_H
+#endif // NtuTool_Common_DataHandlerMap_h
+
 

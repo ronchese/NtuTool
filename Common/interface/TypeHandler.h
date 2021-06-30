@@ -99,7 +99,8 @@ class TypeHandler: public virtual DataHandler,
 
 //#include "NtuTool/Common/interface/TypeHandler.hpp"
 
-#endif // TypeHandler_H
+#endif // NtuTool_Common_TypeHandler_h
+
 
 
 

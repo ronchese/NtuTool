@@ -88,5 +88,5 @@ class LegacyTree: public virtual SimpleData {
 
 };
 
-#endif
+#endif // NtuTool_Common_LegacyTree_h
 

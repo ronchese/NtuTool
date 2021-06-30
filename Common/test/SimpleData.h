@@ -61,5 +61,5 @@ class SimpleData {
 
 };
 
-#endif
+#endif // NtuTool_Common_SimpleData_h
 

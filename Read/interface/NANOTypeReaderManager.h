@@ -56,7 +56,8 @@ class NANOTypeReaderManager: public DataHandlerManager {
 };
 
 
-#endif // NANOTypeReaderManager_H
+#endif // NtuTool_Read_NANOTypeReaderManager_h
+
 
 
 

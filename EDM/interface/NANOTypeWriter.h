@@ -94,7 +94,8 @@ class NANOTypeWriter: public TypeHandler<T,NANOTypeWriterManager>,
 
 #include "NtuTool/EDM/interface/NANOTypeWriter.hpp"
 
-#endif // NANOTypeWriter_H
+#endif // NtuTool_EDM_NANOTypeWriter_h
+
 
 
 

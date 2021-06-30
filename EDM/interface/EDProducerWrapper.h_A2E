@@ -13,4 +13,4 @@ class EDProducerWrapper: public edm::EDProducer {
 };
 
 
-#endif
+#endif // NtuTool_EDM_EDProducerWrapper_h

@@ -44,5 +44,6 @@ class DataResetString: public TypeReset<std::string> {
 
 };
 
-#endif // DataResetString_H
+#endif // NtuTool_Common_DataResetString_h
+
 

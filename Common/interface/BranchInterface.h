@@ -90,4 +90,4 @@ class BranchInterface {
 
 #include "NtuTool/Common/interface/BranchInterface.hpp"
 
-#endif
+#endif // NtuTool_Common_BranchInterface_h

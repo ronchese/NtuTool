@@ -37,4 +37,4 @@ class TreeFilter: public virtual TreeWrapper {
 };
 
 
-#endif
+#endif // NtuTool_Common_TreeFilter_h

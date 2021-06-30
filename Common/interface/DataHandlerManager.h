@@ -39,4 +39,4 @@ class DataHandlerManager {
 };
 
 
-#endif
+#endif // NtuTool_Common_DataHandlerManager_h

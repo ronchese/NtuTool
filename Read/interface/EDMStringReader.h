@@ -70,5 +70,6 @@ class EDMStringReader: public EDMTypeReader<std::string> {
 
 //#include "NtuTool/Read/interface/EDMStringReader.hpp"
 
-#endif // EDMStringReader_H
+#endif // NtuTool_Read_EDMStringReader_h
+
 

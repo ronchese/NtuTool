@@ -87,4 +87,4 @@ class BranchInterfaceData {
 
 };
 
-#endif
+#endif // NtuTool_Common_BranchInterfaceData_h

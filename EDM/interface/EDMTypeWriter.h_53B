@@ -91,7 +91,8 @@ class EDMTypeWriter: public TypeHandler<T,EDMTypeWriterManager>,
 
 #include "NtuTool/EDM/interface/EDMTypeWriter.hpp"
 
-#endif // EDMTypeWriter_H
+#endif // NtuTool_EDM_EDMTypeWriter_h
+
 
 
 

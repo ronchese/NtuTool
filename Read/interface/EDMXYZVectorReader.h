@@ -68,7 +68,8 @@ class EDMXYZVectorReader: public EDMTypeReader<math::XYZVector> {
 
 };
 
-#endif // EDMXYZVectorReader_H
+#endif // NtuTool_Read_EDMXYZVectorReader_h
+
 
 
 

@@ -35,4 +35,4 @@ namespace math {
   typedef RThetaPhiVectorD RThetaPhiVector;
 }
 
-#endif
+#endif // NtuTool_Common_Math_h

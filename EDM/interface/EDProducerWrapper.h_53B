@@ -5,4 +5,4 @@
 
 typedef edm::EDProducer EDProducerWrapper;
 
-#endif
+#endif // NtuTool_EDM_EDProducerWrapper_h

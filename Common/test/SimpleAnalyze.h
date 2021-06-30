@@ -87,5 +87,5 @@ class SimpleAnalyze: public virtual SimpleData {
 
 };
 
-#endif
+#endif // NtuTool_Common_SimpleAnalyze_h
 

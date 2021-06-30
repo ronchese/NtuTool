@@ -5,4 +5,4 @@
 
 typedef edm::EDFilter EDFilterWrapper;
 
-#endif
+#endif // NtuTool_EDM_EDFilterWrapper_h

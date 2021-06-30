@@ -66,5 +66,5 @@ class SimpleNtuple: public virtual SimpleData,
 
 };
 
-#endif
+#endif // NtuTool_Common_SimpleNtuple_h
 

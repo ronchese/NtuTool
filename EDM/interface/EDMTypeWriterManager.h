@@ -56,7 +56,8 @@ class EDMTypeWriterManager: public DataHandlerManager {
 };
 
 
-#endif // EDMTypeWriterManager_H
+#endif // NtuTool_EDM_EDMTypeWriterManager_h
+
 
 
 

@@ -14,7 +14,7 @@ class NANOHandler {
   static const int nanoTableSize;
   static const int nanoBranchDoc;
 };
-#endif // NANOHandler_h
+#endif // NtuTool_Read_NANOHandler_h
 END_OF_INPUT
 
 cat << END_OF_INPUT > ${TOP}/Read/src/NANOHandler.cc

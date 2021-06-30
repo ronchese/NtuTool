@@ -37,4 +37,4 @@ class TreeReader: public virtual TreeWrapper {
 };
 
 
-#endif
+#endif // NtuTool_Common_TreeReader_h

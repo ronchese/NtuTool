@@ -13,4 +13,4 @@ class EDAnalyzerWrapper: public edm::EDAnalyzer {
 };
 
 
-#endif
+#endif // NtuTool_EDM_EDAnalyzerWrapper_h

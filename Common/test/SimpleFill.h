@@ -58,5 +58,5 @@ class SimpleFill: public virtual SimpleData {
 
 };
 
-#endif
+#endif // NtuTool_Common_SimpleFill_h
 

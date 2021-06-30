@@ -75,7 +75,8 @@ class TypePointerManipulator {
 
 };
 
-#endif // TypePointerManipulator_H
+#endif // NtuTool_Common_TypePointerManipulator_h
+
 
 
 

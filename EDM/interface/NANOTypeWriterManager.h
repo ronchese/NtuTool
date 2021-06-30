@@ -56,7 +56,8 @@ class NANOTypeWriterManager: public DataHandlerManager {
 };
 
 
-#endif // NANOTypeWriterManager_H
+#endif // NtuTool_EDM_NANOTypeWriterManager_h
+
 
 
 

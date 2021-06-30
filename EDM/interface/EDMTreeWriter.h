@@ -46,4 +46,4 @@ class EDMTreeWriter: public virtual EDProducerWrapper,
 };
 
 
-#endif
+#endif // NtuTool_EDM_EDMTreeWriter_h

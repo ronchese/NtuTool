@@ -43,4 +43,4 @@ class NANOTreeWriter: public virtual EDProducerWrapper,
 };
 
 
-#endif
+#endif // NtuTool_EDM_NANOTreeWriter_h

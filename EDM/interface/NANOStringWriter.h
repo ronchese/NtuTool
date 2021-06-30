@@ -68,5 +68,6 @@ class NANOStringWriter: public NANOTypeWriter<unsigned char> {
 
 //#include "NtuTool/EDM/interface/NANOStringWriter.hpp"
 
-#endif // NANOStringWriter_H
+#endif // NtuTool_EDM_NtuTool_EDM_NANOStringWriter_h
+
 

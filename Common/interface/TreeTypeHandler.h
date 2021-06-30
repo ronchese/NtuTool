@@ -74,7 +74,8 @@ class TreeTypeHandler: public TypeHandler<T,Manager> {
 
 #include "NtuTool/Common/interface/TreeTypeHandler.hpp"
 
-#endif // TreeTypeHandler_H
+#endif // NtuTool_Common_TreeTypeHandler_h
+
 
 
 

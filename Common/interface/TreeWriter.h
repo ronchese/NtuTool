@@ -29,4 +29,4 @@ class TreeWriter: public virtual TreeWrapper {
 };
 
 
-#endif
+#endif // NtuTool_Common_TreeWriter_h

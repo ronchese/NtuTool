@@ -5,4 +5,4 @@
 
 typedef edm::EDAnalyzer EDAnalyzerWrapper;
 
-#endif
+#endif // NtuTool_EDM_EDAnalyzerWrapper_h

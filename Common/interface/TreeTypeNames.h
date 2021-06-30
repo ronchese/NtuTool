@@ -62,5 +62,6 @@ class TreeTypeNames {
 };
 
 
-#endif // TreeTypeNames_H
+#endif // NtuTool_Common_TreeTypeNames_h
+
 

@@ -68,5 +68,6 @@ class EDMDataHandler {
 };
 
 
-#endif // EDMDataHandler_H
+#endif // NtuTool_EDM_EDMDataHandler_h
+
 

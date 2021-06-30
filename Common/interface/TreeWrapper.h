@@ -131,4 +131,4 @@ class TreeWrapper: public BranchInterface {
 
 #include "NtuTool/Common/interface/TreeWrapper.hpp"
 
-#endif
+#endif // NtuTool_Common_TreeWrapper_h

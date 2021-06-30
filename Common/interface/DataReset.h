@@ -61,5 +61,6 @@ class DataReset {
 };
 
 
-#endif // DataReset_H
+#endif // NtuTool_Common_DataReset_h
+
 

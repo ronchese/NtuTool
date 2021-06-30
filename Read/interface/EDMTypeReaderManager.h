@@ -56,7 +56,8 @@ class EDMTypeReaderManager: public DataHandlerManager {
 };
 
 
-#endif // EDMTypeReaderManager_H
+#endif // NtuTool_Read_EDMTypeReaderManager_h
+
 
 
 

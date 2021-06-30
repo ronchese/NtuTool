@@ -13,4 +13,4 @@ class EDFilterWrapper: public edm::EDFilter {
 };
 
 
-#endif
+#endif // NtuTool_EDM_EDFilterWrapper_h

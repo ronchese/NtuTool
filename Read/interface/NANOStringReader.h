@@ -62,5 +62,6 @@ class NANOStringReader: public NANOTypeReader<unsigned char> {
 
 };
 
-#endif // NANOStringReader_H
+#endif // NtuTool_Read_NANOStringReader_h
+
 

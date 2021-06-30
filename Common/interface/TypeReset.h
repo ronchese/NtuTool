@@ -65,5 +65,6 @@ class TypeReset: public DataReset,
 
 #include "NtuTool/Common/interface/TypeReset.hpp"
 
-#endif // TypeReset_H
+#endif // NtuTool_Common_TypeReset_h
+
 

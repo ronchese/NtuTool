@@ -84,5 +84,6 @@ class NANOTableHandler: public NANOHandler {
 };
 
 
-#endif // NANOTableHandler_H
+#endif // NtuTool_EDM_NANOTableHandler_h
+
 

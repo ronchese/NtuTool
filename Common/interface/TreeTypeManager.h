@@ -56,7 +56,8 @@ class TreeTypeManager: public DataHandlerManager {
 };
 
 
-#endif // TreeTypeManager_H
+#endif // NtuTool_Common_TreeTypeManager_h
+
 
 
 

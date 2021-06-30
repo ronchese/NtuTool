@@ -87,7 +87,5 @@ class NANOTypeReader: public TypeHandler<T,NANOTypeReaderManager>,
 
 #include "NtuTool/Read/interface/NANOTypeReader.hpp"
 
-#endif // NANOTypeReader_H
-
-
+#endif // NtuTool_Read_NANOTypeReader_h
 

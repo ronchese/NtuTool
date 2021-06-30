@@ -68,5 +68,6 @@ class TreeStandardAnalyzer {
 };
 
 
-#endif // TreeStandardAnalyzer_H
+#endif // NtuTool_Common_TreeStandardAnalyzer_h
+
 
