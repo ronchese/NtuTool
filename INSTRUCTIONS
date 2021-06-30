@@ -72,6 +72,17 @@ cmsenv
 git clone https://github.com/ronchese/NtuTool
 scram b
 
+# The package can be used across different CMSSW releases, running a script
+# before compilation:
+
+$CMSSW_BASE/src/NtuTool/uty/setAt810.sh #  CMSSW_8_1_0 and following
+$CMSSW_BASE/src/NtuTool/uty/setAtA2E.sh # CMSSW_10_2_4 and following
+$CMSSW_BASE/src/NtuTool/uty/setAtB20.sh # CMSSW_11_2_0 and following
+
+# The CMSSW versions listed above correspond to the ones used for testing, 
+# their correctness cannot be guaranteed; e.g. a CMSSW_10_2_X with X<4 could 
+# require the script "setAtA2E.sh".
+
  ----- STEP 2 : export the library outside -----
 
 cd ${CMSSW_BASE}/src
@@ -93,12 +104,12 @@ source uty/envset.csh
 
  ----- STEP 3 : compile -----
 
-When used inside CMSSW everything is compiled automatically by scram,
-so this step is necessary only to use the library with a simple ROOT;
-all the same it's possible that on some computer C++ and/or ROOT are
-available only as part of the CMSSW package. In that case, all the same,
-the library can be compiled using only C++ and ROOT, see step 3-B;
-that use case is poorly supported so it's usage is not recommended.
+# When used inside CMSSW everything is compiled automatically by scram,
+# so this step is necessary only to use the library with a simple ROOT;
+# all the same it's possible that on some computer C++ and/or ROOT are
+# available only as part of the CMSSW package. In that case, all the same,
+# the library can be compiled using only C++ and ROOT, see step 3-B;
+# that use case is poorly supported so it's usage is not recommended.
 
 # step 3-A
 # To compile with a completely CMSSW-independent C++/ROOT environment
@@ -138,7 +149,6 @@ when they're run in a CMSSW environment, so the corresponding examples
 (steps 5-B and 7-B) are not so meaningful. Examples of typical ntuples
 writing in a CMSSW run can be found in the next section 
 (part C , examples 10-13).
-
 
  --- STEP 4 : compile
 
