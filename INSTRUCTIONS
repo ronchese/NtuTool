@@ -75,9 +75,9 @@ scram b
 # The package can be used across different CMSSW releases, running a script
 # before compilation:
 
-$CMSSW_BASE/src/NtuTool/uty/setAt810.sh #  CMSSW_8_1_0 and following
-$CMSSW_BASE/src/NtuTool/uty/setAtA2E.sh # CMSSW_10_2_4 and following
-$CMSSW_BASE/src/NtuTool/uty/setAtB20.sh # CMSSW_11_2_0 and following
+${CMSSW_BASE}/src/NtuTool/uty/setAt810.sh #  CMSSW_8_1_0 and following
+${CMSSW_BASE}/src/NtuTool/uty/setAtA2E.sh # CMSSW_10_2_4 and following
+${CMSSW_BASE}/src/NtuTool/uty/setAtB20.sh # CMSSW_11_2_0 and following
 
 # The CMSSW versions listed above correspond to the ones used for testing, 
 # their correctness cannot be guaranteed; e.g. a CMSSW_10_2_X with X<4 could 
