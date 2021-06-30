@@ -133,13 +133,20 @@ class SimpleNtupleReader: public SimpleNtuple,  // ntuple definition,
   // "Gpad" can be also removed from the BuildFile.xml as well as from
   // the compile.sh script.
   void plot() override {
-    TCanvas* c = new TCanvas( "c", "c", 800, 600 );
-    c->Divide( 2, 2 );
-    c->cd( 1 ); hCount->Draw();
-    c->cd( 2 ); hContA->Draw();
-    c->cd( 3 ); hContI->Draw();
-    c->cd( 4 ); hContF->Draw();
-    c->Print( "c.pdf" );
+    TCanvas* c1 = new TCanvas( "c1", "c1", 800, 600 );
+    c1->Divide( 2, 2 );
+    c1->cd( 1 ); hCount->Draw();
+    c1->cd( 2 ); hContA->Draw();
+    c1->cd( 3 ); hContI->Draw();
+    c1->cd( 4 ); hContF->Draw();
+    c1->Print( "c1.pdf" );
+    TCanvas* c2 = new TCanvas( "c2", "c2", 800, 600 );
+    c2->Divide( 2, 2 );
+    c2->cd( 1 ); hRandI->Draw();
+    c2->cd( 2 ); hRandS->Draw();
+    c2->cd( 3 ); hRandF->Draw();
+    c2->cd( 4 ); hRandD->Draw();
+    c2->Print( "c2.pdf" );
   }
 
   // A function "save()" can be declared, but if relevant histograms are 

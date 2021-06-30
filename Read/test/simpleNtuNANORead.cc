@@ -69,22 +69,6 @@ class SimpleNtuNANOReader: public SimpleNtuple,  // ntuple definition,
   // An optional function to draw some plots at the execution end can be
   // implemented; see simpleNtupleRead.cc for an example.
   // See simpleNtupleRead.cc also about histogram saving.
-  void plot() override {
-    TCanvas* c = new TCanvas( "c", "c", 800, 600 );
-    c->Divide( 2, 2 );
-    c->cd( 1 ); hCount->Draw();
-    c->cd( 2 ); hContA->Draw();
-    c->cd( 3 ); hContI->Draw();
-    c->cd( 4 ); hContF->Draw();
-    c->Print( "c.pdf" );
-    TCanvas* d = new TCanvas( "d", "d", 800, 600 );
-    d->Divide( 2, 2 );
-    d->cd( 1 ); hRandI->Draw();
-    d->cd( 2 ); hRandS->Draw();
-    d->cd( 3 ); hRandF->Draw();
-    d->cd( 4 ); hRandD->Draw();
-    d->Print( "d.pdf" );
-  }
 
   // Parameters used in the (pre)selection and analysis
   // See (set/get)UserParameter above for additional informations.

@@ -49,6 +49,10 @@ class SimpleLegacyReader: public LegacyTree,
     hContA->Write();
     hContI->Write();
     hContF->Write();
+    hRandI->Write();
+    hRandS->Write();
+    hRandF->Write();
+    hRandD->Write();
     // close output TFile
     cout << "close output TFile" << endl;
     delete hist;

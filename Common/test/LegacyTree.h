@@ -39,9 +39,9 @@ class LegacyTree: public virtual SimpleData {
   // Create branches when writing ntuple
   void setBranchesWrite( TTree* tree ) {
     // define branches
-    b_i_run = tree->Branch( "iRun", &i_run,       "iRun/i" ); // a number
-    b_i_evt = tree->Branch( "iEvt", &i_evt,       "iEvt/i" ); // a number
-    b_n_arr = tree->Branch( "nArr", &n_arr,       "nArr/i" ); // an array
+    b_i_run = tree->Branch( "iRun", &i_run, "iRun/i"       ); // a number
+    b_i_evt = tree->Branch( "iEvt", &i_evt, "iEvt/i"       ); // a number
+    b_n_arr = tree->Branch( "nArr", &n_arr, "nArr/i"       ); // an array
     b_i_arr = tree->Branch( "iArr",  i_arr, "iArr[nArr]/I" ); // with its size
     b_i_vec = tree->Branch( "iVec", &i_vec, 1000, 99 ); // a vector (in stack)
                                   // i_vec is a std::vector  :
@@ -49,6 +49,10 @@ class LegacyTree: public virtual SimpleData {
     b_f_vpt = tree->Branch( "fVpt", &f_vpt, 1000, 99 ); // a vector (in heap)
                                   // f_vpt is a std::vector* :
                                   // address by pointer to pointer
+    b_i_ran = tree->Branch( "iRan", &i_ran, "iRan/I"       );
+    b_s_ran = tree->Branch( "sRan", &s_ran, "sRan/S"       );
+    b_f_ran = tree->Branch( "fRan", &f_ran, "fRan/F"       );
+    b_d_ran = tree->Branch( "dRan", &d_ran, "dRan/D"       );
     return;
   }
 
@@ -66,6 +70,10 @@ class LegacyTree: public virtual SimpleData {
     static std::vector<int>* i_vpt = &i_vec;
     tree->SetBranchAddress( "iVec", &i_vpt, &b_i_vec );
     tree->SetBranchAddress( "fVpt", &f_vpt, &b_f_vpt );
+    tree->SetBranchAddress( "iRan", &i_ran, &b_i_ran );
+    tree->SetBranchAddress( "sRan", &s_ran, &b_s_ran );
+    tree->SetBranchAddress( "fRan", &f_ran, &b_f_ran );
+    tree->SetBranchAddress( "dRan", &d_ran, &b_d_ran );
     return;
   }
 
