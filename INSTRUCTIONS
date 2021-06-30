@@ -83,6 +83,10 @@ ${CMSSW_BASE}/src/NtuTool/uty/setAtB20.sh # CMSSW_11_2_0 and following
 # their correctness cannot be guaranteed; e.g. a CMSSW_10_2_X with X<4 could 
 # require the script "setAtA2E.sh".
 
+# To run with CMSSW versions where NANOAOD is not defined, run the script
+
+${CMSSW_BASE}/src/NtuTool/uty/removeNANO.sh
+
  ----- STEP 2 : export the library outside -----
 
 cd ${CMSSW_BASE}/src
