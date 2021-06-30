@@ -171,6 +171,6 @@ std::string TreeTypeNames::typeCode( C__String*  dataPtr ) {
 }
 template <>
 std::string TreeTypeNames::typeName( C__String*  dataPtr ) {
-  return "String";
+  return "C__String";
 }
 

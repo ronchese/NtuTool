@@ -1,5 +1,5 @@
-#ifndef Math_Vector3D_h
-#define Math_Vector3D_h
+#ifndef NtuTool_Common_Math_h
+#define NtuTool_Common_Math_h
 // $Id: Vector3D.h,v 1.13 2007/07/31 15:20:15 ratnik Exp $
 #include "Math/Vector3D.h"
 

@@ -1,5 +1,5 @@
-#ifndef EDMStringWriter_H
-#define EDMStringWriter_H
+#ifndef NtuTool_EDM_EDMStringWriter_h
+#define NtuTool_EDM_EDMStringWriter_h
 /** \class EDMStringWriter
  *
  *  Description: 
@@ -41,31 +41,27 @@ class EDMStringWriter: public EDMTypeWriter<std::string> {
 
   /** Destructor
    */
-  virtual ~EDMStringWriter();
+  ~EDMStringWriter() override;
 
   /** Operations
    */
   /// get concrete object
-  virtual DataHandler* getInstance( const std::string& name,
-                                    const std::string& code );
-  /// Event function
-  virtual void put( edm::Event& e, const void* p );
+  DataHandler* getInstance( const std::string& name,
+                            const std::string& code ) override;
 
-  /// Utility functions
-//  virtual void reset( void* p );
-//  virtual void* setAuxPtr( void* p, DataHandlerManager* hm = 0 );
+  /// Event function
+  void put( edm::Event& e, const void* p ) override;
 
  protected:
 
   EDMStringWriter( const std::string& name,
                    const std::string& code,
-                  const std::string& type );
-  EDMStringWriter( bool dum );
+                   const std::string& type );
 
  private:
 
-  EDMStringWriter( const EDMStringWriter& e );
-  EDMStringWriter& operator=( const EDMStringWriter& e );
+  EDMStringWriter           ( const EDMStringWriter& e ) = delete;
+  EDMStringWriter& operator=( const EDMStringWriter& e ) = delete;
 
 };
 

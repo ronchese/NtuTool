@@ -1,5 +1,5 @@
-#ifndef EDMTypeReaderManager_H
-#define EDMTypeReaderManager_H
+#ifndef NtuTool_Read_EDMTypeReaderManager_h
+#define NtuTool_Read_EDMTypeReaderManager_h
 /** \class EDMTypeReaderManager
  *
  *  Description: 
@@ -40,7 +40,7 @@ class EDMTypeReaderManager: public DataHandlerManager {
 
   /** Destructor
    */
-  virtual ~EDMTypeReaderManager();
+  ~EDMTypeReaderManager() override;
 
   /** Operations
    */
@@ -50,15 +50,7 @@ class EDMTypeReaderManager: public DataHandlerManager {
 
  private:
 
-/*
-  typedef std::map<std::string,DataHandler*> handler_map;
-  typedef handler_map::const_iterator handler_iterator;
-  static handler_map* handlerMap;
-
-  virtual DataHandler* typeSelector( const std::string& name,
-                                     const std::string& code );
-*/
-  virtual DataHandlerMap* handlerMap();
+  DataHandlerMap* handlerMap() override;
   static  DataHandlerMap* hm();
 
 };

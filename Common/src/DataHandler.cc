@@ -22,8 +22,7 @@
 //---------------
 // C++ Headers --
 //---------------
-#include <iostream>
-#include <sstream>
+
 
 //-------------------
 // Initializations --
@@ -39,8 +38,9 @@ DataHandler::DataHandler():
  dataType( "" ),
  dataSize( "" ),
  convType( null ),
- auxPtr( 0 ),
- dataReset( 0 ) {
+ auxPtr( nullptr ),
+ addInfo( nullptr ),
+ dataReset( nullptr ) {
 }
 
 
@@ -52,8 +52,9 @@ DataHandler::DataHandler( const std::string& name,
  dataType( type ),
  dataSize( ""   ),
  convType( null ),
- auxPtr( 0 ),
- dataReset( 0 ) {
+ auxPtr( nullptr ),
+ addInfo( nullptr ),
+ dataReset( nullptr ) {
   int bds = dataName.find( "[" );
   if ( bds < 0 ) return;
   convType = copyVector;
@@ -63,8 +64,8 @@ DataHandler::DataHandler( const std::string& name,
 }
 
 
-DataHandler::DataHandler( bool dum ) {
-}
+//DataHandler::DataHandler( bool dum ) {
+//}
 
 //--------------
 // Destructor --
@@ -77,7 +78,7 @@ DataHandler::~DataHandler() {
 //--------------
 DataHandler* DataHandler::getInstance( const std::string& name,
                                        const std::string& code ) {
-  return 0;
+  return nullptr;
 }
 
 
@@ -108,33 +109,7 @@ DataHandler::conversionType DataHandler::getConv() {
 
 TBranch* DataHandler::branch( TTree* tree, const std::string* name, void** p,
                               int bufferSize, int splitLevel ) {
-  return 0;
-}
-
-
-void DataHandler::produces( edm::EDProducer* p ) {
-  return;
-}
-
-
-void DataHandler::put( edm::Event& e, const void* p ) {
-  return;
-}
-
-
-std::string DataHandler::getBranchName( const std::string& processName,
-                                        const std::string& producerName ) {
-  std::string
-  name( dataType );
-  if ( convType == copyVector ) name += "s";
-  name += "_";
-  name += producerName;
-  name += "_";
-  name += dataName;
-  name += "_";
-  name += processName;
-  name += ".obj";
-  return name;
+  return nullptr;
 }
 
 
@@ -144,7 +119,7 @@ void DataHandler::process( void* p ) {
 
 
 void DataHandler::reset( void* p ) {
-  if ( dataReset == 0 ) return;
+  if ( dataReset == nullptr ) return;
   if ( convType != copyVector ) dataReset->clearDatum( p, auxPtr );
   else                          dataReset->clearArray( p, auxPtr );
   return;
@@ -166,8 +141,18 @@ void* DataHandler::auxiliaryPtr() {
 }
 
 
+void* DataHandler::additionalInfo() {
+  return addInfo;
+}
+
+
 void* DataHandler::setAuxPtr( void* p, DataHandlerManager* hm ) {
   return auxPtr = p;
+}
+
+
+void* DataHandler::setAddInfo( void* p ) {
+  return addInfo = p;
 }
 
 

@@ -30,8 +30,8 @@
 //----------------
 // Constructors --
 //----------------
-DataReset::DataReset( dataType t ):
-  type( t ) {
+DataReset::DataReset( resetMode m ):
+  mode( m ) {
 }
 
 //--------------

@@ -71,7 +71,7 @@ void TreeFilter::dropBranch( const std::string& name ) {
 
 void TreeFilter::initWSkim( TFile* file ) {
 
-  if ( file != 0 ) {
+  if ( file != nullptr ) {
     TDirectory* currentDir = gDirectory;
     file->cd();
     std::string fullName = treeName;
@@ -79,7 +79,7 @@ void TreeFilter::initWSkim( TFile* file ) {
     while ( ( dirNameLength = fullName.find( "/" ) ) >= 0 ) {
       std::string nextName = fullName.substr( 0, dirNameLength ).c_str();
       const char* n = nextName.c_str();
-      if ( gDirectory->Get( n ) == 0 ) gDirectory->mkdir( n );
+      if ( gDirectory->Get( n ) == nullptr ) gDirectory->mkdir( n );
       gDirectory->cd( n );
       fullName = fullName.substr( ++dirNameLength, fullName.length() );
     }
@@ -89,7 +89,7 @@ void TreeFilter::initWSkim( TFile* file ) {
     currentDir->cd();
   }
   else {
-    filterTree = 0;
+    filterTree = nullptr;
     return;
   }
 
@@ -97,33 +97,19 @@ void TreeFilter::initWSkim( TFile* file ) {
   branch_iterator iend = treeEnd();
   while ( iter != iend ) {
     branch_desc* bDesc = *iter++;
-//    const std::string& bName = bDesc->branchName;
-//    std::map<std::string,bool>::const_iterator iter =
-//                                skimMap.find( bDesc->branchName );
-//    if ( ( iter != skimMap.end ) && ( iter->second ) ) continue;
     if ( skimDrop.find( *bDesc->branchName ) != skimDrop.end() ) continue;
-    DataHandler* handler = fhManager->setHandler( bDesc,
-                                                  bDesc->branchData );
-//    bDesc->dataHandler = handler;
-//    TBranch* b = 0;
-    void** dataPtr = 0;
+    DataHandler* handler = fhManager->setHandler( bDesc );
+    void** dataPtr = nullptr;
     if ( bDesc->splitLevel < 0 ) handler->setAuxPtr( bDesc->dataPtr,
                                                      fhManager );
-    if ( bDesc->ppRef ) dataPtr =  static_cast<void**>( bDesc->dataPtr );
-    else                dataPtr = &bDesc->dataPtr;
+    if ( bDesc->ppRef ) dataPtr = pPtr( bDesc->dataPtr );
+    else                dataPtr =      &bDesc->dataPtr;
     if ( bDesc->splitLevel < 0 )
          filterTree->Branch( bDesc->branchName->c_str(),
                              bDesc->dataPtr,
                              bDesc->branchData->c_str() );
     else handler->branch( filterTree, bDesc->branchName, dataPtr,
                                       bDesc->bufferSize, bDesc->splitLevel );
-//      if ( bDesc->splitLevel < 0 )
-//           b = currentTree->Branch( bDesc->branchName->c_str(),
-//                                    bDesc->dataPtr,
-//                                    bDesc->branchData->c_str() );
-//      else b = handler->branch( currentTree, bDesc->branchName, dataPtr,
-//                                bDesc->bufferSize, bDesc->splitLevel );
-//      if ( bDesc->branchPtr != 0 ) *bDesc->branchPtr = b;
   }
 
   return;
@@ -132,7 +118,7 @@ void TreeFilter::initWSkim( TFile* file ) {
 
 
 void TreeFilter::fillSkim() {
-  if ( filterTree == 0 ) return;
+  if ( filterTree == nullptr ) return;
   TDirectory* currentDir = gDirectory;
   treeDir->cd();
   filterTree->Fill();
@@ -142,7 +128,7 @@ void TreeFilter::fillSkim() {
 
 
 void TreeFilter::closeSkim() {
-  if ( filterTree == 0 ) return;
+  if ( filterTree == nullptr ) return;
   TDirectory* currentDir = gDirectory;
   treeDir->cd();
   filterTree->Write();

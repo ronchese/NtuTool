@@ -3,7 +3,7 @@
 #include "NtuTool/Common/interface/DataHandlerManager.h"
 #include "NtuTool/Common/interface/DataHandler.h"
 #include "NtuTool/Common/interface/DataHandlerMap.h"
-
+#include "NtuTool/Common/interface/BranchInterfaceData.h"
 
 DataHandlerManager::DataHandlerManager() {
 }
@@ -13,23 +13,24 @@ DataHandlerManager::~DataHandlerManager() {
 }
 
 
-DataHandler* DataHandlerManager::setHandler( const void* descPtr,
-                                             const std::string* branchData ) {
+DataHandler* DataHandlerManager::setHandler(
+             const BranchInterfaceData::branch_desc* descPtr ) {
 
   data_iterator iter;
   if ( ( iter = dataMap.find( descPtr ) ) != dataMap.end() )
     return iter->second;
-  DataHandler* dataHandler = getInstance( branchData );
+  DataHandler* dataHandler = getInstance( descPtr->branchData );
   dataMap.insert( std::make_pair( descPtr, dataHandler ) );
+  nameMap.insert( std::make_pair( dataHandler->getName(), dataHandler ) );
   return dataHandler;
 
 }
 
 
-DataHandler* DataHandlerManager::getHandler( const void* descPtr ) {
+DataHandler* DataHandlerManager::getHandler( const BranchInterfaceData::branch_desc* descPtr ) {
 
   data_iterator iter;
-  if ( ( iter = dataMap.find( descPtr ) ) == dataMap.end() ) return 0;
+  if ( ( iter = dataMap.find( descPtr ) ) == dataMap.end() ) return nullptr;
   return iter->second;
 
 }
@@ -37,14 +38,9 @@ DataHandler* DataHandlerManager::getHandler( const void* descPtr ) {
 
 DataHandler* DataHandlerManager::getHandler( const std::string& dataName ) {
 
-  data_iterator iter = dataMap.begin();
-  data_iterator iend = dataMap.end();
-  while ( iter != iend ) {
-    const std::pair<const void*,DataHandler*>& entry = *iter++;
-    DataHandler* handler = entry.second;
-    if ( handler->getName() == dataName ) return handler;
-  }
-  return 0;
+  const auto iter = nameMap.find( dataName );
+  if ( iter != nameMap.end() ) return iter->second;
+  return nullptr;
 
 }
 
@@ -55,11 +51,11 @@ DataHandler* DataHandlerManager::getInstance( const std::string* branchData ) {
   if ( edt < 0 ) edt = branchData->length();
   std::string name = branchData->substr( 0, bdt++ );
   std::string code = branchData->substr( bdt, edt );
-  if ( handlerMap() == 0 ) return 0;
+  if ( handlerMap() == nullptr ) return nullptr;
   DataHandler* handler = handlerMap()->find( code );
-  if ( handler == 0 ) {
+  if ( handler == nullptr ) {
     std::cout << "type not found: " << code << std::endl;
-    return 0;
+    return nullptr;
   }
   return handler->getInstance( name, code );
 }

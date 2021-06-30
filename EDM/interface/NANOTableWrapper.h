@@ -14,13 +14,13 @@ class NANOTableWrapper {
                          const std::string& doc,
                          nanoaod::FlatTable::ColumnType type,
                          int nBits ) {
-    table->template addColumn<T,std::vector<T>>( name, v, doc, nBits );
+    table->template addColumn<T>( name, v, doc, type, nBits );
   }
   typedef nanoaod::FlatTable::ColumnType cType;
-  static constexpr cType Float = nanoaod::FlatTable::ColumnType::Float;
-  static constexpr cType Int   = nanoaod::FlatTable::ColumnType::Int;
-  static constexpr cType UInt8 = nanoaod::FlatTable::ColumnType::UInt8;
-  static constexpr cType Bool  = nanoaod::FlatTable::ColumnType::Bool;
+  static constexpr cType Float = nanoaod::FlatTable::FloatColumn;
+  static constexpr cType Int   = nanoaod::FlatTable::IntColumn;
+  static constexpr cType UInt8 = nanoaod::FlatTable::UInt8Column;
+  static constexpr cType Bool  = nanoaod::FlatTable::BoolColumn;
 
 };
 

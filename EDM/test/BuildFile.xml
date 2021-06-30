@@ -1,9 +1,10 @@
 <use   name="FWCore/Framework"/>
 <use   name="FWCore/ParameterSet"/>
+<use   name="FWCore/ServiceRegistry"/>
+<use   name="CommonTools/UtilAlgos"/>
 <use   name="NtuTool/Common"/>
 <use   name="NtuTool/EDM"/>
 <use   name="root"/>
-<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
-<library   file="stubs/*.cc" name="NtuToolEDMTest">
+<library   file="*.cc" name="NtuToolEDMTest">
   <flags   EDM_PLUGIN="1"/>
 </library>

@@ -1,5 +1,5 @@
-#ifndef DataResetString_H
-#define DataResetString_H
+#ifndef NtuTool_Common_DataResetString_h
+#define NtuTool_Common_DataResetString_h
 /** \class DataResetString
  *
  *  Description: 
@@ -14,7 +14,7 @@
 //----------------------
 // Base Class Headers --
 //----------------------
-#include "NtuTool/Common/interface/DataReset.h"
+#include "NtuTool/Common/interface/TypeReset.h"
 
 //------------------------------------
 // Collaborating Class Declarations --
@@ -24,36 +24,25 @@
 //---------------
 // C++ Headers --
 //---------------
-
+#include <string>
 
 //              ---------------------
 //              -- Class Interface --
 //              ---------------------
 
-class DataResetString: public DataReset {
+class DataResetString: public TypeReset<std::string> {
 
  public:
 
   /** Constructor
    */
-  DataResetString( dataType t = null );
+  DataResetString( resetMode m = null );
 
   /** Destructor
    */
-  virtual ~DataResetString();
-
-  /** Operations
-   */
-  /// reset data
-  virtual void clearDatum( void* p, void* a );
-  virtual void clearArray( void* p, void* a );
-
- protected:
-
-  dataType type;
+  ~DataResetString() override;
 
 };
-
 
 #endif // DataResetString_H
 

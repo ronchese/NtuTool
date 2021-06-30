@@ -15,6 +15,7 @@
 //-------------------------------
 // Collaborating Class Headers --
 //-------------------------------
+#include "NtuTool/Common/interface/DataHandler.h"
 #include "NtuTool/Common/interface/DataConvert.h"
 
 //---------------
@@ -32,20 +33,10 @@
 // Constructors --
 //----------------
 template <class T>
-EDMTypeReader<T>::EDMTypeReader() {
-}
-
-
-template <class T>
 EDMTypeReader<T>::EDMTypeReader( const std::string& name,
                                  const std::string& code,
                                  const std::string& type ):
  DataHandler( name, code, type ) {
-}
-
-
-template <class T>
-EDMTypeReader<T>::EDMTypeReader( bool dum ) {
 }
 
 //--------------
@@ -61,27 +52,27 @@ EDMTypeReader<T>::~EDMTypeReader() {
 template <class T>
 DataHandler* EDMTypeReader<T>::getInstance( const std::string& name,
                                             const std::string& code ) {
-  EDMTypeReader<T>* handler = new EDMTypeReader<T>( name, code, dataType );
-  handler->dataReset = dataReset;
+  EDMTypeReader<T>* handler = new EDMTypeReader<T>( name, code,
+                                                    this->dataType );
+  handler->dataReset = this->dataReset;
   return handler;
 }
 
 
 template <class T>
 void EDMTypeReader<T>::process( void* p ) {
-  if ( convType == copyVector )
-       DataConvert::copyVector( static_cast<std::vector<T>*>( auxPtr ),
-                                static_cast<            T *>(
-                                      const_cast<          void*>( p ) ) );
+  if ( this->convType == DataHandler::copyVector )
+       DataConvert::copyVector( this->vPtr( this->auxPtr ), this->dPtr( p ) );
   return;
 }
 
 
 template <class T>
 void* EDMTypeReader<T>::setAuxPtr( void* p, DataHandlerManager* hm ) {
-  if ( auxPtr == 0 ) auxPtr = ( convType == copyVector ?
-                                new std::vector<T> : p );
-  return auxPtr;
-
+  if ( this->auxPtr == nullptr ) this->auxPtr =
+                               ( this->convType == DataHandler::copyVector ?
+                                 new std::vector<T>( *this->arraySize( hm ) ) :
+                                 p );
+  return this->auxPtr;
 }
 

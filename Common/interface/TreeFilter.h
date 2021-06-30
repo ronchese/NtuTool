@@ -1,5 +1,5 @@
-#ifndef TreeFilter_h
-#define TreeFilter_h
+#ifndef NtuTool_Common_TreeFilter_h
+#define NtuTool_Common_TreeFilter_h
 
 #include "NtuTool/Common/interface/TreeWrapper.h"
 #include <string>
@@ -13,7 +13,7 @@ class TreeFilter: public virtual TreeWrapper {
  public:
 
   TreeFilter();
-  virtual ~TreeFilter();
+  ~TreeFilter() override;
 
   virtual void dropBranch( const std::string& name );
   virtual void initWSkim( TFile* file );
@@ -28,8 +28,8 @@ class TreeFilter: public virtual TreeWrapper {
 
   DataHandlerManager* fhManager;
 
-  TreeFilter( const TreeFilter& t );
-  TreeFilter& operator=( const TreeFilter& t );
+  TreeFilter           ( const TreeFilter& t ) = delete;
+  TreeFilter& operator=( const TreeFilter& t ) = delete;
 
   TDirectory* treeDir;
   std::set<std::string> skimDrop;

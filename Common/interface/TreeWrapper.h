@@ -1,5 +1,7 @@
-#ifndef TreeWrapper_h
-#define TreeWrapper_h
+#ifndef NtuTool_Common_TreeWrapper_h
+#define NtuTool_Common_TreeWrapper_h
+
+#include "NtuTool/Common/interface/BranchInterface.h"
 
 #include <vector>
 #include <map>
@@ -13,28 +15,32 @@ class TObject;
 class TDirectory;
 class TList;
 
-class TreeWrapper {
+#define SET_USER_PARAMETER(NAME) setUserParameter(#NAME,NAME);
+#define GET_USER_PARAMETER(NAME) getUserParameter(#NAME,NAME);
+#define ASS_USER_PARAMETER(NAME,VALUE) setUserParameter(#NAME,NAME=VALUE);
+
+class TreeWrapper: public BranchInterface {
 
  public:
 
   TreeWrapper();
-  virtual ~TreeWrapper();
+  ~TreeWrapper() override;
 
   const std::string& name() const;
 
   void setConfiguration( const std::string& file );
   void setUserParameter( const std::string& key,
                          const std::string& val );
-  template<class T>
+  template <class T>
   void setUserParameter( const std::string& key,
                          const           T& val );
   void setUserParameter( const std::string& key,
                          const        bool& val );
   const std::string& getUserParameter( const std::string& key );
-  template<class T>
+  template <class T>
   void               getUserParameter( const std::string& key,    T& val );
   void               getUserParameter( const std::string& key, bool& val );
-  template<class T>
+  template <class T>
   T                  getUserParameter( const std::string& key );
 
   void dumpAll( std::ostream& os );
@@ -64,45 +70,10 @@ class TreeWrapper {
 
   std::string treeName;
 
-  // tree pointer
-  TTree* currentTree;
-
   int     readEvts;
   int analyzedEvts;
   int acceptedEvts;
 
-  void setBranch( const char* branchName, void* dataPtr,
-                  const char* branchData );
-  void setBranch( const char* branchName, void* dataPtr,
-                  const char* branchData,
-                  TBranch** branchPtr );
-  void setBranch( const char* branchName, void* dataPtr,
-                  int bufferSize,
-                  int splitLevel,
-                  const char* branchData );
-  void setBranch( const char* branchName, void* dataPtr,
-                  int bufferSize,
-                  int splitLevel,
-                  const char* branchData,
-                  TBranch** branchPtr );
-  template<class T>
-  void setBranch( const char* branchName, T* dataPtr,
-                  int bufferSize = 32000,
-                  int splitLevel = 99 );
-  template<class T>
-  void setBranch( const char* branchName, T* dataPtr,
-                  int bufferSize,
-                  int splitLevel,
-                  TBranch** branchPtr );
-  template<class T>
-  void setBranch( const char* branchName, T** dataPtr,
-                  int bufferSize = 32000,
-                  int splitLevel = 99 );
-  template<class T>
-  void setBranch( const char* branchName, T** dataPtr,
-                  int bufferSize,
-                  int splitLevel,
-                  TBranch** branchPtr );
 
   // function to reset class content before reading from file
   virtual void reset();
@@ -126,14 +97,14 @@ class TreeWrapper {
     dir_iter dirFind( const TObject* obj );
     dir_iter dirEnd();
     AutoSavedObject& operator=( TObject* obj );
-    template<class T>
+    template <class T>
     AutoSavedObject& operator=( const std::vector<T*>& vObj ) {
       int i;
       int n = vObj.size();
       for ( i = 0; i < n; ++i ) *this = vObj[i];
       return *this;
     }
-    template<class T>
+    template <class T>
     AutoSavedObject& operator=( const std::vector<T*>* vObj ) {
       *this = *vObj;
       return *this;
@@ -143,45 +114,18 @@ class TreeWrapper {
     dir_map directoryMap;
   };
   AutoSavedObject autoSavedObject;
-  void autoSave( TList* list = 0 );
-//  void autoSave( TDirectory* dir );
-
-  struct branch_desc {
-    std::string* branchName;
-    void*        dataPtr;
-    std::string* branchData;
-    TBranch**    branchPtr;
-    int          bufferSize;
-    int          splitLevel;
-    bool         ppRef;
-    DataHandler* dataHandler;
-  };
-  typedef std::vector< branch_desc* > branch_list;
-  typedef branch_list::const_iterator branch_iterator;
-  typedef branch_list::const_reverse_iterator branch_rev_iter;
-
-  std::map<TBranch*,branch_desc*> branchMap;
-  void fillBranchMap();
-  virtual void process( TBranch* b, int ientry );
-
-  branch_iterator treeBegin();
-  branch_iterator treeEnd();
+  void autoSave( TList* list = nullptr );
 
   virtual bool writable( const TObject* obj );
   virtual bool writable( const std::string& type );
 
  private:
 
-  TreeWrapper( const TreeWrapper& t );
-  TreeWrapper& operator=( const TreeWrapper& t );
+  TreeWrapper           ( const TreeWrapper& t ) = delete;
+  TreeWrapper& operator=( const TreeWrapper& t ) = delete;
 
   std::map<std::string,std::string> userParameters;
   bool histoPlotted;
-
-  branch_list branchList;
-
-  branch_desc* newBranch( const char* branchName, void* dataPtr,
-                          const char* branchData );
 
 };
 

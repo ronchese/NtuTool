@@ -1,5 +1,5 @@
-#ifndef EDProducerWrapper_h
-#define EDProducerWrapper_h
+#ifndef NtuTool_EDM_EDProducerWrapper_h
+#define NtuTool_EDM_EDProducerWrapper_h
 
 #include "FWCore/Framework/interface/EDProducer.h"
 
@@ -8,7 +8,7 @@ class EDProducerWrapper: public edm::EDProducer {
  public:
 
   EDProducerWrapper() {}
-  virtual ~EDProducerWrapper() noexcept {}
+  ~EDProducerWrapper() noexcept override {}
 
 };
 

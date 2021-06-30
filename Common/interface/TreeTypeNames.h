@@ -1,5 +1,5 @@
-#ifndef TreeTypeNames_H
-#define TreeTypeNames_H
+#ifndef NtuTool_Common_TreeTypeNames_h
+#define NtuTool_Common_TreeTypeNames_h
 /** \class TreeTypeNames
  *
  *  Description: 
@@ -45,15 +45,15 @@ class TreeTypeNames {
   /** Operations
    */
   /// Type codes used by ROOT
-  template<class T> static
+  template <class T> static
   std::string typeCode( T*  dataPtr );
-  template<class T> static
+  template <class T> static
   std::string typeCode( T** dataPtr );
 
-  /// Type names used by EDM
-  template<class T> static
+  /// Type names
+  template <class T> static
   std::string typeName( T*  dataPtr );
-  template<class T> static
+  template <class T> static
   std::string typeName( T** dataPtr );
 
  private:
