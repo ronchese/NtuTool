@@ -1,0 +1,9 @@
+<use   name="NtuTool/Common"/>
+<use   name="root"/>
+<bin   file="simpleLegacyWrite.cc"  name="simpleLegacyWrite"/>
+<bin   file="simpleNtupleWrite.cc"  name="simpleNtupleWrite"/>
+<bin   file="simpleLegacyRead.cc"   name="simpleLegacyRead"/>
+<bin   file="simpleNtupleRead.cc"   name="simpleNtupleRead">
+  <lib   name="Gpad"/>
+</bin>
+<bin   file="simpleNtupleFilter.cc" name="simpleNtupleFilter"/>

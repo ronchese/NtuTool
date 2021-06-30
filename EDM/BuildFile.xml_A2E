@@ -1,0 +1,12 @@
+<use   name="FWCore/Framework"/>
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/Read"/>
+<use   name="DataFormats/NanoAOD"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<export>
+  <use   name="FWCore/Framework"/>
+  <use   name="NtuTool/Common"/>
+  <use   name="NtuTool/Read"/>
+  <use   name="DataFormats/NanoAOD"/>
+  <lib   name="1"/>
+</export>
