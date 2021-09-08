@@ -19,14 +19,15 @@ the following functionalities:
 - define the ntuple only once and reuse the same code when producing the
   ntuple itself and/or analyzing it, via an unique set of calls to 
   "setBranch(...)" with the same parameters as the ROOT function "Branch(...)";
-- translate internally those calls to the ones required to produce EDM ntuples
-  or NANOAOD if required;
 - build a standalone executable for ntuple analysis without using "makeClass";
 - specify the ntuple file list and the output histogram file in the command
   line;
 - specify the number of events to process, or skip, in the command line;
 - allow the customization of parameters, e.g. cuts, in the command line
-  without the need of recompiling.
+  without the need of recompiling;
+- when analyzing CMS data, translate internally the calls to "setBranch(...)" 
+  to the ones required to produce EDM ntuples or NANOAOD if required, and 
+  analyze it as if it were a flat ntuple.
 
 The ntuple production workflow goes through the following main steps:
 - ntuple definition,
@@ -65,12 +66,20 @@ and refer to the instructions therein.
 
  -------------- Download, install and compile --------------
 
- ----- STEP 1 : use the package in CMSSW -----
+ ----- STEP 1 : download and install -----
+
+# The package can be downloaded from git and installed running a simple script:
+
+git clone https://github.com/ronchese/NtuTool
+uty/install.sh
+
+# That can be done in any directory of the file system available to the user,
+# unless the package is used in CMSSW; in this case it's to be downloaded in 
+# the top "src" directory, and running the install.sh can be omitted:
 
 cd ${CMSSW_BASE}/src
 cmsenv
 git clone https://github.com/ronchese/NtuTool
-scram b
 
 # The package can be used across different CMSSW releases, running a script
 # before compilation:
@@ -90,50 +99,66 @@ ${CMSSW_BASE}/src/NtuTool/uty/removeNANO.sh
 
  ----- STEP 2 : export the library outside -----
 
-cd ${CMSSW_BASE}/src
-git clone https://github.com/ronchese/NtuTool
-NtuTool/uty/export.sh
+# To install the package on a computer where "git" is not available, it can be
+# exported there from a computer where the package has been already downloaded
+# running a simple script, that can be run from any directory, both using
+# the relative or absolute path:
 
-# Copy the file NtuTool_XX_YY_ZZ.tgz wherever you want to install the library,
-# then unpack
+..../NtuTool/uty/export.sh
+
+# The script print on the screen the full path of a NtuTool_XX_YY_ZZ.tgz file,
+# that you can copy wherever you want to install the package and unpack:
 
 tar -xzf NtuTool_XX_YY_ZZ.tgz
 cd NtuTool_XX_YY_ZZ
 uty/install.sh
+
+ ----- STEP 3 : set environment and compile -----
+
+# The environment must be set sourcing a script:
+
+cd ..../NtuTool
 . uty/envset.sh
 # or
 source uty/envset.csh
 
-# The "envset.(sh|csh)" script must be executed at the beginning of each
-# session using the NtuTool library.
+# The full path, relative or absolute, can be used as well, in place of 
+# issuing a "cd ..../NtuTool" command.
 
- ----- STEP 3 : compile -----
+# The "envset.(sh|csh)" script must be executed at the beginning of each
+# session using the NtuTool library, unless it's used in a CMSSW environment;
+# in this case the environment is automatically set by CMSSW itself:
+
+cd ${CMSSW_BASE}/src
+cmsenv
+
+# step 3-A
+# To compile with a completely CMSSW-independent C++/ROOT environment
+# do the following:
+
+${NTU_TOOL_DIR}/uty/compile.sh
 
 # When used inside CMSSW everything is compiled automatically by scram,
 # so this step is necessary only to use the library with a simple ROOT;
 # all the same it's possible that on some computer C++ and/or ROOT are
 # available only as part of the CMSSW package. In that case, all the same,
-# the library can be compiled using only C++ and ROOT, see step 3-B;
-# that use case is poorly supported so it's usage is not recommended.
-
-# step 3-A
-# To compile with a completely CMSSW-independent C++/ROOT environment
-# do the following
-
-cd ${NTU_TOOL_DIR}/Common/test
-uty/compile.sh
+# the package can be compiled using only C++ and ROOT, but the resulting 
+# library would be usable only with the same C++/ROOT versions used to compile.
+# The production of different libraries in the same installation can be done
+# using a dedicated script, see step 3-B; that use case is poorly supported
+# so it's usage is not recommended.
 
 # step 3-B
 # To compile using a C++/ROOT environment as defined in a CMSSW release
-# do the following
+# do the following:
 
 cd /cvmfs/.../slcN_ARCH_gccPQR/cms/..../CMSSW_X_Y_Z/src ; cmsenv
 cd ${NTU_TOOL_DIR}/Common/test
 uty/compile_CMSSW.sh CMSSW_X_Y_Z [slcN_ARCH_gccPQR]
 
-# where CMSSW_X_Y_Z is the CMSSW version, e.g. CMSSW_4_2_3 and 
+# where CMSSW_X_Y_Z is the CMSSW version, e.g. CMSSW_10_2_4 and 
 # slcN_ARCH_gccPQR is the architecture, e.g. slc7_amd64_gcc700 .
-# To compile for allavailable CMSSW versions do the following
+# To compile for all available CMSSW versions do the following
 # (after setting SCRAM_ARCH).
 
 uty/go_compileNtuTool.sh
