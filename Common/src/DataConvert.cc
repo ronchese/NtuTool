@@ -56,5 +56,5 @@ bool DataConvert::fixedValue( const std::string& x ) {
     if ( *p > '9' ) return false;
     p++;
   }
-return true;
+  return true;
 }

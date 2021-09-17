@@ -48,9 +48,6 @@ EDMXYZVectorReader::EDMXYZVectorReader( const std::string& name,
 }
 
 
-EDMXYZVectorReader::EDMXYZVectorReader( bool dum ) {
-}
-
 //--------------
 // Destructor --
 //--------------
@@ -71,7 +68,6 @@ DataHandler* EDMXYZVectorReader::getInstance( const std::string& name,
 void EDMXYZVectorReader::setMemberPtr( TTree* tree,
                                        const std::string& branchName,
                                        void* dataPtr ) {
-  std::cout << "EDMXYZVectorReader::setMemberPtr" << std::endl;
   double* pX = static_cast<double*>( dataPtr );
   double* pY = pX + 1;
   double* pZ = pY + 1;

@@ -1,5 +1,5 @@
-#ifndef TreeWriter_h
-#define TreeWriter_h
+#ifndef NtuTool_Common_TreeWriter_h
+#define NtuTool_Common_TreeWriter_h
 
 #include "NtuTool/Common/interface/TreeWrapper.h"
 
@@ -11,7 +11,7 @@ class TreeWriter: public virtual TreeWrapper {
  public:
 
   TreeWriter();
-  virtual ~TreeWriter();
+  ~TreeWriter() override;
 
   virtual void initWrite( TFile* file );
   virtual void fill();
@@ -21,12 +21,12 @@ class TreeWriter: public virtual TreeWrapper {
 
  private:
 
-  TreeWriter( const TreeWriter& t );
-  TreeWriter& operator=( const TreeWriter& t );
+  TreeWriter           ( const TreeWriter& t ) = delete;
+  TreeWriter& operator=( const TreeWriter& t ) = delete;
 
   TDirectory* treeDir;
 
 };
 
 
-#endif
+#endif // NtuTool_Common_TreeWriter_h

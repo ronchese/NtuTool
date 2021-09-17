@@ -1,5 +1,5 @@
-#ifndef DataReset_H
-#define DataReset_H
+#ifndef NtuTool_Common_DataReset_h
+#define NtuTool_Common_DataReset_h
 /** \class DataReset
  *
  *  Description: 
@@ -34,11 +34,11 @@ class DataReset {
 
  public:
 
-  enum dataType{ null, write, read };
+  enum resetMode{ null, native_write, stl_read };
 
   /** Constructor
    */
-  DataReset( dataType t = null );
+  DataReset( resetMode m = null );
 
   /** Destructor
    */
@@ -52,10 +52,15 @@ class DataReset {
 
  protected:
 
-  dataType type;
+  resetMode mode;
 
+ private:
+
+  DataReset           ( const DataReset& e ) = delete;
+  DataReset& operator=( const DataReset& e ) = delete;
 };
 
 
-#endif // DataReset_H
+#endif // NtuTool_Common_DataReset_h
+
 

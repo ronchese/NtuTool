@@ -6,18 +6,24 @@ cd ${NTU_ROOT_DIR}
 
 rm -f export.tgz
 tar -czf export.tgz                \
-         INSTRUCTIONS              \
          VERSION                   \
          Common/interface          \
          Common/src                \
+         Common/bin/treeAnalyze.cc \
+         Common/test/*.h           \
+         Common/test/*.cc          \
+         Common/test/*.xml         \
+         Common/test/*.sh          \
          Read/interface            \
          Read/src                  \
-         Read/bin/treeAnalyze.cc   \
-         uty/install.*h            \
+         Read/test/*.cc            \
+         Read/test/*.xml           \
+         Read/test/*.sh            \
+         uty/install.sh            \
          uty/envset*h              \
-         uty/compile.*h            \
-         uty/go_compileNtuTool.*h  \
-         uty/compile_CMSSW.*h
+         uty/compile.sh            \
+         uty/go_compileNtuTool.sh  \
+         uty/compile_CMSSW.sh
 
 export NTU_TOOL_TMP=NtuTool_`head -1 ${NTU_ROOT_DIR}/VERSION | sed s/"\."/_/g`
 mkdir ${NTU_TOOL_TMP}

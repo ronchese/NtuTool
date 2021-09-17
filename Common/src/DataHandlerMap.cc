@@ -52,10 +52,10 @@ void DataHandlerMap::insert( const std::string& code,
 
 
 DataHandler* DataHandlerMap::find( const std::string& code ) {
-  if ( handlerMap == 0 ) return 0;
+  if ( handlerMap == nullptr ) return nullptr;
   handler_iterator iter = handlerMap->find( code );
   handler_iterator iend = handlerMap->end();
-  if ( iter == iend ) return 0;
+  if ( iter == iend ) return nullptr;
   return iter->second;
 }
 

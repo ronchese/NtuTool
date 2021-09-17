@@ -1,5 +1,5 @@
-#ifndef DataConvert_H
-#define DataConvert_H
+#ifndef NtuTool_Common_DataConvert_h
+#define NtuTool_Common_DataConvert_h
 /** \class DataConvert
  *
  *  Description: 
@@ -26,6 +26,7 @@
 //---------------
 #include <vector>
 #include <string>
+#include <iostream>
 
 //              ---------------------
 //              -- Class Interface --
@@ -49,12 +50,18 @@ class DataConvert {
   static void copyString( const std::string* s, char* c );
 
   /// copy std::vector to C array
-  template<class T>
-    static int  copyVector( const std::vector<T>* v, T* p );
+  template <class S, class D>
+  static int  copyVector( const std::vector<S>* v, D* p );
 
   /// copy C array to std::vector
-  template<class T>
-    static void copyVector( const T* p, std::vector<T>* v, int n );
+  template <class S, class D>
+  static void copyVector( const S* p, std::vector<D>* v, int n );
+
+  /// copy C array to std::vector
+  template <class T>
+  static void copyVectorFromVoid( const void* p, std::vector<T>* v, int n ) {
+    return copyVector( static_cast<const T*>( p ), v, n );
+  }
 
   /// recognize fixed or variable
   static bool fixedValue( const std::string& x );
@@ -66,5 +73,6 @@ class DataConvert {
 
 #include "NtuTool/Common/interface/DataConvert.hpp"
 
-#endif // DataConvert_H
+#endif // NtuTool_Common_DataConvert_h
+
 

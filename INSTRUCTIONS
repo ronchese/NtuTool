@@ -1,0 +1,422 @@
+
+ -------------- Description --------------
+
+The NtuTool package can be used in CMSSW environment or exported on any PC
+where C++ and ROOT are installed.
+
+The package is structured as a CMSSW subsystem, with 3 packages:
+NtuTool/Common : code to read, write and handle ntuples, with no dependence
+                 on any CMSSW specific software;
+NtuTool/EDM    : code to produce ntuples in CMSSW modules, e.g. EDAnalyzer,
+                 including the possibility to produce EDM ntuples or NANOAOD
+                 in a transparent way;
+NtuTool/Read   : code to read EDM ntuples or NANOAOD as if they were legacy
+                 flat ntuples, in a transparent way, also outside CMSSW
+                 environment.
+
+The main idea followed to create the NtuTool library is making easily available
+the following functionalities:
+- define the ntuple only once and reuse the same code when producing the
+  ntuple itself and/or analyzing it, via an unique set of calls to 
+  "setBranch(...)" with the same parameters as the ROOT function "Branch(...)";
+- build a standalone executable for ntuple analysis without using "makeClass";
+- specify the ntuple file list and the output histogram file in the command
+  line;
+- specify the number of events to process, or skip, in the command line;
+- allow the customization of parameters, e.g. cuts, in the command line
+  without the need of recompiling;
+- when analyzing CMS data, translate internally the calls to "setBranch(...)" 
+  to the ones required to produce EDM ntuples or NANOAOD if required, and 
+  analyze it as if it were a flat ntuple.
+
+The ntuple production workflow goes through the following main steps:
+- ntuple definition,
+- loop where at each iteration the data structure is filled and then 
+  made persistent through a call to the library function "fill()",
+- close the ntuple.
+
+The ntuple analysis workflow goes through the following main steps:
+- call to "beginJob()" for preliminary operations including
+  ntuple structure definition,
+- call to "book()" to create histograms,
+- repeated calls to "analyze()" for each ntuple entry,
+- call to "endJob()" for conclusive operations,
+- call to an optional function "plot()" to draw histograms,
+- call to "save()" to save histograms
+  (an automatic saving mechanism is available).
+
+In the following some simple examples are shown; some of them do not actually 
+use the NtuTool library and are included as a reference for comparison.
+The examples analyzing ntuples through NtuTool library are shown in the
+simplest form; after the examples more details are given about the available 
+functionalities and running options.
+
+Other informations can be found on a dedicated TWiki:
+https://twiki.cern.ch/twiki/bin/viewauth/CMS/NtuTool
+
+ -------------- Recipe for the impatient user --------------
+
+If this library is to be used outside CMSSW, simply look at the steps 1-9, 
+neglecting steps n-B (n = 4-9). Those steps can be neglected also if the
+library is to be used outside CMSSW but the C++ and ROOT environment is 
+available only from CMSSW, refer to step 3-B for that situation.
+
+If this library is to be used inside CMSSW, use it together with NtuAnalysis
+and refer to the instructions therein.
+
+ -------------- Download, install and compile --------------
+
+ ----- STEP 1 : download and install -----
+
+# The package can be downloaded from git and installed running a simple script:
+
+git clone https://github.com/ronchese/NtuTool
+uty/install.sh
+
+# That can be done in any directory of the file system available to the user,
+# unless the package is used in CMSSW; in this case it's to be downloaded in 
+# the top "src" directory, and running the install.sh can be omitted:
+
+cd ${CMSSW_BASE}/src
+cmsenv
+git clone https://github.com/ronchese/NtuTool
+
+# The package can be used across different CMSSW releases, running a script
+# before compilation:
+
+${CMSSW_BASE}/src/NtuTool/uty/setAt810.sh #  CMSSW_8_1_0 and following
+${CMSSW_BASE}/src/NtuTool/uty/setAtA2E.sh # CMSSW_10_2_4 and following
+${CMSSW_BASE}/src/NtuTool/uty/setAtB00.sh # CMSSW_11_0_0 and following
+${CMSSW_BASE}/src/NtuTool/uty/setAtB20.sh # CMSSW_11_2_0 and following
+
+# The CMSSW versions listed above correspond to the ones used for testing, 
+# their correctness cannot be guaranteed; e.g. a CMSSW_10_1_X could 
+# require the script "setAtA2E.sh".
+
+# To run with CMSSW versions where NANOAOD is not defined, run the script
+
+${CMSSW_BASE}/src/NtuTool/uty/removeNANO.sh
+
+ ----- STEP 2 : export the library outside -----
+
+# To install the package on a computer where "git" is not available, it can be
+# exported there from a computer where the package has been already downloaded
+# running a simple script, that can be run from any directory, both using
+# the relative or absolute path:
+
+..../NtuTool/uty/export.sh
+
+# The script print on the screen the full path of a NtuTool_XX_YY_ZZ.tgz file,
+# that you can copy wherever you want to install the package and unpack:
+
+tar -xzf NtuTool_XX_YY_ZZ.tgz
+cd NtuTool_XX_YY_ZZ
+uty/install.sh
+
+ ----- STEP 3 : set environment and compile -----
+
+# The environment must be set sourcing a script:
+
+cd ..../NtuTool
+. uty/envset.sh
+# or
+source uty/envset.csh
+
+# The full path, relative or absolute, can be used as well, in place of 
+# issuing a "cd ..../NtuTool" command.
+
+# The "envset.(sh|csh)" script must be executed at the beginning of each
+# session using the NtuTool library, unless it's used in a CMSSW environment;
+# in this case the environment is automatically set by CMSSW itself:
+
+cd ${CMSSW_BASE}/src
+cmsenv
+
+# step 3-A
+# To compile with a completely CMSSW-independent C++/ROOT environment
+# do the following:
+
+${NTU_TOOL_DIR}/uty/compile.sh
+
+# When used inside CMSSW everything is compiled automatically by scram,
+# so this step is necessary only to use the library with a simple ROOT;
+# all the same it's possible that on some computer C++ and/or ROOT are
+# available only as part of the CMSSW package. In that case, all the same,
+# the package can be compiled using only C++ and ROOT, but the resulting 
+# library would be usable only with the same C++/ROOT versions used to compile.
+# The production of different libraries in the same installation can be done
+# using a dedicated script, see step 3-B; that use case is poorly supported
+# so it's usage is not recommended.
+
+# step 3-B
+# To compile using a C++/ROOT environment as defined in a CMSSW release
+# do the following:
+
+cd /cvmfs/.../slcN_ARCH_gccPQR/cms/..../CMSSW_X_Y_Z/src ; cmsenv
+cd ${NTU_TOOL_DIR}/Common/test
+uty/compile_CMSSW.sh CMSSW_X_Y_Z [slcN_ARCH_gccPQR]
+
+# where CMSSW_X_Y_Z is the CMSSW version, e.g. CMSSW_10_2_4 and 
+# slcN_ARCH_gccPQR is the architecture, e.g. slc7_amd64_gcc700 .
+# To compile for all available CMSSW versions do the following
+# (after setting SCRAM_ARCH).
+
+uty/go_compileNtuTool.sh
+
+ -------------- Examples --------------
+
+ -----                 examples - part A                 -----
+ ----- compile, write a ntuple & analyze it (standalone) -----
+
+Some examples to write and then analyze a simple ROOT tree can be tried; 
+they produce a ntuple with a few random numbers and write it to a ROOT file.
+The first example does not use the NtuTool functionalities and is included
+just as a comparison/reference; the second one actually uses the library.
+Outside CMSSW they can be compiled with a dedicated script (step 4-A).
+Inside CMSSW the examples are automatically compiled with scram (step 4-B);
+ntuple writing is run as standalone executables, not as CMSSW modules, also
+when they're run in a CMSSW environment, so the corresponding examples 
+(steps 5-B and 7-B) are not so meaningful. Examples of typical ntuples
+writing in a CMSSW run can be found in the next section 
+(part C , examples 10-13).
+
+ --- STEP 4 : compile
+
+# step 4-A : compile outside CMSSW
+# run the "envset.(sh|csh)" script (see above)
+cd ${NTU_TOOL_DIR}/Common/test
+./compile.sh
+
+# step 4-B : compile inside CMSSW
+cd ..../src ; cmsenv ;
+cd ${CMSSW_BASE}/src ; scram b
+
+# The preliminary instruction to set the environment will not be explicitly
+# included in the next steps, of course it's needed whenever a new work
+# seesion is started.
+
+ --- STEP 5 : write a ntuple without using NtuTool
+
+# The ROOT file "simple_tree.root" is produced.
+# The code is in ..../Common/test/simpleLegacyWrite.cc
+
+# step 5-A : create and fill a ntuple outside CMSSW without using NtuTool
+cd ${NTU_TOOL_DIR}/Common/test
+rm simple_tree.root ; simpleLegacyWrite
+
+# step 5-B : create and fill a ntuple inside CMSSW without using NtuTool
+cd ${CMSSW_BASE}/src/NtuTool/Common/test
+rm simple_tree.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleLegacyWrite
+
+ --- STEP 6 : analyze a ntuple without using NtuTool
+
+# The ROOT file "simple_tree.root", produced in step 5, is analyzed to 
+# produce some histograms written to the ROOT file hist.root .
+# The code is in ..../Common/test/simpleLegacyRead.cc
+
+# step 6-A : analyze a ntuple outside CMSSW without using NtuTool
+cd ${NTU_TOOL_DIR}/Common/test
+rm hist.root ; simpleLegacyRead
+
+# step 6-B : analyze a ntuple inside CMSSW without using NtuTool
+cd ${CMSSW_BASE}/src/NtuTool/Common/test
+rm hist.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleLegacyRead
+
+ --- STEP 7 : write a ntuple using NtuTool
+
+# The ROOT file "simple_ntuple.root" is produced.
+# The code is in ..../Common/test/simpleNtupleWrite.cc
+
+# step 7-A : create and fill a ntuple outside CMSSW using NtuTool
+cd ${NTU_TOOL_DIR}/Common/test
+rm simple_ntuple.root ; simpleNtupleWrite
+
+# step 7-B : create and fill a ntuple inside CMSSW using NtuTool
+cd ${CMSSW_BASE}/src/NtuTool/Common/test
+rm simple_ntuple.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleNtupleWrite
+
+ --- STEP 8 : analyze a ntuple using NtuTool
+
+# The ROOT file "simple_ntuple.root", produced in step 7, is analyzed to 
+# produce some histograms written to the ROOT file hist.root .
+# The code is in ..../Common/test/simpleNtupleRead.cc
+
+# step 8-A : analyze a ntuple outside CMSSW using NtuTool
+echo "Y ${NTU_TOOL_DIR}/Common/test/simple_ntuple.root" > simple_ntuple.list
+rm hist.root ; simpleNtupleRead simple_ntuple.list hist.root b
+
+# step 8-B : analyze a ntuple inside CMSSW using NtuTool
+cd ${CMSSW_BASE}/src/NtuTool/Common/test
+echo "Y ${CMSSW_BASE}/src/NtuTool/Common/test/simple_ntuple.root" > simple_ntuple.list
+rm hist.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleNtupleRead simple_ntuple.list hist.root
+
+ --- STEP 9 : analyze & skim a ntuple using NtuTool
+
+# The ROOT file "simple_ntuple.root", produced in step 7, is analyzed to 
+# produce some histograms written to the ROOT file hist.root and, in the
+# meanwhile, skim the ntuple selecting event and dropping some branch.
+# The code is in ..../Common/test/simpleNtupleFilter.cc
+
+# step 9-A : analyze a ntuple outside CMSSW using NtuTool
+cd ${NTU_TOOL_DIR}/Common/test
+echo "Y ${NTU_TOOL_DIR}/Common/test/simple_ntuple.root" > simple_ntuple.list
+rm hist.root ; rm simple_filter.root ; simpleNtupleFilter simple_ntuple.list hist.root b [-v filterName simple_filter.root]
+
+# step 9-B : analyze a ntuple inside CMSSW using NtuTool
+cd ${CMSSW_BASE}/src/NtuTool/Common/test
+echo "Y ${CMSSW_BASE}/src/NtuTool/Common/test/simple_ntuple.root" > simple_ntuple.list
+rm hist.root ; rm simple_filter.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleNtupleFilter simple_ntuple.list hist.root [-v filterName simple_filter.root]
+
+ -----                 examples - part B                -----
+ ----- write ntuples in CMSSW modules (e.g. EDAnalyzer) -----
+
+The same examples can be run inside CMSSW using EDAnalyzer or EDProducer
+modules. Again the first example does not use the NtuTool functionalities
+and is included just as a comparison/reference while the second one actually
+uses the library. Two more examples are included, one producing the same
+ntuple as an EDM-ntuple or a NANOAOD.
+These examples are left here as a basic reference, but a deep integration of
+NtuTool with CMSSW is implemented in NtuAnalysis; the usage of that subsystem
+in addition to NtuTool is highly recommended.
+
+ --- STEP 10 : write a ntuple in CMSSW without using NtuTool
+
+# The ROOT file "simple_tree.root" is produced, as in step 5.
+# The code is in ..../EDM/test/SimpleLegacyModule.cc
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+rm simple_tree.root ; cmsRun cfg_legacy.py
+# the produced ntuple can be analyzed as in step 6,
+# changing the path where needed
+
+ --- STEP 11 : write a ntuple in CMSSW using NtuTool
+
+# The ROOT file "simple_ntuple.root" is produced, as in step 7.
+# The code is in ..../EDM/test/SimpleNtupleModule.cc
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+rm simple_ntuple.root ; cmsRun cfg_ntuple.py
+# the produced ntuple can be analyzed as in step 8 or filtered as in step 9,
+# changing the path where needed
+
+ --- STEP 12 : write an EDM-ntuple
+
+# The ROOT file "simple_ntuEDM.root" is produced, the content is the same
+# as in step 7 and 11, but the format is as for EDM ntuples.
+# The code is in ..../EDM/test/SimpleNtuEDMModule.cc
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+rm simple_ntuEDM.root ; cmsRun cfg_ntuEDM.py
+# the produced ntuple can be analyzed as legacy flat ntuples,
+# see following examples
+
+ --- STEP 13 : write a NANOAOD
+
+# The ROOT file "simple_ntuNANO.root" is produced, the content is the same
+# as in step 7, 11 and 12 but the format is as for NANOAOD.
+# The code is in ..../EDM/test/SimpleNtuNANOModule.cc
+# The instructions to analyze the produced ntuple are given in the following.
+
+cd ${CMSSW_BASE}/src/NtuTool/EDM/test
+rm simple_ntuNANO.root ; cmsRun cfg_ntuNANO.py
+# the produced ntuple can be analyzed as legacy flat ntuples,
+# see following examples
+
+ -----        examples - part C        -----
+ ----- read EDM ntuples and/or NANOAOD -----
+
+The library allows the analysis of EDM ntuples or NANOAOD as if they were
+legacy flat ntuples. This can be done not only inside CMSSW but also with 
+any computer having only C++ and ROOT.
+In the former case examples are automatically compiled with scram, in the 
+latter case examples are compiled with a dedicated script
+${NTU_TOOL_DIR}/Read/test/compile.sh
+
+ --- STEP 14 : analyze an EDM ntuple using NtuTool
+
+# The ROOT file "simple_ntuEDM.root", produced in step 12, is analyzed to 
+# produce some histograms written to the ROOT file hist.root .
+# The code is in ..../Read/test/simpleNtuEDMRead.cc
+
+# step 14-A : analyze an EDM ntuple outside CMSSW
+# ROOT file(s) containing EDM ntuples must be copied somewhere, here it's
+# assumed they've been copied in the same ${NTU_TOOL_DIR}/Read/test directory.
+cd ${NTU_TOOL_DIR}/Read/test
+echo "Y simple_ntuEDM.root" > simple_ntuEDM.list
+rm hist.root ; simpleNtuEDMRead simple_ntuEDM.list hist.root b
+
+# step 14-B : analyze an EDM ntuple inside CMSSW
+# ROOT file(s) containing EDM ntuples are taken from the directory where 
+# they've been produced in step 12, i.e. ..../EDM/test .
+cd ${CMSSW_BASE}/src/NtuTool/Read/test
+echo "Y ${CMSSW_BASE}/src/NtuTool/EDM/test/simple_ntuEDM.root" > simple_ntuEDM.list
+rm hist.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleNtuEDMRead simple_ntuEDM.list hist.root
+
+ --- STEP 15 : analyze a NANOAOD using NtuTool
+
+# The ROOT file "simple_ntuNANO.root", produced in step 13, is analyzed to 
+# produce some histograms written to the ROOT file hist.root .
+# The code is in ..../Read/test/simpleNtuNANORead.cc
+
+# step 15-A : analyze a NANOAOD outside CMSSW
+# ROOT file(s) containing NANOAOD must be copied somewhere, here it's
+# assumed they've been copied in the same ${NTU_TOOL_DIR}/Read/test directory.
+cd ${NTU_TOOL_DIR}/Read/test
+echo "Y simple_ntuNANO.root" > simple_ntuNANO.list
+rm hist.root ; simpleNtuNANORead simple_ntuNANO.list hist.root b
+
+# step 15-B : analyze a NANOAOD inside CMSSW
+# ROOT file(s) containing NANOAOD are taken from the directory where 
+# they've been produced in step 12, i.e. ..../EDM/test .
+cd ${CMSSW_BASE}/src/NtuTool/Read/test
+echo "Y ${CMSSW_BASE}/src/NtuTool/EDM/test/simple_ntuNANO.root" > simple_ntuNANO.list
+rm hist.root ; ${CMSSW_BASE}/test/${SCRAM_ARCH}/simpleNtuNANORead simple_ntuNANO.list hist.root
+
+ -------------- Running options and other functionalities --------------
+
+Assuming the executable name is "treeAnalyze"
+
+treeAnalyze ntuList -n 6 -s 2 -a 5 hs.root x
+
+ntuList    : is a text file with the list of the ntuple files to read
+             each file is preceded by a letter, with a blank as separator
+             Y to actually process the corresponding ntuple file,
+             N to skip the corresponding ntuple file,
+             B to skip the corresponding ntuple file and all the 
+               following ones
+hs.root    : is the ouptut histogram file
+-n         : set the max number of events to read,
+           : if negative its applied to each input file
+-s         : set the number of events to skip,
+           : if negative its applied to each input file
+-a         : set the max number of events to accept,
+           : if negative its applied to each input file
+x          : running mode, see in the following for the possible options
+-v key val : to set user parameter "key" as "val"
+           : user parameters are handled through the functions
+           : "setUserParameter" and "getUserParameter",
+           : see the code in the examples, e.g. the one in step 8
+-c cfgFile : to read all parameters from cfgFile,
+           : where in each line a pair is written
+           : key val
+           : without any "=" sign
+
+alternative options for running mode:
+
+x       draw the histograms at the end of execution, as coded in plot()
+        (use "exit ROOT" from a graphic ROOT canvas to terminate the process)
+i       have a ROOT prompt at the end of the execution
+j       draw the histograms at the end of execution, as coded in plot() and
+        then have a ROOT prompt
+y       run the plot() function in "batch" mode, graphic objects are saved
+        to file(s), as coded in the function plot() itself, but they're not
+        drawn on the screen
+b       (default) no interactive ROOT and no graphic, plot() is skipped
+
+-v histoMode RECREATE
+        to open the output file with RECREATE option (CREATE by default)
+
+The ntuple format (flat, EDM or NANOAOD) is defined in the analysis code,
+chosing among the classes TreeReader, EDMTreeReader or NANOTreeReader, 
+see examples in steps 8, 14 or 15 ; to choose the ntuple format at runtime
+the additional library NtuAnalysis must be used.

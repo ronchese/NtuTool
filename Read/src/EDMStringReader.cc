@@ -28,16 +28,16 @@
 //-------------------
 // Initializations --
 //-------------------
-static EDMStringReader tr____c;
+
 
 //----------------
 // Constructors --
 //----------------
 EDMStringReader::EDMStringReader():
  EDMTypeReader<std::string>( false ) {
-  std::string* p = 0;
-  dataType = TreeTypeNames::typeName( p );
-  dataReset = new TypeReset<char>( DataReset::read );
+  std::string* p = nullptr;
+  this->dataType = TreeTypeNames::typeName( p );
+  this->dataReset = new TypeReset<char>( DataReset::stl_read );
   EDMTypeReaderManager::registerHandler( "C", this );
 }
 
@@ -45,11 +45,8 @@ EDMStringReader::EDMStringReader():
 EDMStringReader::EDMStringReader( const std::string& name,
                                   const std::string& code,
                                   const std::string& type ):
- EDMTypeReader<std::string>( name, code, type ) {
-}
-
-
-EDMStringReader::EDMStringReader( bool dum ) {
+ DataHandler( name, code, type ),
+ EDMTypeReader<std::string>( nullptr ) {
 }
 
 //--------------
@@ -70,9 +67,7 @@ DataHandler* EDMStringReader::getInstance( const std::string& name,
 
 
 void EDMStringReader::process( void* p ) {
-  DataConvert::copyString( static_cast<std::string*>( auxPtr ),
-                           static_cast<       char*>( 
-                                 const_cast<       void*>( p ) ) );
+  DataConvert::copyString( cPtr( auxPtr ), static_cast<char*>( p ) );
   return;
 }
 
@@ -81,3 +76,6 @@ void* EDMStringReader::setAuxPtr( void* p, DataHandlerManager* hm ) {
   return auxPtr = new std::string;
 }
 
+// static object
+
+static const EDMStringReader ter____c;

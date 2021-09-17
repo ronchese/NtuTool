@@ -1,5 +1,5 @@
-#ifndef EDMTypeWriterManager_H
-#define EDMTypeWriterManager_H
+#ifndef NtuTool_EDM_EDMTypeWriterManager_h
+#define NtuTool_EDM_EDMTypeWriterManager_h
 /** \class EDMTypeWriterManager
  *
  *  Description: 
@@ -50,13 +50,14 @@ class EDMTypeWriterManager: public DataHandlerManager {
 
  private:
 
-  virtual DataHandlerMap* handlerMap();
+  DataHandlerMap* handlerMap() override;
   static  DataHandlerMap* hm();
 
 };
 
 
-#endif // EDMTypeWriterManager_H
+#endif // NtuTool_EDM_EDMTypeWriterManager_h
+
 
 
 

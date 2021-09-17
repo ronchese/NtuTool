@@ -1,5 +1,5 @@
-#ifndef TreeTypeManager_H
-#define TreeTypeManager_H
+#ifndef NtuTool_Common_TreeTypeManager_h
+#define NtuTool_Common_TreeTypeManager_h
 /** \class TreeTypeManager
  *
  *  Description: 
@@ -56,7 +56,8 @@ class TreeTypeManager: public DataHandlerManager {
 };
 
 
-#endif // TreeTypeManager_H
+#endif // NtuTool_Common_TreeTypeManager_h
+
 
 
 

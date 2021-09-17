@@ -16,7 +16,7 @@
 TreeWrapper::TreeWrapper():
      readEvts( 0 ),
  analyzedEvts( 0 ),
- acceptedEvts( 0 )  {
+ acceptedEvts( 0 ) {
   setUserParameter( "histoMode", "CREATE" );
 }
 
@@ -142,10 +142,12 @@ void TreeWrapper::endJob() {
 
 
 void TreeWrapper::plot( int argc, char* argv[], char flag ) {
-  TApplication* app = 0;
+  TApplication* app = nullptr;
   std::string name( treeName + "_app" );
   const char* cn = name.c_str();
   switch ( flag ) {
+  case 'y':
+    plot();
   case 'b':
     return;
   case 'i':
@@ -205,55 +207,6 @@ int TreeWrapper::acceptedEvents() {
   return acceptedEvts;
 }
 
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             const char* branchData ) {
-
-  newBranch( branchName, dataPtr, branchData )->branchPtr  = 0;
-  return;
-
-}
-
-
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             const char* branchData,
-                             TBranch** branchPtr ) {
-
-  newBranch( branchName, dataPtr, branchData )->branchPtr  = branchPtr;
-  return;
-
-}
-
-
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             int bufferSize,
-                             int splitLevel,
-                             const char* branchData ) {
-
-  branch_desc* bDesc =
-    newBranch( branchName, dataPtr, branchData );
-  bDesc->bufferSize = bufferSize;
-  bDesc->splitLevel = splitLevel;
-  bDesc->branchPtr  = 0;
-  return;
-
-}
-
-
-void TreeWrapper::setBranch( const char* branchName, void* dataPtr,
-                             int bufferSize,
-                             int splitLevel,
-                             const char* branchData,
-                             TBranch** branchPtr ) {
-
-  branch_desc* bDesc =
-  newBranch( branchName, dataPtr, branchData );
-  bDesc->bufferSize = bufferSize;
-  bDesc->splitLevel = splitLevel;
-  bDesc->branchPtr  = branchPtr;
-  return;
-
-}
-
 
 void TreeWrapper::reset() {
 // default analysis - no operation 
@@ -270,16 +223,16 @@ bool TreeWrapper::analyze( int entry, int event_file, int event_tot ) {
 
 
 void TreeWrapper::autoReset() {
-  branch_rev_iter iter = branchList.rbegin();
-  branch_rev_iter iend = branchList.rend();
+  branch_rev_iter iter = treeRBegin();//branchList.rbegin();
+  branch_rev_iter iend = treeREnd();//branchList.rend();
   while ( iter != iend ) {
     branch_desc* bDesc = *iter++;
     DataHandler* handler = bDesc->dataHandler;
-    void* dataPtr = 0;
-    if ( bDesc->ppRef ) dataPtr = *static_cast<void**>(
-                                  bDesc->dataPtr );
-    else                dataPtr = bDesc->dataPtr;
-    if ( dataPtr == 0 ) continue;
+    if ( handler == nullptr ) continue;
+    void* dataPtr = nullptr;
+    if ( bDesc->ppRef ) dataPtr = *pPtr( bDesc->dataPtr );
+    else                dataPtr =        bDesc->dataPtr;
+    if ( dataPtr == nullptr ) continue;
     handler->reset( dataPtr );
   }
   return;
@@ -369,15 +322,15 @@ void TreeWrapper::autoSave( TList* list ) {
       dir->cd();
     }
     else if ( writable( obj ) ) {
-      if ( list == 0 ) obj->Write();
-      else             list->FindObject( obj->GetName() )->Write();
+      if ( list == nullptr ) obj->Write();
+      else                   list->FindObject( obj->GetName() )->Write();
     }
   }
   return;
 }
 
 /*
-// not working, "GetListOfKeys" returns 0 for memory resident directories
+// not working, "GetListOfKeys" returns nullptr for memory resident directories
 void TreeWrapper::autoSave( TDirectory* dir ) {
   TDirectory* current = gDirectory;
   TList* kl = dir->GetListOfKeys();
@@ -402,34 +355,6 @@ void TreeWrapper::autoSave( TDirectory* dir ) {
 }
 */
 
-void TreeWrapper::fillBranchMap() {
-  branchMap.clear();
-  branch_iterator iter = branchList.begin();
-  branch_iterator iend = branchList.end();
-  while ( iter != iend ) {
-    branch_desc* bDesc = *iter++;
-    branchMap[*bDesc->branchPtr] = bDesc;
-  }
-  return;
-}
-
-
-void TreeWrapper::process( TBranch* b, int ientry ) {
-// default preliminary process - dummy
-  return;
-}
-
-
-TreeWrapper::branch_iterator TreeWrapper::treeBegin() {
-  return branchList.begin();
-}
-
-
-TreeWrapper::branch_iterator TreeWrapper::treeEnd() {
-  return branchList.end();
-}
-
-
 bool TreeWrapper::writable( const TObject* obj ) {
   return writable( obj->ClassName() );
 }
@@ -440,22 +365,5 @@ bool TreeWrapper::writable( const std::string& type ) {
   if ( type                == "TProfile" ) return true;
   if ( type                == "TCanvas"  ) return true;
   return false;
-}
-
-
-TreeWrapper::branch_desc* TreeWrapper::newBranch( const char* branchName,
-                                                  void* dataPtr,
-                                                  const char* branchData ) {
-  branch_desc* bDesc = new branch_desc;
-  bDesc->branchName  = new std::string( branchName );
-  bDesc->dataPtr     = dataPtr;
-  bDesc->branchData  = new std::string( branchData );
-  bDesc->branchPtr   = 0;
-  bDesc->bufferSize  =
-  bDesc->splitLevel  = -999;
-  bDesc->ppRef       = false;
-  bDesc->dataHandler = 0;
-  branchList.push_back( bDesc );
-  return bDesc;
 }
 

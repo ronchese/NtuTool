@@ -30,9 +30,9 @@
 //              ---------------------
 
 /// copy std::vector to C array
-template<class T>
-int  DataConvert::copyVector( const std::vector<T>* v, T* p ) {
-  typedef typename std::vector<T>::const_iterator vIter;
+template <class S, class D>
+int  DataConvert::copyVector( const std::vector<S>* v, D* p ) {
+  typedef typename std::vector<S>::const_iterator vIter;
   vIter iter = v->begin();
   vIter iend = v->end();
   while ( iter != iend ) *p++ = *iter++;
@@ -40,11 +40,11 @@ int  DataConvert::copyVector( const std::vector<T>* v, T* p ) {
 }
 
 /// copy C array to std::vector
-template<class T>
-void DataConvert::copyVector( const T* p, std::vector<T>* v, int n ) {
+template <class S, class D>
+void DataConvert::copyVector( const S* p, std::vector<D>* v, int n ) {
+  v->clear();
   v->reserve( n );
   while ( n-- ) v->push_back( *p++ );
   return;
 }
-
 

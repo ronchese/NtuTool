@@ -15,7 +15,6 @@
 //-------------------------------
 // Collaborating Class Headers --
 //-------------------------------
-#include "NtuTool/EDM/interface/EDMTypeWriter.h"
 #include "NtuTool/Common/interface/DataHandlerMap.h"
 
 //---------------
@@ -50,7 +49,7 @@ DataHandlerMap* EDMTypeWriterManager::handlerMap() {
 
 void EDMTypeWriterManager::registerHandler( const std::string& code,
                                             DataHandler* handler ) {
-  hm()->insert( code,handler );
+  hm()->insert( code, handler );
 }
 
 

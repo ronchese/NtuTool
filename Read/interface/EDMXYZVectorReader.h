@@ -1,5 +1,5 @@
-#ifndef EDMXYZVectorReader_H
-#define EDMXYZVectorReader_H
+#ifndef NtuTool_Read_EDMXYZVectorReader_h
+#define NtuTool_Read_EDMXYZVectorReader_h
 /** \class EDMXYZVectorReader
  *
  *  Description: 
@@ -41,26 +41,25 @@ class EDMXYZVectorReader: public EDMTypeReader<math::XYZVector> {
 
   /** Destructor
    */
-  virtual ~EDMXYZVectorReader();
+  ~EDMXYZVectorReader() override;
 
   /** Operations
    */
   /// Utility functions
   /// get concrete object
-  virtual DataHandler* getInstance( const std::string& name,
-                                    const std::string& code );
+  DataHandler* getInstance( const std::string& name,
+                            const std::string& code ) override;
 
   /// Utility functions
-  virtual void setMemberPtr( TTree* tree,
-                             const std::string& branchName,
-                             void* dataPtr );
+  void setMemberPtr( TTree* tree,
+                     const std::string& branchName,
+                     void* dataPtr ) override;
 
  protected:
 
   EDMXYZVectorReader( const std::string& name,
                       const std::string& code,
                       const std::string& type );
-  EDMXYZVectorReader( bool dum );
 
  private:
 
@@ -69,7 +68,8 @@ class EDMXYZVectorReader: public EDMTypeReader<math::XYZVector> {
 
 };
 
-#endif // EDMXYZVectorReader_H
+#endif // NtuTool_Read_EDMXYZVectorReader_h
+
 
 
 

@@ -1,0 +1,28 @@
+#ifndef NtuTool_EDM_NANOTableWrapper_h
+#define NtuTool_EDM_NANOTableWrapper_h
+
+#include "DataFormats/NanoAOD/interface/FlatTable.h"
+
+class NANOTableWrapper {
+
+ public:
+
+  template<class T>
+  static void addColumn( nanoaod::FlatTable* table,
+                         const std::string& name,
+                         const std::vector<T>& v,
+                         const std::string& doc,
+                         nanoaod::FlatTable::ColumnType type,
+                         int nBits ) {
+    table->template addColumn<T,std::vector<T>>( name, v, doc, nBits );
+  }
+  typedef nanoaod::FlatTable::ColumnType cType;
+  static constexpr cType Float = nanoaod::FlatTable::ColumnType::Float;
+  static constexpr cType Int   = nanoaod::FlatTable::ColumnType::Int;
+  static constexpr cType UInt8 = nanoaod::FlatTable::ColumnType::UInt8;
+  static constexpr cType Bool  = nanoaod::FlatTable::ColumnType::Bool;
+
+};
+
+
+#endif // NtuTool_EDM_NANOTableWrapper_h

@@ -35,163 +35,89 @@
 // Operations --
 //--------------
 
-// === template specialization for std::string === 
+// === template specialization for std::string ===
 
-template <>
-EDMTypeReader<std::string>::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetString( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader<std::string> tr____x;
+static const EDMTypeReader< std::string            > ter____x(
+                    new DataResetString           ( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<int> === 
+// === template specialization for std::vector<int> ===
 
-template <>
-EDMTypeReader< std::vector<int> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-  dataReset = new DataResetVector<int>( DataReset::read );
-}
-static EDMTypeReader< std::vector<int      > > tr_v__i;
+static const EDMTypeReader< std::vector<int      > > ter_v__i(
+                    new DataResetVector<int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned int> === 
+// === template specialization for std::vector<unsigned int> ===
 
-template <>
-EDMTypeReader< std::vector<unsigned int> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned int>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<unsigned
-                                  int      > > tr_v_ui;
+static const EDMTypeReader< std::vector<unsigned
+                                        int      > > ter_v_ui(
+                    new DataResetVector<unsigned
+                                        int      >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<short> === 
+// === template specialization for std::vector<short> ===
 
-template <>
-EDMTypeReader< std::vector<short> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<short>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<short    > > tr_v__s;
+static const EDMTypeReader< std::vector<short    > > ter_v__s(
+                    new DataResetVector<short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned short> === 
+// === template specialization for std::vector<unsigned short> ===
 
-template <>
-EDMTypeReader< std::vector<unsigned short> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned short>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<unsigned
-                                  short    > > tr_v_us;
+static const EDMTypeReader< std::vector<unsigned
+                                        short    > > ter_v_us(
+                    new DataResetVector<unsigned
+                                        short    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<char> === 
+// === template specialization for std::vector<char> ===
 
-template <>
-EDMTypeReader< std::vector<char> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<char>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<char     > > tr_v__b;
+static const EDMTypeReader< std::vector<char     > > ter_v__b(
+                    new DataResetVector<char     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned char> === 
+// === template specialization for std::vector<unsigned char> ===
 
-template <>
-EDMTypeReader< std::vector<unsigned char> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned char>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<unsigned
-                                  char     > > tr_v_ub;
+static const EDMTypeReader< std::vector<unsigned
+                                        char     > > ter_v_ub(
+                    new DataResetVector<unsigned
+                                        char     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<bool> === 
+// === template specialization for std::vector<bool> ===
 
-template <>
-EDMTypeReader< std::vector<bool> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<bool>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<bool     > > tr_v__a;
+static const EDMTypeReader< std::vector<bool     > > ter_v__a(
+                    new DataResetVector<bool     >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<long long> === 
+// === template specialization for std::vector<long long> ===
 
-template <>
-EDMTypeReader< std::vector<long long> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<long long>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<long long> > tr_v__l;
+static const EDMTypeReader< std::vector<long long> > ter_v__l(
+                    new DataResetVector<long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<unsigned long long> === 
+// === template specialization for std::vector<unsigned long long> ===
 
-template <>
-EDMTypeReader< std::vector<unsigned long long> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<unsigned long long>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<unsigned
-                                  long long> > tr_v_ul;
+static const EDMTypeReader< std::vector<unsigned
+                                        long long> > ter_v_ul(
+                    new DataResetVector<unsigned
+                                        long long>( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<float> === 
+// === template specialization for std::vector<float> ===
 
-template <>
-EDMTypeReader< std::vector<float> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<float>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<float    > > tr_v__f;
+static const EDMTypeReader< std::vector<float    > > ter_v__f(
+                    new DataResetVector<float    >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<double> === 
+// === template specialization for std::vector<double> ===
 
-template <>
-EDMTypeReader< std::vector<double> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<double>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<double   > > tr_v__d;
+static const EDMTypeReader< std::vector<double   > > ter_v__d(
+                    new DataResetVector<double   >( DataReset::stl_read ) );
 
 
-// === template specialization for std::vector<std::string> === 
+// === template specialization for std::vector<std::string> ===
 
-template <>
-EDMTypeReader< std::vector<std::string> >::EDMTypeReader() {
-  dataType = TreeTypeNames::typeName( dummyPtr );
-  dataReset = new DataResetVector<std::string>( DataReset::read );
-  EDMTypeReaderManager::registerHandler( TreeTypeNames::typeCode( dummyPtr ),
-                                         this );
-}
-static EDMTypeReader< std::vector<std::string> > tr_v__x;
+static const EDMTypeReader< std::vector<std::string> > ter_v__x(
+                    new DataResetVector<std::string>( DataReset::stl_read ) );
 
 

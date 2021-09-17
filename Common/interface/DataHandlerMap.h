@@ -1,5 +1,5 @@
-#ifndef DataHandlerMap_H
-#define DataHandlerMap_H
+#ifndef NtuTool_Common_DataHandlerMap_h
+#define NtuTool_Common_DataHandlerMap_h
 /** \class DataHandlerMap
  *
  *  Description: 
@@ -59,5 +59,6 @@ class DataHandlerMap {
 };
 
 
-#endif // DataHandlerMap_H
+#endif // NtuTool_Common_DataHandlerMap_h
+
 

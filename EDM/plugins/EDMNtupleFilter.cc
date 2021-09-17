@@ -1,19 +1,27 @@
-#include "NtuTool/EDM/plugins/EDMNtupleFilter.h"
+#include "NtuTool/EDM/interface/EDMTreeWriter.h"
+#include "NtuTool/EDM/interface/EDFilterWrapper.h"
 
 #include "FWCore/Framework/interface/Frameworkfwd.h"
 #include "FWCore/Framework/interface/MakerMacros.h"
 
-EDMNtupleFilter::EDMNtupleFilter( const edm::ParameterSet& ps ) {
-}
 
+class EDMNtupleFilter: public EDFilterWrapper {
 
-EDMNtupleFilter::~EDMNtupleFilter() {
-}
+ public:
 
+  EDMNtupleFilter( const edm::ParameterSet& ps ) {}
+  ~EDMNtupleFilter() override {}
 
-bool EDMNtupleFilter::filter( edm::Event& ev, const edm::EventSetup& es ) {
-  return EDMTreeWriter::select;
-}
+ private:
+
+  EDMNtupleFilter           ( const EDMNtupleFilter& t ) = delete;
+  EDMNtupleFilter& operator=( const EDMNtupleFilter& t ) = delete;
+
+  bool filter( edm::Event& ev, const edm::EventSetup& es ) override {
+    return EDMTreeWriter::select;
+  }
+
+};
 
 //define this as a plug-in
 DEFINE_FWK_MODULE( EDMNtupleFilter );

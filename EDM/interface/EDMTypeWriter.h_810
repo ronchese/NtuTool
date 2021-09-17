@@ -1,5 +1,5 @@
-#ifndef EDMTypeWriter_H
-#define EDMTypeWriter_H
+#ifndef NtuTool_EDM_EDMTypeWriter_h
+#define NtuTool_EDM_EDMTypeWriter_h
 /** \class EDMTypeWriter
  *
  *  Description: 
@@ -15,12 +15,17 @@
 //----------------------
 // Base Class Headers --
 //----------------------
-#include "NtuTool/Common/interface/DataHandler.h"
+#include "NtuTool/Common/interface/TypeHandler.h"
 
 //------------------------------------
 // Collaborating Class Declarations --
 //------------------------------------
-
+#include "NtuTool/EDM/interface/EDMTypeWriterManager.h"
+#include "NtuTool/EDM/interface/EDMDataHandler.h"
+namespace edm {
+  class Event;
+}
+class EDProducerWrapper;
 
 //---------------
 // C++ Headers --
@@ -34,34 +39,37 @@
 //              ---------------------
 
 template <class T>
-class EDMTypeWriter: public DataHandler {
+class EDMTypeWriter: public TypeHandler<T,EDMTypeWriterManager>,
+                     public EDMDataHandler {
 
  public:
 
   /** Constructor
    */
-  EDMTypeWriter();
+  EDMTypeWriter( DataReset::resetMode mode ):
+                 TypeHandler<T,EDMTypeWriterManager>( mode ) {}
+  EDMTypeWriter( DataReset* dr ):
+                 TypeHandler<T,EDMTypeWriterManager>( dr )   {}
 
   /** Destructor
    */
-  virtual ~EDMTypeWriter();
+  ~EDMTypeWriter() override;
 
   /** Operations
    */
   /// get concrete object
-  virtual DataHandler* getInstance( const std::string& name,
-                                    const std::string& code );
+  DataHandler* getInstance( const std::string& name,
+                            const std::string& code ) override;
 
   /// EDProducer function
-  virtual void produces( edm::EDProducer* p );
+  void produces( EDProducerWrapper* p ) override;
 
   /// Event function
-  virtual void put( edm::Event& e, const void* p );
+  void put( edm::Event& e, const void* p ) override;
 
   /// Utility functions
-  virtual void buildPtr( void* p );
-  virtual void clearPtr( void* p );
-  virtual void* setAuxPtr( void* p, DataHandlerManager* hm = 0 );
+  void buildPtr( void* p ) override;
+  void clearPtr( void* p ) override;
 
   typedef std::unique_ptr<T> typePtr;
   typedef std::unique_ptr< std::vector<T> > vectPtr;
@@ -71,20 +79,20 @@ class EDMTypeWriter: public DataHandler {
   EDMTypeWriter( const std::string& name,
                  const std::string& code,
                  const std::string& type );
-  EDMTypeWriter( bool dum );
 
-  T* dummyPtr;
+  EDMTypeWriter( bool dum ) {}
 
  private:
 
-  EDMTypeWriter( const EDMTypeWriter& e );
-  EDMTypeWriter& operator=( const EDMTypeWriter& e );
+  EDMTypeWriter           ( const EDMTypeWriter& e ) = delete;
+  EDMTypeWriter& operator=( const EDMTypeWriter& e ) = delete;
 
 };
 
 #include "NtuTool/EDM/interface/EDMTypeWriter.hpp"
 
-#endif // EDMTypeWriter_H
+#endif // NtuTool_EDM_EDMTypeWriter_h
+
 
 
 
