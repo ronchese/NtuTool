@@ -2,6 +2,7 @@
 #define NtuTool_Common_TreeWrapper_h
 
 #include "NtuTool/Common/interface/BranchInterface.h"
+#include "NtuTool/Common/interface/UserParametersManager.h"
 
 #include <vector>
 #include <map>
@@ -15,11 +16,12 @@ class TObject;
 class TDirectory;
 class TList;
 
-#define SET_USER_PARAMETER(NAME) setUserParameter(#NAME,NAME);
-#define GET_USER_PARAMETER(NAME) getUserParameter(#NAME,NAME);
-#define ASS_USER_PARAMETER(NAME,VALUE) setUserParameter(#NAME,NAME=VALUE);
+//#define SET_USER_PARAMETER(NAME) setUserParameter(#NAME,NAME);
+//#define GET_USER_PARAMETER(NAME) getUserParameter(#NAME,NAME);
+//#define ASS_USER_PARAMETER(NAME,VALUE) setUserParameter(#NAME,NAME=VALUE);
 
-class TreeWrapper: public BranchInterface {
+class TreeWrapper: public BranchInterface,
+                   public UserParametersManager {
 
  public:
 
@@ -28,22 +30,22 @@ class TreeWrapper: public BranchInterface {
 
   const std::string& name() const;
 
-  void setConfiguration( const std::string& file );
-  void setUserParameter( const std::string& key,
-                         const std::string& val );
-  template <class T>
-  void setUserParameter( const std::string& key,
-                         const           T& val );
-  void setUserParameter( const std::string& key,
-                         const        bool& val );
-  const std::string& getUserParameter( const std::string& key );
-  template <class T>
-  void               getUserParameter( const std::string& key,    T& val );
-  void               getUserParameter( const std::string& key, bool& val );
-  template <class T>
-  T                  getUserParameter( const std::string& key );
-
-  void dumpAll( std::ostream& os );
+//  void setConfiguration( const std::string& file );
+//  void setUserParameter( const std::string& key,
+//                         const std::string& val );
+//  template <class T>
+//  void setUserParameter( const std::string& key,
+//                         const           T& val );
+//  void setUserParameter( const std::string& key,
+//                         const        bool& val );
+//  const std::string& getUserParameter( const std::string& key );
+//  template <class T>
+//  void               getUserParameter( const std::string& key,    T& val );
+//  void               getUserParameter( const std::string& key, bool& val );
+//  template <class T>
+//  T                  getUserParameter( const std::string& key );
+//
+//  void dumpAll( std::ostream& os );
 
   // function to do initialization
   virtual void beginJob();
@@ -124,11 +126,11 @@ class TreeWrapper: public BranchInterface {
   TreeWrapper           ( const TreeWrapper& t ) = delete;
   TreeWrapper& operator=( const TreeWrapper& t ) = delete;
 
-  std::map<std::string,std::string> userParameters;
+//  std::map<std::string,std::string> userParameters;
   bool histoPlotted;
 
 };
 
-#include "NtuTool/Common/interface/TreeWrapper.hpp"
+//#include "NtuTool/Common/interface/TreeWrapper.hpp"
 
 #endif // NtuTool_Common_TreeWrapper_h

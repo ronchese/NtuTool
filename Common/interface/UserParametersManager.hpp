@@ -1,10 +1,8 @@
 #include <iostream>
 #include <sstream>
 
-#include "NtuTool/Common/interface/TreeTypeNames.h"
-
 template <class T>
-void TreeWrapper::setUserParameter( const std::string& key, const T& val ) {
+void UserParametersManager::setUserParameter( const std::string& key, const T& val ) {
   std::stringstream sstr;
   sstr.str( "" );
   sstr << val;
@@ -14,7 +12,7 @@ void TreeWrapper::setUserParameter( const std::string& key, const T& val ) {
 
 
 template <class T>
-void TreeWrapper::getUserParameter( const std::string& key, T& val ) {
+void UserParametersManager::getUserParameter( const std::string& key, T& val ) {
   std::stringstream sstr;
   sstr.str( getUserParameter( key ) );
   sstr >> val;
@@ -23,7 +21,7 @@ void TreeWrapper::getUserParameter( const std::string& key, T& val ) {
 
 
 template <class T>
-T    TreeWrapper::getUserParameter( const std::string& key ) {
+T    UserParametersManager::getUserParameter( const std::string& key ) {
   T val;
   getUserParameter( key, val );
   return val;
