@@ -2,7 +2,8 @@
 #include <sstream>
 
 template <class T>
-void UserParametersManager::setUserParameter( const std::string& key, const T& val ) {
+void UserParametersManager::setUserParameter( const std::string& key,
+                                              const           T& val ) {
   std::stringstream sstr;
   sstr.str( "" );
   sstr << val;
@@ -12,7 +13,8 @@ void UserParametersManager::setUserParameter( const std::string& key, const T& v
 
 
 template <class T>
-void UserParametersManager::getUserParameter( const std::string& key, T& val ) {
+void UserParametersManager::getUserParameter( const std::string& key,
+                                                              T& val ) const {
   std::stringstream sstr;
   sstr.str( getUserParameter( key ) );
   sstr >> val;
@@ -21,7 +23,7 @@ void UserParametersManager::getUserParameter( const std::string& key, T& val ) {
 
 
 template <class T>
-T    UserParametersManager::getUserParameter( const std::string& key ) {
+T    UserParametersManager::getUserParameter( const std::string& key ) const {
   T val;
   getUserParameter( key, val );
   return val;

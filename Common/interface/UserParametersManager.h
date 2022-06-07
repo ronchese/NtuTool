@@ -23,14 +23,16 @@ class UserParametersManager {
                          const           T& val );
   void setUserParameter( const std::string& key,
                          const        bool& val );
-  const std::string& getUserParameter( const std::string& key );
+  const std::string& getUserParameter( const std::string& key ) const;
   template <class T>
-  void               getUserParameter( const std::string& key,    T& val );
-  void               getUserParameter( const std::string& key, bool& val );
+  void               getUserParameter( const std::string& key,
+                                                       T& val ) const;
+  void               getUserParameter( const std::string& key,
+                                                    bool& val ) const;
   template <class T>
-  T                  getUserParameter( const std::string& key );
+  T                  getUserParameter( const std::string& key ) const;
 
-  void dumpAll( std::ostream& os );
+  void dumpAll( std::ostream& os ) const;
 
  private:
 
