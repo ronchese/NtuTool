@@ -1,3 +1,9 @@
+04.01.02
+
+user parameter handling moved to a separate class
+
+----------------------
+
 04.01.01
 
 support for NANOAOD added
