@@ -81,11 +81,11 @@ void UserParametersManager::getUserParameter( const string& key,
 
 
 void UserParametersManager::dumpAll( ostream& os ) const {
-  std::map<string,string>::const_iterator iter = userParameters.begin();
-  std::map<string,string>::const_iterator iend = userParameters.end();
+  map<string,string>::const_iterator iter = userParameters.begin();
+  map<string,string>::const_iterator iend = userParameters.end();
   while ( iter != iend ) {
     const map<string,string>::value_type& entry = *iter++;
-    os << entry.first << " " << entry.second << std::endl;
+    os << entry.first << " " << entry.second << endl;
   }
   return;
 }
