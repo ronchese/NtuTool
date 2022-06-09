@@ -15,6 +15,7 @@ class UserParametersManager {
   UserParametersManager();
   virtual ~UserParametersManager();
 
+  virtual
   void setConfiguration( const std::string& file );
   void setUserParameter( const std::string& key,
                          const std::string& val );
